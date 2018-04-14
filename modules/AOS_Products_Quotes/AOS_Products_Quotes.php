@@ -62,16 +62,23 @@ class AOS_Products_Quotes extends AOS_Products_Quotes_sugar
         self::__construct();
     }
 
-
     function save_lines($post_data, $parent, $groups = array(), $key = '')
     {
-
-        $line_count = isset($post_data[$key . 'name']) ? count($post_data[$key . 'name']) : 0;
+        global $db;
+		
+		$line_count = isset($post_data[$key . 'name']) ? count($post_data[$key . 'name']) : 0;
         $j = 0;
         for ($i = 0; $i < $line_count; ++$i) {
-
+		
             if ($post_data[$key . 'deleted'][$i] == 1) {
-                $this->mark_deleted($post_data[$key . 'id'][$i]);
+                //$this->mark_deleted($post_data[$key . 'id'][$i]);
+				$delete_query = "
+					UPDATE aos_products_quotes 
+					SET deleted = 1
+					WHERE aos_products_quotes.id = '".$post_data[$key . 'id'][$i]."' 
+					AND aos_products_quotes.deleted = 0
+				";
+				$result = $db->query($delete_query);
             } else {
                 $product_quote = new AOS_Products_Quotes();
                 foreach ($this->field_defs as $field_def) {
@@ -80,6 +87,10 @@ class AOS_Products_Quotes extends AOS_Products_Quotes_sugar
                         $product_quote->$field_name = $post_data[$key . $field_name][$i];
                     }
                 }
+                $product_quote->margin_c = $post_data['product_margin'][$i];
+                $product_quote->supplier_margin_c = $post_data['product_supplier_margin_c'][$i];
+                $product_quote->cost_c = $post_data['product_cost_2_c'][$i];
+
                 if (isset($post_data[$key . 'group_number'][$i])) {
                     $product_quote->group_id = $groups[$post_data[$key . 'group_number'][$i]];
                 }
@@ -89,9 +100,82 @@ class AOS_Products_Quotes extends AOS_Products_Quotes_sugar
                     $product_quote->parent_id = $parent->id;
                     $product_quote->currency_id = $parent->currency_id;
                     $product_quote->parent_type = $parent->object_name;
+
                     $product_quote->save();
+
                     $_POST[$key . 'id'][$i] = $product_quote->id;
                 }
+            }
+        }
+
+        $relate_to = $post_data['relate_to'];
+        $relate_id = $post_data['relate_id'];
+
+        if($relate_to == 'AOS_Invoices') {
+            // Tax Code - Sales
+            $vat_sales_sql = "
+                SELECT DISTINCT aos_products_quotes.*
+                FROM aos_products_quotes 
+                WHERE aos_products_quotes.parent_type = 'AOS_Invoices' 
+                AND aos_products_quotes.parent_id = '{$relate_id}' 
+                AND aos_products_quotes.deleted = 0
+            ";
+            $result = $db->query($vat_sales_sql);
+
+            $tax_code_sales = "";
+            while ($row = $db->fetchByAssoc($result)) {
+                if($row['vat'] == '10.0') {
+                    $tax_code_sales = "GST";
+                } else {
+                    $tax_code_sales = "FRE";
+                }
+
+                break;
+            }
+
+            $update_invoice = "UPDATE aos_invoices_cstm SET tax_code_c = '{$tax_code_sales}' WHERE id_c = '{$relate_id}'";
+            $db->query($update_invoice);
+
+            // Tax Code - Purchase
+            $purchases = "SELECT cp.id as 'po_id', apq.vat, apc2.id as 'supplier_id', apc2.name, accounts_cstm.organisation_address_country_c
+                        FROM cm4_purchases cp
+                        INNER JOIN aos_products_quotes apq ON
+                          apq.parent_id = cp.aos_invoices_id_c
+                          AND apq.parent_type = 'AOS_Invoices'
+                        INNER JOIN aos_products ap
+                          ON ap.id = apq.product_id
+                        INNER JOIN aos_product_categories apc
+                          ON apc.id = ap.aos_product_category_id
+                          AND ap.aos_product_category_id = apc.id
+                        INNER JOIN aos_product_categories apc2
+                          ON apc2.id = apc.parent_category_id
+                          AND apc2.id = cp.aos_product_categories_id_c
+                          AND apc2.is_parent = 1
+                        INNER JOIN aos_product_categories_cstm apcc ON
+                           apcc.id_c = apc2.id
+                        LEFT JOIN accounts ON
+                           accounts.id = apcc.account_id_c
+                        LEFT JOIN accounts_cstm ON
+                            accounts_cstm.id_c = accounts.id
+                WHERE cp.aos_invoices_id_c = '{$relate_id}'";
+            $result = $db->query($purchases);
+
+            while ($row = $db->fetchByAssoc($result)) {
+                $tax_code_purchase = "FRE";
+
+                if($row['organisation_address_country_c'] == 'AUSTRALIA') {
+                    $tax_code_purchase = "GST";
+                } else {
+                    $tax_code_purchase = "FRE";
+                }
+
+                $update_purchase = "UPDATE cm4_purchases_cstm SET tax_code_c = '{$tax_code_purchase}' WHERE id_c = '{$row['po_id']}'";
+                $db->query($update_purchase);
+
+                echo 'Purchase: ' . $tax_code_purchase;
+                echo '<br/>';
+                echo 'SQL: ' . $update_purchase;
+
             }
         }
     }

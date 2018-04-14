@@ -1,6 +1,18 @@
 <?php
-// created: 2014-01-29 09:59:23
+// created: 2018-01-25 15:20:08
 $unified_search_modules_display = array (
+  'AOD_Index' => 
+  array (
+    'visible' => false,
+  ),
+  'AOD_IndexEvent' => 
+  array (
+    'visible' => false,
+  ),
+  'AOK_Knowledge_Base_Categories' => 
+  array (
+    'visible' => false,
+  ),
   'AOP_Case_Events' => 
   array (
     'visible' => false,
@@ -10,6 +22,10 @@ $unified_search_modules_display = array (
     'visible' => false,
   ),
   'AOR_Reports' => 
+  array (
+    'visible' => false,
+  ),
+  'AOR_Scheduled_Reports' => 
   array (
     'visible' => false,
   ),
@@ -50,6 +66,10 @@ $unified_search_modules_display = array (
     'visible' => true,
   ),
   'Bugs' => 
+  array (
+    'visible' => false,
+  ),
+  'CM1_Department' => 
   array (
     'visible' => false,
   ),

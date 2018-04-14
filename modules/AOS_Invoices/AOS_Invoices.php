@@ -93,4 +93,17 @@ class AOS_Invoices extends AOS_Invoices_sugar {
         $productQuote->mark_lines_deleted($this);
         parent::mark_deleted($id);
     }
+	
+	public function getInvoicePurchases() {
+        $query = "
+			SELECT cm4_purchases.*, apc.id as 'supplier_id', apc.name as 'supplier'
+            FROM cm4_purchases
+            INNER JOIN aos_product_categories apc
+                ON apc.id = cm4_purchases.aos_product_categories_id_c
+            WHERE cm4_purchases.aos_invoices_id_c = '{$this->id}'
+			AND cm4_purchases.deleted = 0
+		";
+
+        return $query;
+    }
 }

@@ -354,7 +354,7 @@ class Account extends Company {
 	 * @return string final query
 	 */
 	public function getProductsServicesPurchasedQuery() {
-		$query = "
+		/*$query = "
 			SELECT
 				aos_products_quotes.*
 			FROM
@@ -362,7 +362,150 @@ class Account extends Company {
 			JOIN aos_quotes ON aos_quotes.id = aos_products_quotes.parent_id AND aos_quotes.stage LIKE 'Closed Accepted' AND aos_quotes.deleted = 0 AND aos_products_quotes.deleted = 0
 			JOIN accounts ON accounts.id = aos_quotes.billing_account_id AND accounts.id = '{$this->id}'
 
+			";*/
+			
+		$query = "
+			SELECT
+				aos_products_quotes.*,
+				aos_products_quotes_cstm.*,
+				aos_invoices.id as `invoice_id`,
+				aos_invoices.name as `invoice_name`,
+				aos_invoices.number as `invoice_number`,
+				aos_invoices.invoice_date as `invoice_date`
+			FROM
+				aos_products_quotes
+			JOIN aos_products_quotes_cstm ON aos_products_quotes.id = aos_products_quotes_cstm.id_c
+			JOIN aos_invoices ON aos_invoices.id = aos_products_quotes.parent_id AND aos_invoices.deleted = 0 AND aos_products_quotes.deleted = 0
+			JOIN accounts ON accounts.id = aos_invoices.billing_account_id AND accounts.id = '{$this->id}'
+
 			";
+		return $query;
+	}
+	
+	public function getProductsServicesforTECS() {
+		$query = "
+			SELECT
+				aos_products_quotes.*,
+				aos_products_quotes_cstm.*,
+				aos_quotes.id as `quote_id`,
+				aos_quotes.name as `quote_name`,
+				aos_invoices.id as `invoice_id`,
+				aos_invoices.name as `invoice_name`,
+				aos_invoices.number as `invoice_number`,
+				aos_invoices.name as `parent_name`,
+				cm3_renewals.id as `renewal_id`,
+				cm3_renewals.renewal_date,
+				cm3_renewals.name as `agreement_name2`
+			FROM
+				aos_products_quotes
+			JOIN aos_products_quotes_cstm
+				ON aos_products_quotes_cstm.id_c = aos_products_quotes.id
+			JOIN aos_products
+				ON aos_products.id = aos_products_quotes.product_id
+				AND aos_products.deleted = 0
+			JOIN aos_invoices 
+				ON aos_invoices.id = aos_products_quotes.parent_id 
+				AND aos_invoices.deleted = 0 
+				AND aos_products_quotes.deleted = 0
+			JOIN aos_quotes_aos_invoices_c 
+				ON aos_quotes_aos_invoices_c.aos_quotes6b83nvoices_idb = aos_invoices.id
+			JOIN aos_quotes
+				ON aos_quotes.id = aos_quotes_aos_invoices_c.aos_quotes77d9_quotes_ida
+			JOIN cm3_renewals_aos_invoices_1_c
+				ON cm3_renewals_aos_invoices_1_c.cm3_renewals_aos_invoices_1aos_invoices_idb = aos_invoices.id
+				AND cm3_renewals_aos_invoices_1_c.deleted = 0
+			JOIN cm3_renewals 
+				ON cm3_renewals.id = cm3_renewals_aos_invoices_1_c.cm3_renewals_aos_invoices_1cm3_renewals_ida
+			WHERE aos_invoices.billing_account_id = '{$this->id}'
+			AND (aos_products.name LIKE '%- Maintenance' OR aos_products.name LIKE '%- Lease' OR aos_products.name LIKE '%- Subscription')
+			AND aos_products_quotes_cstm.status_c = '1'
+			AND aos_products_quotes.parent_type = 'AOS_Invoices'
+		";
+
+		return $query;
+	}
+	
+	public function accounts_cm7_accountindustry_1() {
+		/*$query = "
+			SELECT 
+				cm6_industry.id,
+				cm6_industry.name,
+				cm6_industry.sic,
+				cm6_industry.segment,
+				CASE cai.sic_type WHEN 1 THEN 'Primary' ELSE 'Other' END as 'sic_type',
+				ci2.id as 'parent_id',
+				ci2.name as 'parent_name'
+			FROM cm6_industry 
+
+			JOIN cm6_industry_cm6_industry_c cicic 
+				ON cm6_industry.id = cicic.cm6_industry_cm6_industrycm6_industry_ida
+				
+			JOIN cm6_industry ci2
+				ON cicic.cm6_industry_cm6_industrycm6_industry_idb = ci2.id
+				
+			JOIN cm6_industry_cm7_accountindustry_1_c cicai 
+				ON cm6_industry.id = cicai.cm6_industry_cm7_accountindustry_1cm6_industry_ida
+				
+			JOIN cm7_accountindustry cai
+				ON cai.id = cicai.cm6_industry_cm7_accountindustry_1cm7_accountindustry_idb
+				
+			JOIN accounts_cm7_accountindustry_1_c acai
+				ON cai.id =  acai.accounts_cm7_accountindustry_1cm7_accountindustry_idb
+				
+			JOIN accounts a
+				ON a.id = acai.accounts_cm7_accountindustry_1accounts_ida
+				
+			WHERE a.id = '{$this->id}'
+		";*/
+		
+		$segments = $GLOBALS['app_list_strings']['industry_segment_list'];
+		$sql_case = "";
+		
+		foreach($segments as $key => $val) {
+			$sql_case .= " WHEN '" . $key . "' THEN '" . $val . "' ";
+		}
+		
+		$query = "
+			SELECT 
+				cm7_accountindustry.id,
+				ci.id as 'industry_id',
+				ci.name,
+				ci.sic,
+				CASE ci.segment {$sql_case} ELSE '' END as 'segment',
+				CASE cm7_accountindustry.sic_type WHEN 1 THEN 'Primary' WHEN 2 THEN 'Other' ELSE '' END as 'sic_type',
+				ci2.id as 'parent_id',
+				ci2.name as 'parent_name'
+			FROM cm7_accountindustry
+														
+			-- ACCOUNTS
+			JOIN accounts_cm7_accountindustry_1_c acai
+				ON cm7_accountindustry.id =  acai.accounts_cm7_accountindustry_1cm7_accountindustry_idb
+			JOIN accounts a
+				ON a.id = acai.accounts_cm7_accountindustry_1accounts_ida
+				
+			-- INDUSTRIES
+			JOIN cm6_industry_cm7_accountindustry_1_c cicai 
+				ON cm7_accountindustry.id = cicai.cm6_industry_cm7_accountindustry_1cm7_accountindustry_idb
+			JOIN cm6_industry ci
+				ON ci.id = cicai.cm6_industry_cm7_accountindustry_1cm6_industry_ida
+				
+			-- PARENT INDUSTRIES
+			JOIN cm6_industry_cm6_industry_c cicic 
+				ON ci.id = cicic.cm6_industry_cm6_industrycm6_industry_ida
+			JOIN cm6_industry ci2
+				ON ci2.id = cicic.cm6_industry_cm6_industrycm6_industry_idb			
+				
+			WHERE a.id = '{$this->id}'
+			AND cm7_accountindustry.deleted = 0
+			AND a.deleted = 0
+			AND ci.deleted = 0
+			AND ci2.deleted = 0
+			AND cicic.deleted = 0
+			AND cicai.deleted = 0
+			AND acai.deleted = 0
+		";
+		
+		
 		return $query;
 	}
 

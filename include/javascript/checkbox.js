@@ -530,8 +530,23 @@ function manage_acceptances() {
 
     htmltext += "<table style='width: 100%;text-align:left;'>";
     //ID's from removed buttons now applied to links in this pop-up example : #MarkAsAcceptedForm
-    htmltext += "<tr><td style='padding: 2px;text-align:right;'><img src='themes/default/images/view-process-own.png'></td><td style='padding: 2px;font-size: 110%;'><b><a id='MarkAsAcceptedForm' onclick='handle_accepted();return false;' href='#'>" + SUGAR.language.get('FP_events', 'LBL_MANAGE_ACCEPTANCES_ACCEPTED') + "</a></b><td></tr>";
-    htmltext += "<tr><td style='padding: 2px;text-align:right;'><img src='themes/default/images/view-process-own.png'></td><td style='padding: 2px;font-size: 110%;'><strong><a id='MarkAsDeclinedForm' onclick='handle_declined();return false;' href='#'>" + SUGAR.language.get('FP_events', 'LBL_MANAGE_ACCEPTANCES_DECLINED') + "</a></strong><td></tr>";
+
+    /** Start : Aevin **/
+    htmltext += "<tr><td style='padding: 2px;text-align:right;'><img src='themes/default/images/view-process-own.png'></td><td style='padding: 2px;font-size: 110%;'><b><a id='MarkAsAcceptedForm' onclick='handle_accepted();return false;' href='#'>Attended</a></b><td></tr>";
+    htmltext += "<tr><td style='padding: 2px;text-align:right;'><img src='themes/default/images/view-process-own.png'></td><td style='padding: 2px;font-size: 110%;'><strong><a id='MarkAsDeclinedForm' onclick='handle_declined();return false;' href='#'>Not Interested</a></strong><td></tr>";
+    htmltext += "<tr><td style='padding: 2px;text-align:right;'><img src='themes/default/images/view-process-own.png'></td><td style='padding: 2px;font-size: 110%;'><strong><a id='MarkAsDeclinedForm' onclick='handle_email_click();return false;' href='#'>Email Click (Interested)</a></strong><td></tr>";
+    htmltext += "<tr><td style='padding: 2px;text-align:right;'><img src='themes/default/images/view-process-own.png'></td><td style='padding: 2px;font-size: 110%;'><strong><a id='MarkAsDeclinedForm' onclick='handle_inbound_webpage();return false;' href='#'>Inbound LEAP Webpage</a></strong><td></tr>";
+    htmltext += "<tr><td style='padding: 2px;text-align:right;'><img src='themes/default/images/view-process-own.png'></td><td style='padding: 2px;font-size: 110%;'><strong><a id='MarkAsDeclinedForm' onclick='handle_inbound_vendors();return false;' href='#'>Inbound Vendors</a></strong><td></tr>";
+    htmltext += "<tr><td style='padding: 2px;text-align:right;'><img src='themes/default/images/view-process-own.png'></td><td style='padding: 2px;font-size: 110%;'><strong><a id='MarkAsDeclinedForm' onclick='handle_inbound_email();return false;' href='#'>Inbound Email</a></strong><td></tr>";
+    htmltext += "<tr><td style='padding: 2px;text-align:right;'><img src='themes/default/images/view-process-own.png'></td><td style='padding: 2px;font-size: 110%;'><strong><a id='MarkAsDeclinedForm' onclick='handle_inbound_calls();return false;' href='#'>Inbound Calls</a></strong><td></tr>";
+    htmltext += "<tr><td style='padding: 2px;text-align:right;'><img src='themes/default/images/view-process-own.png'></td><td style='padding: 2px;font-size: 110%;'><strong><a id='MarkAsDeclinedForm' onclick='handle_uncertain();return false;' href='#'>Uncertain</a></strong><td></tr>";
+    htmltext += "<tr><td style='padding: 2px;text-align:right;'><img src='themes/default/images/view-process-own.png'></td><td style='padding: 2px;font-size: 110%;'><strong><a id='MarkAsDeclinedForm' onclick='handle_contacted();return false;' href='#'>To Be Contacted</a></strong><td></tr>";
+    htmltext += "<tr><td style='padding: 2px;text-align:right;'><img src='themes/default/images/view-process-own.png'></td><td style='padding: 2px;font-size: 110%;'><strong><a id='MarkAsDeclinedForm' onclick='handle_interested();return false;' href='#'>Interested</a></strong><td></tr>";
+    htmltext += "<tr><td style='padding: 2px;text-align:right;'><img src='themes/default/images/view-process-own.png'></td><td style='padding: 2px;font-size: 110%;'><strong><a id='MarkAsDeclinedForm' onclick='handle_registered();return false;' href='#'>Registered</a></strong><td></tr>";
+    htmltext += "<tr><td style='padding: 2px;text-align:right;'><img src='themes/default/images/view-process-own.png'></td><td style='padding: 2px;font-size: 110%;'><strong><a id='MarkAsDeclinedForm' onclick='handle_interested_Unable_attend();return false;' href='#'>Interested But Unable to Attend</a></strong><td></tr>";
+    htmltext += "<tr><td style='padding: 2px;text-align:right;'><img src='themes/default/images/view-process-own.png'></td><td style='padding: 2px;font-size: 110%;'><strong><a id='MarkAsDeclinedForm' onclick='handle_registered_didnt_attend();return false;' href='#'>Registered But Didn't Attend</a></strong><td></tr>";
+    htmltext += "<tr><td style='padding: 2px;text-align:right;'><img src='themes/default/images/view-process-own.png'></td><td style='padding: 2px;font-size: 110%;'><strong><a id='MarkAsDeclinedForm' onclick='handle_presenter();return false;' href='#'>Presenter</a></strong><td></tr>";
+    /** End : Aevin **/
 
     htmltext += "</table>";
     //initialise dialog
@@ -646,3 +661,330 @@ function handle_declined() {
     $('#no_check').show();
   }
 }
+
+
+/** Start: Aevin **/
+function handle_email_click() {
+
+  var ids = $("#custom_hidden_1").val();
+  var list = $("#select_entire_list").val();
+  var eventid = $("[name='record']").val();
+  var data = 'id=' + ids;
+  data += '&event_id=' + eventid;
+  data += '&entire_list=' + list;
+
+  if (ids != '') {
+
+    $.ajax({
+      type: "POST",
+      url: "index.php?module=FP_events&action=markemailclick",
+      data: data,
+      success: function () {
+        showSubPanel('delegates', null, true, 'FP_events');
+      }
+    });
+
+    dialog.cancel();
+  }
+  else {
+    $('#no_check').show();
+  }
+}
+
+function handle_inbound_webpage() {
+
+  var ids = $("#custom_hidden_1").val();
+  var list = $("#select_entire_list").val();
+  var eventid = $("[name='record']").val();
+  var data = 'id=' + ids;
+  data += '&event_id=' + eventid;
+  data += '&entire_list=' + list;
+
+  if (ids != '') {
+
+    $.ajax({
+      type: "POST",
+      url: "index.php?module=FP_events&action=markinboundwebpage",
+      data: data,
+      success: function () {
+        showSubPanel('delegates', null, true, 'FP_events');
+      }
+    });
+
+    dialog.cancel();
+  }
+  else {
+    $('#no_check').show();
+  }
+}
+
+function handle_inbound_vendors() {
+
+  var ids = $("#custom_hidden_1").val();
+  var list = $("#select_entire_list").val();
+  var eventid = $("[name='record']").val();
+  var data = 'id=' + ids;
+  data += '&event_id=' + eventid;
+  data += '&entire_list=' + list;
+
+  if (ids != '') {
+
+    $.ajax({
+      type: "POST",
+      url: "index.php?module=FP_events&action=markinboundvendors",
+      data: data,
+      success: function () {
+        showSubPanel('delegates', null, true, 'FP_events');
+      }
+    });
+
+    dialog.cancel();
+  }
+  else {
+    $('#no_check').show();
+  }
+}
+
+function handle_inbound_email() {
+
+  var ids = $("#custom_hidden_1").val();
+  var list = $("#select_entire_list").val();
+  var eventid = $("[name='record']").val();
+  var data = 'id=' + ids;
+  data += '&event_id=' + eventid;
+  data += '&entire_list=' + list;
+
+  if (ids != '') {
+
+    $.ajax({
+      type: "POST",
+      url: "index.php?module=FP_events&action=markinboundemail",
+      data: data,
+      success: function () {
+        showSubPanel('delegates', null, true, 'FP_events');
+      }
+    });
+
+    dialog.cancel();
+  }
+  else {
+    $('#no_check').show();
+  }
+}
+
+function handle_inbound_calls() {
+
+  var ids = $("#custom_hidden_1").val();
+  var list = $("#select_entire_list").val();
+  var eventid = $("[name='record']").val();
+  var data = 'id=' + ids;
+  data += '&event_id=' + eventid;
+  data += '&entire_list=' + list;
+
+  if (ids != '') {
+
+    $.ajax({
+      type: "POST",
+      url: "index.php?module=FP_events&action=markinboundcalls",
+      data: data,
+      success: function () {
+        showSubPanel('delegates', null, true, 'FP_events');
+      }
+    });
+
+    dialog.cancel();
+  }
+  else {
+    $('#no_check').show();
+  }
+}
+
+function handle_uncertain() {
+
+  var ids = $("#custom_hidden_1").val();
+  var list = $("#select_entire_list").val();
+  var eventid = $("[name='record']").val();
+  var data = 'id=' + ids;
+  data += '&event_id=' + eventid;
+  data += '&entire_list=' + list;
+
+  if (ids != '') {
+
+    $.ajax({
+      type: "POST",
+      url: "index.php?module=FP_events&action=markuncertain",
+      data: data,
+      success: function () {
+        showSubPanel('delegates', null, true, 'FP_events');
+      }
+    });
+
+    dialog.cancel();
+  }
+  else {
+    $('#no_check').show();
+  }
+}
+
+function handle_contacted() {
+
+  var ids = $("#custom_hidden_1").val();
+  var list = $("#select_entire_list").val();
+  var eventid = $("[name='record']").val();
+  var data = 'id=' + ids;
+  data += '&event_id=' + eventid;
+  data += '&entire_list=' + list;
+
+  if (ids != '') {
+
+    $.ajax({
+      type: "POST",
+      url: "index.php?module=FP_events&action=markcontacted",
+      data: data,
+      success: function () {
+        showSubPanel('delegates', null, true, 'FP_events');
+      }
+    });
+
+    dialog.cancel();
+  }
+  else {
+    $('#no_check').show();
+  }
+}
+
+function handle_interested() {
+
+  var ids = $("#custom_hidden_1").val();
+  var list = $("#select_entire_list").val();
+  var eventid = $("[name='record']").val();
+  var data = 'id=' + ids;
+  data += '&event_id=' + eventid;
+  data += '&entire_list=' + list;
+
+  if (ids != '') {
+
+    $.ajax({
+      type: "POST",
+      url: "index.php?module=FP_events&action=markinterested",
+      data: data,
+      success: function () {
+        showSubPanel('delegates', null, true, 'FP_events');
+      }
+    });
+
+    dialog.cancel();
+  }
+  else {
+    $('#no_check').show();
+  }
+}
+
+function handle_registered() {
+
+  var ids = $("#custom_hidden_1").val();
+  var list = $("#select_entire_list").val();
+  var eventid = $("[name='record']").val();
+  var data = 'id=' + ids;
+  data += '&event_id=' + eventid;
+  data += '&entire_list=' + list;
+
+  if (ids != '') {
+
+    $.ajax({
+      type: "POST",
+      url: "index.php?module=FP_events&action=markregistered",
+      data: data,
+      success: function () {
+        showSubPanel('delegates', null, true, 'FP_events');
+      }
+    });
+
+    dialog.cancel();
+  }
+  else {
+    $('#no_check').show();
+  }
+}
+
+function handle_interested_Unable_attend() {
+
+  var ids = $("#custom_hidden_1").val();
+  var list = $("#select_entire_list").val();
+  var eventid = $("[name='record']").val();
+  var data = 'id=' + ids;
+  data += '&event_id=' + eventid;
+  data += '&entire_list=' + list;
+
+  if (ids != '') {
+
+    $.ajax({
+      type: "POST",
+      url: "index.php?module=FP_events&action=markinterestedunableattend",
+      data: data,
+      success: function () {
+        showSubPanel('delegates', null, true, 'FP_events');
+      }
+    });
+
+    dialog.cancel();
+  }
+  else {
+    $('#no_check').show();
+  }
+}
+
+function handle_registered_didnt_attend() {
+
+  var ids = $("#custom_hidden_1").val();
+  var list = $("#select_entire_list").val();
+  var eventid = $("[name='record']").val();
+  var data = 'id=' + ids;
+  data += '&event_id=' + eventid;
+  data += '&entire_list=' + list;
+
+  if (ids != '') {
+
+    $.ajax({
+      type: "POST",
+      url: "index.php?module=FP_events&action=markregisterednotattend",
+      data: data,
+      success: function () {
+        showSubPanel('delegates', null, true, 'FP_events');
+      }
+    });
+
+    dialog.cancel();
+  }
+  else {
+    $('#no_check').show();
+  }
+}
+
+function handle_presenter() {
+
+  var ids = $("#custom_hidden_1").val();
+  var list = $("#select_entire_list").val();
+  var eventid = $("[name='record']").val();
+  var data = 'id=' + ids;
+  data += '&event_id=' + eventid;
+  data += '&entire_list=' + list;
+
+  if (ids != '') {
+
+    $.ajax({
+      type: "POST",
+      url: "index.php?module=FP_events&action=markpresenter",
+      data: data,
+      success: function () {
+        showSubPanel('delegates', null, true, 'FP_events');
+      }
+    });
+
+    dialog.cancel();
+  }
+  else {
+    $('#no_check').show();
+  }
+}
+/** End: Aevin **/

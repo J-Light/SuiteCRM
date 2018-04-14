@@ -856,6 +856,16 @@ class PackageManager{
 					} else {
 						$file_uninstall = fileToHash( $file_uninstall );
 					}
+					
+					switch($name) {
+                        case 'Custom_Module_1': $name = 'Departments'; break;
+                        case 'Custom_Module_2': $name = 'Leads'; break;
+                        case 'Custom_Module_3': $name = 'Renewals'; break;
+                        case 'Custom_Module_4': $name = 'Purchases'; break;
+                        case 'Custom_Module_5': $name = 'MYOB Cards'; break;
+                        case 'Custom_Module_6': $name = 'Industries'; break;
+                        case 'Custom_Module_7': $name = 'Account Industries'; break;
+                    }
 
 				$packages[] = array(
 				    'name' => $name,
