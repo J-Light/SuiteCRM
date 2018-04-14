@@ -165,7 +165,7 @@ function display_lines($focus, $field, $value, $view){
 
             while ($row = $focus->db->fetchByAssoc($result)) {
                 $line_item = new AOS_Products_Quotes();
-                $line_item->retrieve($row['id']);
+                $line_item->retrieve($row['id'], false);
 				
 				$product_id = $line_item->product_id;
 				
@@ -240,7 +240,7 @@ function display_lines($focus, $field, $value, $view){
 
         while ($row = $focus->db->fetchByAssoc($result)) {
             $line_item = new AOS_Products_Quotes();
-            $line_item->retrieve($row['id']);
+            $line_item->retrieve($row['id'], false);
 
             if($enable_groups && ($group_id != $row['group_id'] || $i == 0)){
                 $html .= $groupStart.$product.$service.$groupEnd;
