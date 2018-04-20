@@ -1,0 +1,47 @@
+<?php
+$module_name = 'CM3_Renewals';
+$listViewDefs [$module_name] = 
+array (
+  'NAME' => 
+  array (
+    'width' => '32%',
+    'label' => 'LBL_NAME',
+    'default' => true,
+    'link' => true,
+  ),
+  'ACCOUNT_C' => 
+  array (
+    'type' => 'relate',
+    'default' => true,
+    'studio' => 'visible',
+    'label' => 'LBL_ACCOUNT',
+    'id' => 'ACCOUNT_ID_C',
+    'link' => true,
+    'width' => '10%',
+  ),
+  'SUPPLIER_C' => 
+  array (
+    'type' => 'relate',
+    'default' => true,
+    'studio' => 'visible',
+    'label' => 'LBL_SUPPLIER',
+    'id' => 'AOS_PRODUCT_CATEGORIES_ID_C',
+    'link' => true,
+    'width' => '10%',
+  ),
+  'RENEWAL_DATE' => 
+  array (
+    'type' => 'date',
+    'label' => 'LBL_RENEWAL_DATE',
+    'width' => '10%',
+    'default' => true,
+  ),
+  'DATE_ENTERED' => 
+  array (
+    'type' => 'datetime',
+    'label' => 'LBL_DATE_ENTERED',
+    'width' => '10%',
+    'default' => true,
+  ),
+);
+?>

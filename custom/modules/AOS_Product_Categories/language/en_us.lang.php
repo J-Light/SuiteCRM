@@ -1,0 +1,26 @@
+<?php
+// created: 2018-02-09 16:05:35
+$mod_strings = array (
+  'LBL_SHORT_NAME' => 'Short Name',
+  'LBL_EDITVIEW_PANEL1' => 'New Panel 1',
+  'LBL_DETAILVIEW_PANEL1' => 'New Panel 1',
+  'LBL_MYOBSALEPAIDUP' => 'MYOBSalePaidup',
+  'LBL_MYOBSALEMAINT' => 'MYOBSaleMaint',
+  'LBL_MYOBSALELEASE' => 'MYOBSaleLease',
+  'LBL_MYOBSALETRAINING' => 'MYOBSaleTraining',
+  'LBL_MYOBSALECONSULTING' => 'MYOBSaleConsulting',
+  'LBL_MYOBSALEMISC' => 'MYOBSaleMisc',
+  'LBL_MYOBPURCHASEPAIDUP' => 'MYOBPurchasePaidup',
+  'LBL_MYOBPURCHASEMAINT' => 'MYOBPurchaseMaint',
+  'LBL_MYOBPURCHASELEASE' => 'MYOBPurchaseLease',
+  'LBL_MYOBPURCHASETRAINING' => 'MYOBPurchaseTraining',
+  'LBL_MYOBPURCHASECONSULTING' => 'MYOBPurchaseConsulting',
+  'LBL_MYOBPURCHASEMISC' => 'MYOBPurchaseMisc',
+  'LBL_AOS_PRODUCT_CATEGORIES_CM2_LEAP_LEADS_1_FROM_CM2_LEAP_LEADS_TITLE' => 'Leads',
+  'LBL_SUPPLIER_GROUP' => 'Supplier Group',
+  'LBL_BUSINESS_UNIT' => 'Business Unit',
+  'LBL_SUB_CATEGORIES' => 'Sub categories',
+  'LBL_ACCOUNT_ACCOUNT_ID' => 'Account (related Account ID)',
+  'LBL_ACCOUNT' => 'Account',
+  'AOS_Products' => 'Products',
+);

@@ -1,0 +1,3 @@
+<?php
+//THIS FILE IS AUTO GENERATED, DO NOT MODIFY
+$mod_strings['LBL_PURCHASE_LINE_ITEM_SUBPANEL_TITLE'] = 'Invoice line items';

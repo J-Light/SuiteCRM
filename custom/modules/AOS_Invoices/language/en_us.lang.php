@@ -1,0 +1,26 @@
+<?php
+// created: 2017-10-20 16:42:43
+$mod_strings = array (
+  'LBL_PURCHASE_ORDER' => 'Purchase Order',
+  'LBL_MYOB_SALE_ID' => 'MYOB Sale ID',
+  'LBL_MYOB_SALE_DATE' => 'MYOB Sale Date',
+  'LBL_MYOB_SALE_TOTAL' => 'MYOB Sale Total',
+  'LBL_MYOB_SALE_OUTSTANDING' => 'MYOB Sale Outstanding',
+  'LBL_MYOB_SALE_PAID' => 'MYOB Sale Paid',
+  'LBL_MYOB_SALE_DATE_PAID' => 'MYOB Sale Date Paid',
+  'LBL_EDITVIEW_PANEL1' => 'MYOB Details',
+  'LBL_PURCHASE_ORDER_DATE' => 'Purchase Order Date',
+  'LBL_DETAILVIEW_PANEL1' => 'MYOB Details',
+  'LBL_TAX_CODE' => 'Tax Code',
+  'LBL_MYOB_CARD_NAME' => 'MYOB Card Name',
+  'LBL_CUSTOMER_PURCHASE_ORDER' => 'Customer Purchase Order',
+  'LBL_COMPANY' => 'Company',
+  'LBL_BILLING_ACCOUNT_ACCOUNT_ID' => 'Account (related Account ID)',
+  'LBL_BILLING_ACCOUNT' => 'Account',
+  'LBL_MYOB_CARD_NAME_LINK' => 'MYOB Card Name Link',
+  'LBL_PURCHASE_NAME' => 'PO Number',
+  'LBL_INVOICE_PURCHASES_SUBPANEL_TITLE' => 'MYOB Purchases',
+  'LBL_MYOB_CARD_LOOKUP_CM5_MYOB_CARD_ID' => 'MYOB Card (related  ID)',
+  'LBL_MYOB_CARD_LOOKUP' => 'MYOB Card',
+  'LBL_CM3_RENEWALS_AOS_INVOICES_1_FROM_CM3_RENEWALS_TITLE' => 'Agreement Number',
+);
