@@ -98,6 +98,6 @@ tests/_output/*
 BrowserStackLocal
 browserstack.err
 cache/
-custom/**/
+#custom/**/
 .sass-cache/
 .php_cs.cache
