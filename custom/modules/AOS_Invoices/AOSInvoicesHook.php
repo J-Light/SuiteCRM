@@ -8,6 +8,9 @@ class AOSInvoicesHook {
 
     public function updateActiveLineItems(&$bean, $event, $arguments) {
         global $db;
+				
+		$req_module = $_REQUEST['module'];
+		$req_action = $_REQUEST['action'];
 
         $id = $bean->id;	
 		/* =========================== START ==================================== */
@@ -69,67 +72,52 @@ class AOSInvoicesHook {
 				while ($row = $GLOBALS["db"]->fetchByAssoc($result) ) {
 					$inner_invoice_id = $row['cm3_renewals_aos_invoices_1aos_invoices_idb'];
 					
-					// Set previous invoice line items to RENEWED
-					if($current_product_ids) {
-						$current_ids = "'" . implode("','", $current_product_ids) . "'";
-						
-						$renewed_product_ids_query = "
-							UPDATE aos_products_quotes apq
-							JOIN aos_products_quotes_cstm apqc ON apqc.id_c = apq.id
-							SET apqc.status_c = '13'
-							WHERE apq.parent_id = '{$inner_invoice_id}'
-							AND apq.product_id IN ($current_ids)
-						";
-						
-						/*$renewed_product_ids_query = "
-							UPDATE aos_products_quotes apq
-							JOIN aos_products_quotes_cstm apqc ON apqc.id_c = apq.id
-							SET apqc.status_c = '13'
-							WHERE apq.parent_id = (SELECT ai.id
-								FROM cm3_renewals cr
-								JOIN cm3_renewals_aos_invoices_1_c crai ON cr.id = crai.cm3_renewals_aos_invoices_1cm3_renewals_ida
-								JOIN aos_invoices ai ON ai.id = cm3_renewals_aos_invoices_1aos_invoices_idb
-								WHERE cr.id = '{$renewalid}'
-								AND crai.deleted = 0
-								AND ai.deleted = 0
-								AND ai.id != '{$inner_invoice_id}'
-								ORDER BY ai.date_entered DESC
-								LIMIT 1)
-							AND apq.product_id IN ($current_ids)
-						";*/
-						
-						$renewed_product_ids_result = $GLOBALS["db"]->query($renewed_product_ids_query);
-					}
+					$GLOBALS['log']->fatal('==== AOS_INVOICE HOOK :LOG: while loop entered ====');
+					$GLOBALS['log']->fatal('AOS_INVOICE HOOK : req_module: ' . $req_module);
+					$GLOBALS['log']->fatal('AOS_INVOICE HOOK : req_action: ' . $req_action);
 					
-					// Set previous invoice line items to ACTIVE again
-					if($deleted_product_ids) {
-						$deleted_ids = "'" . implode("','", $deleted_product_ids) . "'";
-						/*$inactive_product_ids_query = "
-							UPDATE aos_products_quotes apq
-							JOIN aos_products_quotes_cstm apqc ON apqc.id_c = apq.id
-							SET apqc.status_c = '1'
-							WHERE apq.parent_id = '{$inner_invoice_id}'
-							AND apq.product_id IN ($deleted_ids)
-						";*/
-						$inactive_product_ids_query = "
-							UPDATE aos_products_quotes apq
-							JOIN aos_products_quotes_cstm apqc ON apqc.id_c = apq.id
-							SET apqc.status_c = '1'
-							WHERE apq.parent_id = (SELECT ai.id
-								FROM cm3_renewals cr
-								JOIN cm3_renewals_aos_invoices_1_c crai ON cr.id = crai.cm3_renewals_aos_invoices_1cm3_renewals_ida
-								JOIN aos_invoices ai ON ai.id = cm3_renewals_aos_invoices_1aos_invoices_idb
-								WHERE cr.id = '{$renewalid}'
-								AND crai.deleted = 0
-								AND ai.deleted = 0
-								AND ai.id != '{$id}'
-								ORDER BY ai.date_entered DESC
-								LIMIT 1)
-							AND apq.product_id IN ($deleted_ids)
-						";
+					/*if($req_module == 'AOS_Quotes' && $req_action == 'converToInvoice') {
+						$GLOBALS['log']->fatal('LOG: Renewal line item status updated');
 						
-						$inactive_product_ids_result = $GLOBALS["db"]->query($inactive_product_ids_query);
-					}
+						// Set previous invoice line items to RENEWED
+						if($current_product_ids) {
+							$current_ids = "'" . implode("','", $current_product_ids) . "'";
+							
+							$renewed_product_ids_query = "
+								UPDATE aos_products_quotes apq
+								JOIN aos_products_quotes_cstm apqc ON apqc.id_c = apq.id
+								SET apqc.status_c = '13'
+								WHERE apq.parent_id = '{$inner_invoice_id}'
+								AND apq.product_id IN ($current_ids)
+							";
+													
+							$renewed_product_ids_result = $GLOBALS["db"]->query($renewed_product_ids_query);
+						}
+						
+						// Set previous invoice line items to ACTIVE again
+						if($deleted_product_ids) {
+							$deleted_ids = "'" . implode("','", $deleted_product_ids) . "'";
+
+							$inactive_product_ids_query = "
+								UPDATE aos_products_quotes apq
+								JOIN aos_products_quotes_cstm apqc ON apqc.id_c = apq.id
+								SET apqc.status_c = '1'
+								WHERE apq.parent_id = (SELECT ai.id
+									FROM cm3_renewals cr
+									JOIN cm3_renewals_aos_invoices_1_c crai ON cr.id = crai.cm3_renewals_aos_invoices_1cm3_renewals_ida
+									JOIN aos_invoices ai ON ai.id = cm3_renewals_aos_invoices_1aos_invoices_idb
+									WHERE cr.id = '{$renewalid}'
+									AND crai.deleted = 0
+									AND ai.deleted = 0
+									AND ai.id != '{$id}'
+									ORDER BY ai.date_entered DESC
+									LIMIT 1)
+								AND apq.product_id IN ($deleted_ids)
+							";
+							
+							$inactive_product_ids_result = $GLOBALS["db"]->query($inactive_product_ids_query);
+						}
+					}*/
 				}
 				
 				$GLOBALS['db']->query("UPDATE cm3_renewals

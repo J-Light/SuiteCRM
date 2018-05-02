@@ -55,7 +55,7 @@ class after_save {
 			$GLOBALS['db']->query($sql);
 		}
 		
-		if($bean->parent_type == 'AOS_Invoices') {
+		/*if($bean->parent_type == 'AOS_Invoices') {
 			$invoice_id = $bean->parent_id;
 			
 			// NOTE: EDIT ALSO custom/AOS_Invoices/AOSInvoicesHook.php
@@ -127,36 +127,12 @@ class after_save {
 								AND apq.product_id IN ($current_ids)
 							";
 							
-							/*$renewed_product_ids_query = "
-								UPDATE aos_products_quotes apq
-								JOIN aos_products_quotes_cstm apqc ON apqc.id_c = apq.id
-								SET apqc.status_c = '13'
-								WHERE apq.parent_id = (SELECT ai.id
-									FROM cm3_renewals cr
-									JOIN cm3_renewals_aos_invoices_1_c crai ON cr.id = crai.cm3_renewals_aos_invoices_1cm3_renewals_ida
-									JOIN aos_invoices ai ON ai.id = cm3_renewals_aos_invoices_1aos_invoices_idb
-									WHERE cr.id = '{$renewalid}'
-									AND crai.deleted = 0
-									AND ai.deleted = 0
-									AND ai.id != '{$inner_invoice_id}'
-									ORDER BY ai.date_entered DESC
-									LIMIT 1)
-								AND apq.product_id IN ($current_ids)
-							";*/
-							
 							$renewed_product_ids_result = $GLOBALS["db"]->query($renewed_product_ids_query);
 						}
 						
 						// Set previous invoice line items to ACTIVE again
 						if($deleted_product_ids) {
 							$deleted_ids = "'" . implode("','", $deleted_product_ids) . "'";
-							/*$inactive_product_ids_query = "
-								UPDATE aos_products_quotes apq
-								JOIN aos_products_quotes_cstm apqc ON apqc.id_c = apq.id
-								SET apqc.status_c = '1'
-								WHERE apq.parent_id = '{$inner_invoice_id}'
-								AND apq.product_id IN ($deleted_ids)
-							";*/
 							$inactive_product_ids_query = "
 								UPDATE aos_products_quotes apq
 								JOIN aos_products_quotes_cstm apqc ON apqc.id_c = apq.id
@@ -204,7 +180,7 @@ class after_save {
 						WHERE cm3_renewals.id = '{$renewalid}'");
 				}	
 			}
-		}
+		}*/
 
 		/*if($parent_type == "AOS_Invoices") {
 			$invoiceid = $bean->parent_id;
