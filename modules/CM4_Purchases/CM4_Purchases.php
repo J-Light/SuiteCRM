@@ -72,12 +72,12 @@ class CM4_Purchases extends CM4_Purchases_sugar {
 				ON ap.id = aos_products_quotes.product_id
 			INNER JOIN aos_product_categories apc
 				ON apc.id = ap.aos_product_category_id
-			INNER JOIN aos_product_categories apc2
+			LEFT JOIN aos_product_categories apc2
 				ON apc2.id = apc.parent_category_id
 				AND apc2.is_parent = 1
 				AND apc2.id = cp.aos_product_categories_id_c
 			WHERE cp.id = '{$this->id}'
-				AND apc2.id = '{$this->aos_product_categories_id_c}'
+				-- AND apc2.id = '{$this->aos_product_categories_id_c}'
 
 		";
 
