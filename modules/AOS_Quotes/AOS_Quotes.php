@@ -63,7 +63,7 @@ class AOS_Quotes extends AOS_Quotes_sugar {
             if($sugar_config['dbconfig']['db_type'] == 'mssql'){
                 $this->number = $this->db->getOne("SELECT MAX(CAST(number as INT))+1 FROM aos_quotes");
             } else {
-                $this->number = $this->db->getOne("SELECT MAX(CAST(number as UNSIGNED))+1 FROM aos_quotes");
+                $this->number = $this->db->getOne("SELECT MAX(CAST(number as INT))+1 FROM aos_quotes");
             }
 
             if($this->number < $sugar_config['aos']['quotes']['initialNumber']){
