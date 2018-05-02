@@ -48,6 +48,7 @@ class CM3_RenewalsController extends SugarController {
 
     public function action_generate_quote() {
         global $db;
+        global $current_user;
         global $timedate;
 
         $data = array();
@@ -426,9 +427,12 @@ class CM3_RenewalsController extends SugarController {
                     $opportunity->sales_stage = 'Contract_Signed';
                     $opportunity->probability = 70;
                     $opportunity->opportunity_type = 'Existing Business';
-                    $opportunity->amount = $quote->total_amt;
-                    $opportunity->amount_usdollar = $quote->total_amt;
+                    $opportunity->amount = $quote->subtotal_amount;
+                    $opportunity->amount_usdollar = $quote->subtotal_amount;
                     $opportunity->date_closed = $minus_one_day;
+                    $opportunity->assigned_user_id = $current_user->id;
+                    $opportunity->created_by = $current_user->id;
+                    $opportunity->modified_user_id = $current_user->id;
                     $opportunity->date_entered =  date('Y-m-d H:i:s', $time);
                     $opportunity->date_modified = date('Y-m-d H:i:s', $time);
                     $opportunity->save();
@@ -531,6 +535,7 @@ class CM3_RenewalsController extends SugarController {
 
     private function create_quote($account_id, $agreement_number = '') {
         global $db;
+		global $current_user;
 
         $guid = create_guid();
         $time = date('Y-m-d H:i:s', time());
@@ -539,8 +544,8 @@ class CM3_RenewalsController extends SugarController {
 		$account = self::get_account($account_id);
 
         $query = "
-            INSERT INTO aos_quotes (id, date_entered, date_modified, modified_user_id, created_by, deleted, billing_account_id, number, currency_id, billing_address_street, billing_address_city, billing_address_state, billing_address_postalcode, billing_address_country)
-            VALUES ('{$guid}', '{$time}', '{$time}', '1', '1', 0, '{$account_id}', $number, -99, '{$account['organisation_address_street_c']}', '{$account['organisation_address_city_c']}', '{$account['organisation_address_state_c']}', '{$account['organisation_address_pcode_c']}', '{$account['organisation_address_country_c']}');
+            INSERT INTO aos_quotes (id, date_entered, date_modified, assigned_user_id, modified_user_id, created_by, deleted, billing_account_id, number, currency_id, billing_address_street, billing_address_city, billing_address_state, billing_address_postalcode, billing_address_country)
+            VALUES ('{$guid}', '{$time}', '{$time}', '{$current_user->id}', '{$current_user->id}', '{$current_user->id}', 0, '{$account_id}', $number, -99, '{$account['organisation_address_street_c']}', '{$account['organisation_address_city_c']}', '{$account['organisation_address_state_c']}', '{$account['organisation_address_pcode_c']}', '{$account['organisation_address_country_c']}');
         ";
 
         $result = $db->query(($query));
@@ -561,13 +566,14 @@ class CM3_RenewalsController extends SugarController {
 
     private function create_line_item_group($quote_id) {
         global $db;
+		global $current_user;
 
         $guid = create_guid();
         $time = date('Y-m-d H:i:s', time());
 
         $query = "
-            INSERT INTO aos_line_item_groups (id, date_entered, date_modified, modified_user_id, created_by, deleted, parent_id, number, currency_id)
-            VALUES ('{$guid}', '{$time}', '{$time}', '1', '1', 0, '{$quote_id}', 1, -99);
+            INSERT INTO aos_line_item_groups (id, date_entered, date_modified, assigned_user_id, modified_user_id, created_by, deleted, parent_id, number, currency_id)
+            VALUES ('{$guid}', '{$time}', '{$time}', '{$current_user->id}', '{$current_user->id}', '{$current_user->id}', 0, '{$quote_id}', 1, -99);
         ";
 
         $result = $db->query(($query));

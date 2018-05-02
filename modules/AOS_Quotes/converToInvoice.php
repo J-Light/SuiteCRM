@@ -23,6 +23,7 @@
 */
 
 global $timedate;
+global $current_user;
 
 if(!(ACLController::checkAccess('AOS_Invoices', 'edit', true))){
 	ACLController::displayNoAccess();
@@ -408,6 +409,9 @@ if($maintleaseitems->num_rows > 0) {
 		$renewal->deleted = '0';
 		$renewal->account_id_c = $quote->billing_account_id;
 		$renewal->contact_id_c = $quote->billing_contact_id;
+		$renewal->assigned_user_id = $current_user->id;
+		$renewal->created_by = $current_user->id;
+		$renewal->modified_user_id = $current_user->id;
 		$renewal->save();
 
 		$db->query("
@@ -623,6 +627,8 @@ while($row = $db->fetchByAssoc($result_purchases)) {
 	$purchases->date_entered = $date_entered;
 	$purchases->date_modified = $date_entered;
 	$purchases->assigned_user_id = $employee_id;
+	$purchases->created_by = $employee_id;
+	$purchases->modified_user_id = $employee_id;
 	$purchases->aos_invoices_id_c = $invoice->id;
 	$purchases->aos_product_categories_id_c = $supplier_id;
 	$purchases->tax_code_c = $tax_code_purchase;
@@ -707,8 +713,11 @@ if(!$quote->opportunity_id) {
 	$opportunity->name = $name;
 	$opportunity->sales_stage = 'Contract_Signed';
 	$opportunity->probability = 70;
-	$opportunity->amount = $quote->total_amt;
-	$opportunity->amount_usdollar = $quote->total_amt;
+	$opportunity->amount = $quote->subtotal_amount;
+	$opportunity->amount_usdollar = $quote->subtotal_amount;
+	$opportunity->assigned_user_id = $current_user->id;
+	$opportunity->created_by = $current_user->id;
+	$opportunity->modified_user_id = $current_user->id;
 	$opportunity->date_closed = $minus_one_day;
 	$opportunity->date_entered =  date('Y-m-d H:i:s', $time);
 	$opportunity->date_modified = date('Y-m-d H:i:s', $time);
