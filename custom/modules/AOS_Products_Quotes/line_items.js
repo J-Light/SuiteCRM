@@ -390,7 +390,18 @@ function changeEndDate(ln, key){
 		alert(msg)
 		$('#product_end_date_c' + ln).val('');
 	}
-	
+
+    var groupid = 0;
+    if(enable_groups){
+        groupid = document.getElementById(key + 'group_number' + ln).value;
+        groupid = 'group' + groupid + 'freezprice';
+
+        var freezePrices = document.getElementById(groupid).checked;
+
+        if (freezePrices)
+            return;
+    }
+    
 	calculateLine(ln, key, true, true, true, true, true)
 }
 
@@ -938,13 +949,17 @@ function insertProductLine(tableid, groupid) {
 	$('#product_start_date_c' + lineno).datepicker({
 		dateFormat: 'dd/mm/yy',
 		onSelect: function(date){
-			//getDays(lineno);
-			var minDate = $(this).datepicker('getDate');
-			$('#product_end_date_c' + lineno).datepicker('option', 'minDate', minDate);
-			$('#product_end_date_c' + lineno).datepicker('setDate', minDate);
-			calculateLine(lineno,"product_",true,true,true,true,true);
-		}
-	});
+		    //getDays(lineno);
+		    var minDate = $(this).datepicker('getDate');
+		    $('#product_end_date_c' + lineno).datepicker('option', 'minDate', minDate);
+		    //$('#product_end_date_c' + lineno).datepicker('setDate', minDate);
+                    var groupid = 0;
+                    if(enable_groups){
+                        groupid = document.getElementById('product_' + 'group_number' + lineno).value;
+                        groupid = 'group' + groupid + 'freezprice';
+                        var freezePrices = document.getElementById(groupid).checked;
+                        if (!freezePrices){
+                            calculateLine(lineno,"product_",true,true,true,true,true);}}}});
 
 	addToValidate('EditView','product_product_id'+prodln,'id',true,"Please choose a product");
 	prodln++;
@@ -983,7 +998,8 @@ function openProductPopup(ln){
 
 	};
 
-	open_popup('AOS_Products', 800, 850, '', true, true, popupRequestData);
+    var filter = '&obsolete_c_advanced=0';
+	open_popup('AOS_Products', 800, 850, filter, true, true, popupRequestData);
 
 }
 
@@ -1419,9 +1435,13 @@ function insertGroup()
 		var header_cell = header_row.insertCell(0);
 		header_cell.scope="row";
 		header_cell.colSpan="8";
-		header_cell.innerHTML=SUGAR.language.get(module_sugar_grp1, 'LBL_GROUP_NAME')+":&nbsp;&nbsp;<input name='group_name[]' id='"+ table.id +"name' size='30' maxlength='255'  title='' tabindex='120' type='text'><input type='hidden' name='group_id[]' id='"+ table.id +"id' value=''><input type='hidden' name='group_group_number[]' id='"+ table.id +"group_number' value='"+groupn+"'><button type='button' id='btnRefresh' class='btn-refresh' onclick='refreshListPrice()' style='display:none;'>Refresh</button>";
+	    header_cell.innerHTML=SUGAR.language.get(module_sugar_grp1, 'LBL_GROUP_NAME')+":&nbsp;&nbsp;<input name='group_name[]' id='"+ table.id +"name' size='30' maxlength='255'  title='' tabindex='120' type='text'><input type='hidden' name='group_id[]' id='"+ table.id +"id' value=''><input type='hidden' name='group_group_number[]' id='"+ table.id +"group_number' value='"+groupn+"'><button type='button' id='btnRefresh' class='btn-refresh' onclick='refreshListPrice()' style='display:none;'>Refresh</button>";
 
-		var header_cell_del = header_row.insertCell(1);
+            	var header_cell_freez = header_row.insertCell(1);
+		header_cell_freez.scope="row";
+		header_cell_freez.innerHTML="Freeze Prices:&nbsp;&nbsp;<input id='"+ table.id +"freezprice' type='checkbox'>";
+
+		var header_cell_del = header_row.insertCell(2);
 		header_cell_del.scope="row";
 		header_cell_del.innerHTML="<span title='" + SUGAR.language.get(module_sugar_grp1, 'LBL_DELETE_GROUP') + "' style='float: right;'><a style='cursor: pointer;' id='deleteGroup' tabindex='116' onclick='markGroupDeleted("+groupn+")'><img src='themes/default/images/id-ff-clear.png' alt='X'></a></span><input type='hidden' name='group_deleted[]' id='"+ table.id +"deleted' value='0'>";
 	}
@@ -1464,7 +1484,7 @@ function insertGroup()
 	footer_cell.scope="row";
 	footer_cell.colSpan="20";
 	footer_cell.innerHTML="<input type='button' tabindex='116' class='button' value='"+SUGAR.language.get(module_sugar_grp1, 'LBL_ADD_PRODUCT_LINE')+"' id='"+productTable.id+"addProductLine' onclick='insertProductLine(\""+productTable.id+"\",\""+groupn+"\")' />";
-	footer_cell.innerHTML+=" <input type='button' tabindex='116' class='button' value='"+SUGAR.language.get(module_sugar_grp1, 'LBL_ADD_SERVICE_LINE')+"' id='"+serviceTable.id+"addServiceLine' onclick='insertServiceLine(\""+serviceTable.id+"\",\""+groupn+"\")' />";
+	//footer_cell.innerHTML+=" <input type='button' tabindex='116' class='button' value='"+SUGAR.language.get(module_sugar_grp1, 'LBL_ADD_SERVICE_LINE')+"' id='"+serviceTable.id+"addServiceLine' onclick='insertServiceLine(\""+serviceTable.id+"\",\""+groupn+"\")' />";
 	if(enable_groups){
 		footer_cell.innerHTML+="<span style='float: right;'>"+SUGAR.language.get(module_sugar_grp1, 'LBL_TOTAL_AMT')+":&nbsp;&nbsp;<input name='group_total_amt[]' id='"+ table.id +"total_amt' size='21' maxlength='26' value='' title='' tabindex='120' type='text' readonly></span>";
 
