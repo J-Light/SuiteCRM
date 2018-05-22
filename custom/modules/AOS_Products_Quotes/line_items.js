@@ -1437,9 +1437,17 @@ function insertGroup()
 		header_cell.colSpan="8";
 	    header_cell.innerHTML=SUGAR.language.get(module_sugar_grp1, 'LBL_GROUP_NAME')+":&nbsp;&nbsp;<input name='group_name[]' id='"+ table.id +"name' size='30' maxlength='255'  title='' tabindex='120' type='text'><input type='hidden' name='group_id[]' id='"+ table.id +"id' value=''><input type='hidden' name='group_group_number[]' id='"+ table.id +"group_number' value='"+groupn+"'><button type='button' id='btnRefresh' class='btn-refresh' onclick='refreshListPrice()' style='display:none;'>Refresh</button>";
 
+            var module = document.getElementById('_module').value;
+            var disable_freez = '';
+            if(module == 'AOS_Quotes') {
+                var invoiced = document.getElementById('invoice_status').value;
+                if (invoiced == 'Not Invoiced')
+                    disable_freez = 'disabled readonly';
+            }
+
             	var header_cell_freez = header_row.insertCell(1);
 		header_cell_freez.scope="row";
-		header_cell_freez.innerHTML="Freeze Prices:&nbsp;&nbsp;<input id='"+ table.id +"freezprice' type='checkbox'>";
+		header_cell_freez.innerHTML="Freeze Prices:&nbsp;&nbsp;<input id='"+ table.id +"freezprice' type='checkbox' " + disable_freez + ">";
 
 		var header_cell_del = header_row.insertCell(2);
 		header_cell_del.scope="row";
