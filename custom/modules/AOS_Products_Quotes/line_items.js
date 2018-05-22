@@ -410,7 +410,7 @@ function changeSalePrice(ln, key) {
 
 	document.getElementById(key + 'product_discount' + ln).value = '0.00';
 	document.getElementById(key + 'product_unit_price' + ln).value = format2Number(unit_price);
-	calculateLine(ln, key, false, false, true, true, false)
+	calculateLine(ln, key, false, true, true, true, true)
 }
 
 function adjustStartEndDate(lineno, months) {
