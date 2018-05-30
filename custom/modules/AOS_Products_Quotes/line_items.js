@@ -99,10 +99,12 @@ currency_id_select.onchange = function() {
 		document.getElementById('product_hidden_unit_price' + ln).value = price;
 		document.getElementById('product_hidden_fix_price' + ln).value = fix_new_price;
 		document.getElementById('product_hidden_orig_price' + ln).value = orig_new_price;
+		
+		calculateLine(ln, "product_")
 	});
 	
-	var curr = currency_id_select.options[currency_id_select.selectedIndex].value;
-	$('.product_global_currency').val(curr)
+	//var curr = currency_id_select.options[currency_id_select.selectedIndex].value;
+	//$('.product_global_currency').val(curr)
 }
 
 var cost_currency_list = SUGAR.language.languages.app_list_strings['cost_currency_list'];
