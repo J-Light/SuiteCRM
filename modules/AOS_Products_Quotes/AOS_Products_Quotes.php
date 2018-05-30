@@ -69,8 +69,8 @@ class AOS_Products_Quotes extends AOS_Products_Quotes_sugar
 		$line_count = isset($post_data[$key . 'name']) ? count($post_data[$key . 'name']) : 0;
         $j = 0;
         for ($i = 0; $i < $line_count; ++$i) {
-		
-            if ($post_data[$key . 'deleted'][$i] == 1) {
+
+            if (isset($post_data[$key . 'deleted'][$i]) && $post_data[$key . 'deleted'][$i] == 1) {
                 //$this->mark_deleted($post_data[$key . 'id'][$i]);
 				$delete_query = "
 					UPDATE aos_products_quotes 
@@ -80,7 +80,15 @@ class AOS_Products_Quotes extends AOS_Products_Quotes_sugar
 				";
 				$result = $db->query($delete_query);
             } else {
-                $product_quote = BeanFactory::getBean('AOS_Products_Quotes', $post_data[$key . 'id'][$i]);
+                
+                if (!isset($post_data[$key . 'id'][$i])) {
+                    LoggerManager::getLogger()->warn('Post date has no key id');
+                    $postDataKeyIdI = null;
+                } else {
+                    $postDataKeyIdI = $post_data[$key . 'id'][$i];
+                }
+                
+                $product_quote = BeanFactory::getBean('AOS_Products_Quotes', $postDataKeyIdI);
                 if (!$product_quote) {
                     $product_quote = BeanFactory::newBean('AOS_Products_Quotes');
                 }
@@ -95,13 +103,33 @@ class AOS_Products_Quotes extends AOS_Products_Quotes_sugar
                 $product_quote->cost_c = $post_data['product_cost_2_c'][$i];
 
                 if (isset($post_data[$key . 'group_number'][$i])) {
-                    $product_quote->group_id = $groups[$post_data[$key . 'group_number'][$i]];
+                    
+                    if(!isset($post_data[$key . 'group_number'][$i])) {
+                        LoggerManager::getLogger()->warn('AOS Product Quotes error: Group number at post data key index is undefined in groups. Key and index was: ' . $key . ', ' . $i);
+                        $groupIndex = null;
+                    } else {
+                        $groupIndex = $post_data[$key . 'group_number'][$i];
+                    }
+                    if(!isset($groups[$groupIndex])) {
+                        LoggerManager::getLogger()->warn('AOS Product Quotes error: Group index was: ' . $groupIndex);
+                        $product_quote->group_id = null;
+                    } else {
+                        $product_quote->group_id = $groups[$post_data[$key . 'group_number'][$i]];
+                    }
                 }
                 if (trim($product_quote->product_id) != '' && trim($product_quote->name) != '' && trim($product_quote->product_unit_price) != '') {
                     $product_quote->number = ++$j;
                     $product_quote->assigned_user_id = $parent->assigned_user_id;
                     $product_quote->parent_id = $parent->id;
-                    $product_quote->currency_id = $parent->currency_id;
+                    
+                    if (!isset($parent->currency_id)) {
+                        LoggerManager::getLogger()->warn('Paren Currency ID is not defined for AOD Product Quotes / save lines.');
+                        $parentCurrencyId = null;
+                    } else {
+                        $parentCurrencyId = $parent->currency_id;
+                    }
+                    
+                    $product_quote->currency_id = $parentCurrencyId;
                     $product_quote->parent_type = $parent->object_name;
 
                     $product_quote->save();
