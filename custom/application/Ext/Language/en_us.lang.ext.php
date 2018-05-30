@@ -100,6 +100,48 @@ $app_list_strings['licprocess_step_list']['step11'] = 'Step 11: Received Permane
 $app_list_strings['licprocess_step_list']['step12'] = 'Step 12: Complete - Customer Has Been Sent Permanent License Key. Process Complete';
 
 
+/*********************************************************************************
+ * SugarCRM Community Edition is a customer relationship management program developed by
+ * SugarCRM, Inc. Copyright (C) 2004-2013 SugarCRM Inc.
+
+ * SuiteCRM is an extension to SugarCRM Community Edition developed by Salesagility Ltd.
+ * Copyright (C) 2011 - 2014 Salesagility Ltd.
+ *
+ * This program is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Affero General Public License version 3 as published by the
+ * Free Software Foundation with the addition of the following permission added
+ * to Section 15 as permitted in Section 7(a): FOR ANY PART OF THE COVERED WORK
+ * IN WHICH THE COPYRIGHT IS OWNED BY SUGARCRM, SUGARCRM DISCLAIMS THE WARRANTY
+ * OF NON INFRINGEMENT OF THIRD PARTY RIGHTS.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE.  See the GNU Affero General Public License for more
+ * details.
+ *
+ * You should have received a copy of the GNU Affero General Public License along with
+ * this program; if not, see http://www.gnu.org/licenses or write to the Free
+ * Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
+ * 02110-1301 USA.
+ *
+ * You can contact SugarCRM, Inc. headquarters at 10050 North Wolfe Road,
+ * SW2-130, Cupertino, CA 95014, USA. or at email address contact@sugarcrm.com.
+ *
+ * The interactive user interfaces in modified source and object code versions
+ * of this program must display Appropriate Legal Notices, as required under
+ * Section 5 of the GNU Affero General Public License version 3.
+ *
+ * In accordance with Section 7(b) of the GNU Affero General Public License version 3,
+ * these Appropriate Legal Notices must retain the display of the "Powered by
+ * SugarCRM" logo and "Supercharged by SuiteCRM" logo. If the display of the logos is not
+ * reasonably feasible for  technical reasons, the Appropriate Legal Notices must
+ * display the words  "Powered by SugarCRM" and "Supercharged by SuiteCRM".
+ ********************************************************************************/
+
+
+$app_list_strings['moduleList']['CM1_Department'] = 'Department';
+
+
 /**
  *
  * SugarCRM Community Edition is a customer relationship management program developed by
@@ -177,6 +219,53 @@ $app_list_strings['industry_sic_type_list']['Primary'] = 'Primary';
 $app_list_strings['industry_sic_type_list']['Others'] = 'Others';
 
 
+/**
+ *
+ * SugarCRM Community Edition is a customer relationship management program developed by
+ * SugarCRM, Inc. Copyright (C) 2004-2013 SugarCRM Inc.
+ *
+ * SuiteCRM is an extension to SugarCRM Community Edition developed by SalesAgility Ltd.
+ * Copyright (C) 2011 - 2017 SalesAgility Ltd.
+ *
+ * This program is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Affero General Public License version 3 as published by the
+ * Free Software Foundation with the addition of the following permission added
+ * to Section 15 as permitted in Section 7(a): FOR ANY PART OF THE COVERED WORK
+ * IN WHICH THE COPYRIGHT IS OWNED BY SUGARCRM, SUGARCRM DISCLAIMS THE WARRANTY
+ * OF NON INFRINGEMENT OF THIRD PARTY RIGHTS.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE.  See the GNU Affero General Public License for more
+ * details.
+ *
+ * You should have received a copy of the GNU Affero General Public License along with
+ * this program; if not, see http://www.gnu.org/licenses or write to the Free
+ * Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
+ * 02110-1301 USA.
+ *
+ * You can contact SugarCRM, Inc. headquarters at 10050 North Wolfe Road,
+ * SW2-130, Cupertino, CA 95014, USA. or at email address contact@sugarcrm.com.
+ *
+ * The interactive user interfaces in modified source and object code versions
+ * of this program must display Appropriate Legal Notices, as required under
+ * Section 5 of the GNU Affero General Public License version 3.
+ *
+ * In accordance with Section 7(b) of the GNU Affero General Public License version 3,
+ * these Appropriate Legal Notices must retain the display of the "Powered by
+ * SugarCRM" logo and "Supercharged by SuiteCRM" logo. If the display of the logos is not
+ * reasonably feasible for  technical reasons, the Appropriate Legal Notices must
+ * display the words  "Powered by SugarCRM" and "Supercharged by SuiteCRM".
+ */
+
+
+
+$app_list_strings['moduleList']['CM7_AccountIndustry'] = 'Account Industry';
+$app_list_strings['industry_sic_type_list'][''] = '';
+$app_list_strings['industry_sic_type_list']['Primary'] = 'Primary';
+$app_list_strings['industry_sic_type_list']['Others'] = 'Others';
+
+
 /*********************************************************************************
  * SugarCRM Community Edition is a customer relationship management program developed by
  * SugarCRM, Inc. Copyright (C) 2004-2013 SugarCRM Inc.
@@ -216,7 +305,19 @@ $app_list_strings['industry_sic_type_list']['Others'] = 'Others';
  ********************************************************************************/
 
 
-$app_list_strings['moduleList']['CM1_Department'] = 'Department';
+$app_list_strings['moduleList']['CM3_Test'] = 'Test';
+$app_list_strings['moduleList']['CM3_Renewals'] = 'Renewals';
+$app_list_strings['cm3_test_type_dom'][''] = '';
+$app_list_strings['cm3_test_type_dom']['Analyst'] = 'Analyst';
+$app_list_strings['cm3_test_type_dom']['Competitor'] = 'Competitor';
+$app_list_strings['cm3_test_type_dom']['Customer'] = 'Customer';
+$app_list_strings['cm3_test_type_dom']['Integrator'] = 'Integrator';
+$app_list_strings['cm3_test_type_dom']['Investor'] = 'Investor';
+$app_list_strings['cm3_test_type_dom']['Partner'] = 'Partner';
+$app_list_strings['cm3_test_type_dom']['Press'] = 'Press';
+$app_list_strings['cm3_test_type_dom']['Prospect'] = 'Prospect';
+$app_list_strings['cm3_test_type_dom']['Reseller'] = 'Reseller';
+$app_list_strings['cm3_test_type_dom']['Other'] = 'Other';
 
 
 /*********************************************************************************
@@ -347,106 +448,5 @@ $app_list_strings['lead_interest_list']['Turbomachinery'] = 'Turbomachinery';
 $app_list_strings['lead_interest_list']['Uncertain'] = 'Uncertain';
 $app_list_strings['lead_interest_list']['Ventilation'] = 'Ventilation';
 $app_list_strings['lead_interest_list']['VPG'] = 'VPG';
-
-
-/*********************************************************************************
- * SugarCRM Community Edition is a customer relationship management program developed by
- * SugarCRM, Inc. Copyright (C) 2004-2013 SugarCRM Inc.
-
- * SuiteCRM is an extension to SugarCRM Community Edition developed by Salesagility Ltd.
- * Copyright (C) 2011 - 2014 Salesagility Ltd.
- *
- * This program is free software; you can redistribute it and/or modify it under
- * the terms of the GNU Affero General Public License version 3 as published by the
- * Free Software Foundation with the addition of the following permission added
- * to Section 15 as permitted in Section 7(a): FOR ANY PART OF THE COVERED WORK
- * IN WHICH THE COPYRIGHT IS OWNED BY SUGARCRM, SUGARCRM DISCLAIMS THE WARRANTY
- * OF NON INFRINGEMENT OF THIRD PARTY RIGHTS.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT
- * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
- * FOR A PARTICULAR PURPOSE.  See the GNU Affero General Public License for more
- * details.
- *
- * You should have received a copy of the GNU Affero General Public License along with
- * this program; if not, see http://www.gnu.org/licenses or write to the Free
- * Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
- * 02110-1301 USA.
- *
- * You can contact SugarCRM, Inc. headquarters at 10050 North Wolfe Road,
- * SW2-130, Cupertino, CA 95014, USA. or at email address contact@sugarcrm.com.
- *
- * The interactive user interfaces in modified source and object code versions
- * of this program must display Appropriate Legal Notices, as required under
- * Section 5 of the GNU Affero General Public License version 3.
- *
- * In accordance with Section 7(b) of the GNU Affero General Public License version 3,
- * these Appropriate Legal Notices must retain the display of the "Powered by
- * SugarCRM" logo and "Supercharged by SuiteCRM" logo. If the display of the logos is not
- * reasonably feasible for  technical reasons, the Appropriate Legal Notices must
- * display the words  "Powered by SugarCRM" and "Supercharged by SuiteCRM".
- ********************************************************************************/
-
-
-$app_list_strings['moduleList']['CM3_Test'] = 'Test';
-$app_list_strings['moduleList']['CM3_Renewals'] = 'Renewals';
-$app_list_strings['cm3_test_type_dom'][''] = '';
-$app_list_strings['cm3_test_type_dom']['Analyst'] = 'Analyst';
-$app_list_strings['cm3_test_type_dom']['Competitor'] = 'Competitor';
-$app_list_strings['cm3_test_type_dom']['Customer'] = 'Customer';
-$app_list_strings['cm3_test_type_dom']['Integrator'] = 'Integrator';
-$app_list_strings['cm3_test_type_dom']['Investor'] = 'Investor';
-$app_list_strings['cm3_test_type_dom']['Partner'] = 'Partner';
-$app_list_strings['cm3_test_type_dom']['Press'] = 'Press';
-$app_list_strings['cm3_test_type_dom']['Prospect'] = 'Prospect';
-$app_list_strings['cm3_test_type_dom']['Reseller'] = 'Reseller';
-$app_list_strings['cm3_test_type_dom']['Other'] = 'Other';
-
-
-/**
- *
- * SugarCRM Community Edition is a customer relationship management program developed by
- * SugarCRM, Inc. Copyright (C) 2004-2013 SugarCRM Inc.
- *
- * SuiteCRM is an extension to SugarCRM Community Edition developed by SalesAgility Ltd.
- * Copyright (C) 2011 - 2017 SalesAgility Ltd.
- *
- * This program is free software; you can redistribute it and/or modify it under
- * the terms of the GNU Affero General Public License version 3 as published by the
- * Free Software Foundation with the addition of the following permission added
- * to Section 15 as permitted in Section 7(a): FOR ANY PART OF THE COVERED WORK
- * IN WHICH THE COPYRIGHT IS OWNED BY SUGARCRM, SUGARCRM DISCLAIMS THE WARRANTY
- * OF NON INFRINGEMENT OF THIRD PARTY RIGHTS.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT
- * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
- * FOR A PARTICULAR PURPOSE.  See the GNU Affero General Public License for more
- * details.
- *
- * You should have received a copy of the GNU Affero General Public License along with
- * this program; if not, see http://www.gnu.org/licenses or write to the Free
- * Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
- * 02110-1301 USA.
- *
- * You can contact SugarCRM, Inc. headquarters at 10050 North Wolfe Road,
- * SW2-130, Cupertino, CA 95014, USA. or at email address contact@sugarcrm.com.
- *
- * The interactive user interfaces in modified source and object code versions
- * of this program must display Appropriate Legal Notices, as required under
- * Section 5 of the GNU Affero General Public License version 3.
- *
- * In accordance with Section 7(b) of the GNU Affero General Public License version 3,
- * these Appropriate Legal Notices must retain the display of the "Powered by
- * SugarCRM" logo and "Supercharged by SuiteCRM" logo. If the display of the logos is not
- * reasonably feasible for  technical reasons, the Appropriate Legal Notices must
- * display the words  "Powered by SugarCRM" and "Supercharged by SuiteCRM".
- */
-
-
-
-$app_list_strings['moduleList']['CM7_AccountIndustry'] = 'Account Industry';
-$app_list_strings['industry_sic_type_list'][''] = '';
-$app_list_strings['industry_sic_type_list']['Primary'] = 'Primary';
-$app_list_strings['industry_sic_type_list']['Others'] = 'Others';
 
 ?>
