@@ -766,7 +766,7 @@
                     <ul class="nav nav-pills nav-stacked">
                         {foreach from=$recentRecords item=item name=lastViewed}
                             {if $item.module_name != 'Emails' && $item.module_name != 'InboundEmail' && $item.module_name != 'EmailAddresses'}<!--Check to ensure that recently viewed emails or email addresses are not displayed in the recently viewed panel.-->
-                                {if $smarty.foreach.lastViewed.index < 5}
+                                {if $smarty.foreach.lastViewed.index < 15}
                                     <div class="recently_viewed_link_container_sidebar">
                                         <li class="recentlinks" role="presentation">
                                             <a title="{$item.module_name}"
@@ -790,7 +790,7 @@
                 {/if}
                     <ul class="nav nav-pills nav-stacked">
                         {foreach from=$favoriteRecords item=item name=lastViewed}
-                            {if $smarty.foreach.lastViewed.index < 5}
+                            {if $smarty.foreach.lastViewed.index < 15}
                             <div class="recently_viewed_link_container_sidebar">
                                 <li class="recentlinks" role="presentation">
                                     <a title="{$item.module_name}" accessKey="{$smarty.foreach.lastViewed.iteration}" href="{sugar_link module=$item.module_name action='DetailView' record=$item.id link_only=1}" class="favorite-links-detail">
