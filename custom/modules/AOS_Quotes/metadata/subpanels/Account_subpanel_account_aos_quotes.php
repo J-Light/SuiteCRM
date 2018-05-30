@@ -1,5 +1,5 @@
 <?php
-// created: 2017-01-20 10:55:13
+// created: 2018-05-04 11:58:21
 $subpanel_layout['list_fields'] = array (
   'number' => 
   array (
@@ -14,11 +14,31 @@ $subpanel_layout['list_fields'] = array (
     'width' => '25%',
     'default' => true,
   ),
-  'billing_account' => 
+  'opportunity' => 
   array (
-    'width' => '20%',
-    'vname' => 'LBL_BILLING_ACCOUNT',
+    'type' => 'relate',
+    'studio' => 'visible',
+    'vname' => 'LBL_OPPORTUNITY',
+    'id' => 'OPPORTUNITY_ID',
+    'link' => true,
+    'width' => '10%',
     'default' => true,
+    'widget_class' => 'SubPanelDetailViewLink',
+    'target_module' => 'Opportunities',
+    'target_record_key' => 'opportunity_id',
+  ),
+  'hdn_agreement_number_c' => 
+  array (
+    'type' => 'relate',
+    'default' => true,
+    'studio' => 'visible',
+    'vname' => 'LBL_HDN_AGREEMENT_NUMBER_C',
+    'id' => 'CM3_RENEWALS_ID_C',
+    'link' => true,
+    'width' => '10%',
+    'widget_class' => 'SubPanelDetailViewLink',
+    'target_module' => 'CM3_Renewals',
+    'target_record_key' => 'cm3_renewals_id_c',
   ),
   'stage' => 
   array (
@@ -44,10 +64,11 @@ $subpanel_layout['list_fields'] = array (
     'vname' => 'LBL_INVOICE_STATUS',
     'width' => '10%',
   ),
-  'expiration' => 
+  'date_entered' => 
   array (
-    'width' => '15%',
-    'vname' => 'LBL_EXPIRATION',
+    'type' => 'datetime',
+    'vname' => 'LBL_DATE_ENTERED',
+    'width' => '10%',
     'default' => true,
   ),
   'assigned_user_name' => 
@@ -58,8 +79,8 @@ $subpanel_layout['list_fields'] = array (
     'width' => '15%',
     'default' => true,
     'widget_class' => 'SubPanelDetailViewLink',
-    'target_module' => NULL,
-    'target_record_key' => NULL,
+    'target_module' => 'Users',
+    'target_record_key' => 'assigned_user_id',
   ),
   'edit_button' => 
   array (

@@ -1,5 +1,5 @@
 <?php
-// created: 2017-07-28 09:46:34
+// created: 2018-05-24 15:23:28
 $mod_strings = array (
   'LBL_CONTACT_ADDRESS_STREET' => 'Street',
   'LBL_CONTACT_ADDRESS_CITY' => 'City',
@@ -22,9 +22,11 @@ $mod_strings = array (
   'LBL_DETAILVIEW_PANEL1' => 'Contact Address',
   'LBL_DETAILVIEW_PANEL2' => 'Contact PO Box',
   'LBL_DETAILVIEW_PANEL3' => 'Contact Home Address',
-  'LBL_LEADS' => 'Leads - Default',
-  'LBL_LEADS_SUBPANEL_TITLE' => 'Leads - Default',
-  'LBL_LEAD_SOURCE' => 'Lead - Default Source:',
-  'LBL_CONTACTS_CM2_LEAP_LEADS_1_FROM_CM2_LEAP_LEADS_TITLE' => 'Leads',
+  'LBL_LEADS' => 'Leads',
+  'LBL_LEADS_SUBPANEL_TITLE' => 'Leads',
+  'LBL_LEAD_SOURCE' => 'Lead Source:',
+  'LBL_CONTACTS_CM2_LEAP_LEADS_1_FROM_CM2_LEAP_LEADS_TITLE' => 'Lead Type',
   'LBL_HOME_PHONE' => 'Home:',
+  'LBL_FP_EVENTS_CONTACTS_FROM_FP_EVENTS_TITLE' => 'Events',
+  'LBL_OFFICE_PHONE' => 'Direct Phone',
 );

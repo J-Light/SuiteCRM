@@ -1,5 +1,5 @@
 <?php
-// created: 2018-02-09 16:05:35
+// created: 2018-04-16 09:06:53
 $mod_strings = array (
   'LBL_SHORT_NAME' => 'Short Name',
   'LBL_EDITVIEW_PANEL1' => 'New Panel 1',
@@ -16,7 +16,7 @@ $mod_strings = array (
   'LBL_MYOBPURCHASETRAINING' => 'MYOBPurchaseTraining',
   'LBL_MYOBPURCHASECONSULTING' => 'MYOBPurchaseConsulting',
   'LBL_MYOBPURCHASEMISC' => 'MYOBPurchaseMisc',
-  'LBL_AOS_PRODUCT_CATEGORIES_CM2_LEAP_LEADS_1_FROM_CM2_LEAP_LEADS_TITLE' => 'Leads',
+  'LBL_AOS_PRODUCT_CATEGORIES_CM2_LEAP_LEADS_1_FROM_CM2_LEAP_LEADS_TITLE' => 'Lead Types',
   'LBL_SUPPLIER_GROUP' => 'Supplier Group',
   'LBL_BUSINESS_UNIT' => 'Business Unit',
   'LBL_SUB_CATEGORIES' => 'Sub categories',

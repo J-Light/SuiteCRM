@@ -1,16 +1,8 @@
 <?php
-// created: 2018-03-12 13:15:50
-$searchdefs['AOS_Quotes'] = array (
-  'templateMeta' => 
-  array (
-    'maxColumns' => '3',
-    'widths' => 
-    array (
-      'label' => '10',
-      'field' => '30',
-    ),
-    'maxColumnsBasic' => '3',
-  ),
+$module_name = 'AOS_Quotes';
+$_module_name = 'aos_quotes';
+$searchdefs [$module_name] = 
+array (
   'layout' => 
   array (
     'basic_search' => 
@@ -38,31 +30,31 @@ $searchdefs['AOS_Quotes'] = array (
     ),
     'advanced_search' => 
     array (
-      0 => 
+      'name' => 
       array (
         'name' => 'name',
         'default' => true,
         'width' => '10%',
       ),
-      1 => 
+      'billing_contact' => 
       array (
         'name' => 'billing_contact',
         'default' => true,
         'width' => '10%',
       ),
-      2 => 
+      'billing_account' => 
       array (
         'name' => 'billing_account',
         'default' => true,
         'width' => '10%',
       ),
-      3 => 
+      'number' => 
       array (
         'name' => 'number',
         'default' => true,
         'width' => '10%',
       ),
-      4 => 
+      'quote_type_c' => 
       array (
         'type' => 'enum',
         'default' => true,
@@ -71,31 +63,31 @@ $searchdefs['AOS_Quotes'] = array (
         'width' => '10%',
         'name' => 'quote_type_c',
       ),
-      5 => 
+      'total_amount' => 
       array (
         'name' => 'total_amount',
         'default' => true,
         'width' => '10%',
       ),
-      6 => 
+      'expiration' => 
       array (
         'name' => 'expiration',
         'default' => true,
         'width' => '10%',
       ),
-      7 => 
+      'stage' => 
       array (
         'name' => 'stage',
         'default' => true,
         'width' => '10%',
       ),
-      8 => 
+      'term' => 
       array (
         'name' => 'term',
         'default' => true,
         'width' => '10%',
       ),
-      9 => 
+      'assigned_user_id' => 
       array (
         'name' => 'assigned_user_id',
         'type' => 'enum',
@@ -113,4 +105,16 @@ $searchdefs['AOS_Quotes'] = array (
       ),
     ),
   ),
+  'templateMeta' => 
+  array (
+    'maxColumns' => '3',
+    'widths' => 
+    array (
+      'label' => '10',
+      'field' => '30',
+    ),
+    'maxColumnsBasic' => '3',
+  ),
 );
+;
+?>

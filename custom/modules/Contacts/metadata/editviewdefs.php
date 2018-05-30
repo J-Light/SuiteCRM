@@ -226,7 +226,6 @@ array (
             'name' => 'contact_po_country_c',
             'label' => 'LBL_CONTACT_PO_COUNTRY',
           ),
-          1 => '',
         ),
       ),
       'lbl_editview_panel3' => 
@@ -264,7 +263,6 @@ array (
             'name' => 'contact_home_country_c',
             'label' => 'LBL_CONTACT_HOME_COUNTRY',
           ),
-          1 => '',
         ),
       ),
       'LBL_PANEL_ADVANCED' => 
@@ -291,4 +289,5 @@ array (
     ),
   ),
 );
+;
 ?>

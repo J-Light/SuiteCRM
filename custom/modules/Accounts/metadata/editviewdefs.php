@@ -157,7 +157,6 @@ array (
             'name' => 'organisation_address_country_c',
             'label' => 'LBL_ORGANISATION_ADDRESS_COUNTRY',
           ),
-          1 => '',
         ),
       ),
       'lbl_editview_panel4' => 
@@ -195,7 +194,6 @@ array (
             'name' => 'organisation_po_country_c',
             'label' => 'LBL_ORGANISATION_PO_COUNTRY',
           ),
-          1 => '',
         ),
       ),
       'LBL_PANEL_ADVANCED' => 
@@ -222,4 +220,5 @@ array (
     ),
   ),
 );
+;
 ?>

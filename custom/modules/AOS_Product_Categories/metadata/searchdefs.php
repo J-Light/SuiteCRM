@@ -1,16 +1,7 @@
 <?php
-// created: 2018-03-12 13:15:50
-$searchdefs['AOS_Product_Categories'] = array (
-  'templateMeta' => 
-  array (
-    'maxColumns' => '3',
-    'maxColumnsBasic' => '4',
-    'widths' => 
-    array (
-      'label' => '10',
-      'field' => '30',
-    ),
-  ),
+$module_name = 'AOS_Product_Categories';
+$searchdefs [$module_name] = 
+array (
   'layout' => 
   array (
     'basic_search' => 
@@ -48,8 +39,12 @@ $searchdefs['AOS_Product_Categories'] = array (
     ),
     'advanced_search' => 
     array (
-      0 => 'name',
-      1 => 
+      'name' => 
+      array (
+        'name' => 'name',
+        'default' => true,
+      ),
+      'assigned_user_id' => 
       array (
         'name' => 'assigned_user_id',
         'label' => 'LBL_ASSIGNED_TO',
@@ -62,7 +57,20 @@ $searchdefs['AOS_Product_Categories'] = array (
             0 => false,
           ),
         ),
+        'default' => true,
       ),
     ),
   ),
+  'templateMeta' => 
+  array (
+    'maxColumns' => '3',
+    'maxColumnsBasic' => '4',
+    'widths' => 
+    array (
+      'label' => '10',
+      'field' => '30',
+    ),
+  ),
 );
+;
+?>

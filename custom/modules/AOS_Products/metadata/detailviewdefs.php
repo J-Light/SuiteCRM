@@ -1,190 +1,196 @@
 <?php
-// created: 2018-03-12 13:15:50
-$viewdefs['AOS_Products']['DetailView'] = array (
-  'templateMeta' => 
+$module_name = 'AOS_Products';
+$viewdefs [$module_name] = 
+array (
+  'DetailView' => 
   array (
-    'form' => 
+    'templateMeta' => 
     array (
-      'buttons' => 
+      'form' => 
       array (
-        0 => 'EDIT',
-        1 => 'DUPLICATE',
-        2 => 'DELETE',
+        'buttons' => 
+        array (
+          0 => 'EDIT',
+          1 => 'DUPLICATE',
+          2 => 'DELETE',
+        ),
       ),
+      'maxColumns' => '2',
+      'widths' => 
+      array (
+        0 => 
+        array (
+          'label' => '10',
+          'field' => '30',
+        ),
+        1 => 
+        array (
+          'label' => '10',
+          'field' => '30',
+        ),
+      ),
+      'useTabs' => false,
+      'tabDefs' => 
+      array (
+        'DEFAULT' => 
+        array (
+          'newTab' => false,
+          'panelDefault' => 'expanded',
+        ),
+      ),
+      'syncDetailEditViews' => true,
     ),
-    'maxColumns' => '2',
-    'widths' => 
+    'panels' => 
     array (
-      0 => 
-      array (
-        'label' => '10',
-        'field' => '30',
-      ),
-      1 => 
-      array (
-        'label' => '10',
-        'field' => '30',
-      ),
-    ),
-    'useTabs' => false,
-    'tabDefs' => 
-    array (
-      'DEFAULT' => 
-      array (
-        'newTab' => false,
-        'panelDefault' => 'expanded',
-      ),
-    ),
-    'syncDetailEditViews' => true,
-  ),
-  'panels' => 
-  array (
-    'default' => 
-    array (
-      0 => 
+      'default' => 
       array (
         0 => 
         array (
-          'name' => 'name',
-          'label' => 'LBL_NAME',
+          0 => 
+          array (
+            'name' => 'name',
+            'label' => 'LBL_NAME',
+          ),
+          1 => 
+          array (
+            'name' => 'part_number',
+            'label' => 'LBL_PART_NUMBER',
+          ),
         ),
         1 => 
         array (
-          'name' => 'part_number',
-          'label' => 'LBL_PART_NUMBER',
+          0 => 
+          array (
+            'name' => 'aos_product_category_name',
+            'label' => 'LBL_AOS_PRODUCT_CATEGORYS_NAME',
+          ),
+          1 => 
+          array (
+            'name' => 'type',
+            'label' => 'LBL_TYPE',
+          ),
         ),
-      ),
-      1 => 
-      array (
-        0 => 
+        2 => 
         array (
-          'name' => 'aos_product_category_name',
-          'label' => 'LBL_AOS_PRODUCT_CATEGORYS_NAME',
+          0 => 
+          array (
+            'name' => 'cost_currency_c',
+            'studio' => 'visible',
+            'label' => 'LBL_COST_CURRENCY',
+          ),
+          1 => 
+          array (
+            'name' => 'currency_id',
+            'studio' => 'visible',
+            'label' => 'LBL_CURRENCY',
+          ),
         ),
-        1 => 
+        3 => 
         array (
-          'name' => 'type',
-          'label' => 'LBL_TYPE',
+          0 => 
+          array (
+            'name' => 'cost_2_c',
+            'label' => 'LBL_COST_2',
+          ),
+          1 => 
+          array (
+            'name' => 'price',
+            'label' => 'LBL_PRICE',
+          ),
         ),
-      ),
-      2 => 
-      array (
-        0 => 
+        4 => 
         array (
-          'name' => 'cost_currency_c',
-          'studio' => 'visible',
-          'label' => 'LBL_COST_CURRENCY',
+          0 => 
+          array (
+            'name' => 'supplier_margin_c',
+            'label' => 'LBL_SUPPLIER_MARGIN',
+          ),
+          1 => 
+          array (
+            'name' => 'license_type_c',
+            'studio' => 'visible',
+            'label' => 'LBL_LICENSE_TYPE',
+          ),
         ),
-        1 => 
+        5 => 
         array (
-          'name' => 'currency_id',
-          'studio' => 'visible',
-          'label' => 'LBL_CURRENCY',
+          0 => 
+          array (
+            'name' => 'company_c',
+            'studio' => 'visible',
+            'label' => 'LBL_COMPANY',
+          ),
+          1 => 
+          array (
+            'name' => 'contact',
+            'label' => 'LBL_CONTACT',
+          ),
         ),
-      ),
-      3 => 
-      array (
-        0 => 
+        6 => 
         array (
-          'name' => 'cost_2_c',
-          'label' => 'LBL_COST_2',
+          0 => 
+          array (
+            'name' => 'product_image',
+            'label' => 'LBL_PRODUCT_IMAGE',
+            'customCode' => '<img src="{$fields.product_image.value}"/>',
+          ),
+          1 => 
+          array (
+            'name' => 'description',
+            'label' => 'LBL_DESCRIPTION',
+          ),
         ),
-        1 => 
+        7 => 
         array (
-          'name' => 'price',
-          'label' => 'LBL_PRICE',
+          0 => 
+          array (
+            'name' => 'obsolete_c',
+            'label' => 'LBL_OBSOLETE',
+          ),
+          1 => 
+          array (
+            'name' => 'is_service_c',
+            'label' => 'LBL_IS_SERVICE',
+          ),
         ),
-      ),
-      4 => 
-      array (
-        0 => 
+        8 => 
         array (
-          'name' => 'supplier_margin_c',
-          'label' => 'LBL_SUPPLIER_MARGIN',
+          0 => 
+          array (
+            'name' => 'related_maintenance_c',
+            'studio' => 'visible',
+            'label' => 'LBL_RELATED_MAINTENANCE',
+          ),
+          1 => 
+          array (
+            'name' => 'url',
+            'label' => 'LBL_URL',
+          ),
         ),
-        1 => 
+        9 => 
         array (
-          'name' => 'license_type_c',
-          'studio' => 'visible',
-          'label' => 'LBL_LICENSE_TYPE',
+          0 => 
+          array (
+            'name' => 'myob_accnum_purchase_c',
+            'label' => 'LBL_MYOB_ACCNUM_PURCHASE',
+          ),
+          1 => 
+          array (
+            'name' => 'myob_accnum_sales_c',
+            'label' => 'LBL_MYOB_ACCNUM_SALES',
+          ),
         ),
-      ),
-      5 => 
-      array (
-        0 => 
+        10 => 
         array (
-          'name' => 'company_c',
-          'studio' => 'visible',
-          'label' => 'LBL_COMPANY',
-        ),
-        1 => 
-        array (
-          'name' => 'contact',
-          'label' => 'LBL_CONTACT',
-        ),
-      ),
-      6 => 
-      array (
-        0 => 
-        array (
-          'name' => 'product_image',
-          'label' => 'LBL_PRODUCT_IMAGE',
-          'customCode' => '<img src="{$fields.product_image.value}"/>',
-        ),
-        1 => 
-        array (
-          'name' => 'description',
-          'label' => 'LBL_DESCRIPTION',
-        ),
-      ),
-      7 => 
-      array (
-        0 => 
-        array (
-          'name' => 'obsolete_c',
-          'label' => 'LBL_OBSOLETE',
-        ),
-        1 => 
-        array (
-          'name' => 'is_service_c',
-          'label' => 'LBL_IS_SERVICE',
-        ),
-      ),
-      8 => 
-      array (
-        0 => 
-        array (
-          'name' => 'related_maintenance_c',
-          'studio' => 'visible',
-          'label' => 'LBL_RELATED_MAINTENANCE',
-        ),
-        1 => 
-        array (
-          'name' => 'url',
-          'label' => 'LBL_URL',
-        ),
-      ),
-      9 => 
-      array (
-        0 => 
-        array (
-          'name' => 'myob_accnum_purchase_c',
-          'label' => 'LBL_MYOB_ACCNUM_PURCHASE',
-        ),
-        1 => 
-        array (
-          'name' => 'myob_accnum_sales_c',
-          'label' => 'LBL_MYOB_ACCNUM_SALES',
-        ),
-      ),
-      10 => 
-      array (
-        0 => 
-        array (
-          'name' => 'myob_job_groupid_c',
-          'label' => 'LBL_MYOB_JOB_GROUPID',
+          0 => 
+          array (
+            'name' => 'myob_job_groupid_c',
+            'label' => 'LBL_MYOB_JOB_GROUPID',
+          ),
         ),
       ),
     ),
   ),
 );
+;
+?>

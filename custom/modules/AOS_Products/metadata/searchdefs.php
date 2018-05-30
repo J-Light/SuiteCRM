@@ -1,6 +1,7 @@
 <?php
-// created: 2018-03-12 13:15:50
-$searchdefs['AOS_Products'] = array (
+$module_name = 'AOS_Products';
+$searchdefs [$module_name] = 
+array (
   'layout' => 
   array (
     'basic_search' => 
@@ -30,19 +31,19 @@ $searchdefs['AOS_Products'] = array (
     ),
     'advanced_search' => 
     array (
-      0 => 
+      'name' => 
       array (
         'name' => 'name',
         'default' => true,
         'width' => '10%',
       ),
-      1 => 
+      'part_number' => 
       array (
         'name' => 'part_number',
         'default' => true,
         'width' => '10%',
       ),
-      2 => 
+      'aos_product_category_name' => 
       array (
         'type' => 'relate',
         'studio' => 'visible',
@@ -53,19 +54,19 @@ $searchdefs['AOS_Products'] = array (
         'default' => true,
         'name' => 'aos_product_category_name',
       ),
-      3 => 
+      'cost' => 
       array (
         'name' => 'cost',
         'default' => true,
         'width' => '10%',
       ),
-      4 => 
+      'price' => 
       array (
         'name' => 'price',
         'default' => true,
         'width' => '10%',
       ),
-      5 => 
+      'obsolete_c' => 
       array (
         'type' => 'bool',
         'default' => true,
@@ -73,7 +74,7 @@ $searchdefs['AOS_Products'] = array (
         'width' => '10%',
         'name' => 'obsolete_c',
       ),
-      6 => 
+      'is_service_c' => 
       array (
         'type' => 'bool',
         'default' => true,
@@ -94,3 +95,5 @@ $searchdefs['AOS_Products'] = array (
     'maxColumnsBasic' => '3',
   ),
 );
+;
+?>
