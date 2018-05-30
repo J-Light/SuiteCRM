@@ -75,8 +75,8 @@ lang_cmp.php
 SuiteCRM.kdev4
 
 #Ignore composer vendor folder
-vendor/
-public/
+#vendor/
+#public/
 
 #Ingore composer files
 composer.lock
