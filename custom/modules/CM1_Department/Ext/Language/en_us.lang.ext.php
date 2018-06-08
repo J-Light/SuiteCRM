@@ -1,0 +1,13 @@
+<?php 
+ //WARNING: The contents of this file are auto-generated
+
+
+//THIS FILE IS AUTO GENERATED, DO NOT MODIFY
+$mod_strings['LBL_ACCOUNTS_CM1_DEPARTMENT_1_FROM_ACCOUNTS_TITLE'] = 'Accounts';
+$mod_strings['LBL_CM1_DEPARTMENT_CONTACTS_1_FROM_CONTACTS_TITLE'] = 'Contacts';
+
+
+//THIS FILE IS AUTO GENERATED, DO NOT MODIFY
+$mod_strings['LBL_ACCOUNTS_CM1_DEPARTMENT_1_FROM_ACCOUNTS_TITLE'] = 'Accounts';
+
+?>
