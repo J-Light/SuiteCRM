@@ -125,7 +125,6 @@ array (
             'name' => 'dept_address_country_c',
             'label' => 'LBL_DEPT_ADDRESS_COUNTRY',
           ),
-          1 => '',
         ),
       ),
       'lbl_editview_panel2' => 
@@ -163,10 +162,10 @@ array (
             'name' => 'dept_po_country_c',
             'label' => 'LBL_DEPT_PO_COUNTRY',
           ),
-          1 => '',
         ),
       ),
     ),
   ),
 );
+;
 ?>

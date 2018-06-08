@@ -1,16 +1,8 @@
 <?php
-// created: 2018-03-12 13:15:50
-$searchdefs['AOS_Invoices'] = array (
-  'templateMeta' => 
-  array (
-    'maxColumns' => '3',
-    'widths' => 
-    array (
-      'label' => '10',
-      'field' => '30',
-    ),
-    'maxColumnsBasic' => '3',
-  ),
+$module_name = 'AOS_Invoices';
+$_module_name = 'aos_invoices';
+$searchdefs [$module_name] = 
+array (
   'layout' => 
   array (
     'basic_search' => 
@@ -38,49 +30,49 @@ $searchdefs['AOS_Invoices'] = array (
     ),
     'advanced_search' => 
     array (
-      0 => 
+      'name' => 
       array (
         'name' => 'name',
         'default' => true,
         'width' => '10%',
       ),
-      1 => 
+      'billing_contact' => 
       array (
         'name' => 'billing_contact',
         'default' => true,
         'width' => '10%',
       ),
-      2 => 
+      'billing_account' => 
       array (
         'name' => 'billing_account',
         'default' => true,
         'width' => '10%',
       ),
-      3 => 
+      'number' => 
       array (
         'name' => 'number',
         'default' => true,
         'width' => '10%',
       ),
-      4 => 
+      'total_amount' => 
       array (
         'name' => 'total_amount',
         'default' => true,
         'width' => '10%',
       ),
-      5 => 
+      'due_date' => 
       array (
         'name' => 'due_date',
         'default' => true,
         'width' => '10%',
       ),
-      6 => 
+      'status' => 
       array (
         'name' => 'status',
         'default' => true,
         'width' => '10%',
       ),
-      7 => 
+      'purchase_order_c' => 
       array (
         'type' => 'varchar',
         'default' => true,
@@ -88,7 +80,7 @@ $searchdefs['AOS_Invoices'] = array (
         'width' => '10%',
         'name' => 'purchase_order_c',
       ),
-      8 => 
+      'assigned_user_id' => 
       array (
         'name' => 'assigned_user_id',
         'type' => 'enum',
@@ -106,4 +98,16 @@ $searchdefs['AOS_Invoices'] = array (
       ),
     ),
   ),
+  'templateMeta' => 
+  array (
+    'maxColumns' => '3',
+    'widths' => 
+    array (
+      'label' => '10',
+      'field' => '30',
+    ),
+    'maxColumnsBasic' => '3',
+  ),
 );
+;
+?>

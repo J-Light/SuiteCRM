@@ -1,5 +1,5 @@
 <?php
-// created: 2017-06-07 10:34:51
+// created: 2018-05-18 11:34:17
 $subpanel_layout['list_fields'] = array (
   'name' => 
   array (
@@ -15,20 +15,6 @@ $subpanel_layout['list_fields'] = array (
     'vname' => 'LBL_ACCOUNT_NAME',
     'width' => '10%',
     'default' => true,
-  ),
-  'account_number_purchase_c' => 
-  array (
-    'type' => 'varchar',
-    'default' => true,
-    'vname' => 'LBL_ACCOUNT_NUMBER_PURCHASE',
-    'width' => '10%',
-  ),
-  'job_number_text_c' => 
-  array (
-    'type' => 'varchar',
-    'default' => true,
-    'vname' => 'LBL_JOB_NUMBER_TEXT',
-    'width' => '10%',
   ),
   'supplier_name' => 
   array (
@@ -47,6 +33,34 @@ $subpanel_layout['list_fields'] = array (
     'type' => 'varchar',
     'default' => true,
     'vname' => 'LBL_QUOTED_COST',
+    'width' => '10%',
+  ),
+  'cost_discount_c' => 
+  array (
+    'type' => 'float',
+    'default' => true,
+    'vname' => 'LBL_COST_DISCOUNT',
+    'width' => '10%',
+  ),
+  'start_date_c' => 
+  array (
+    'type' => 'date',
+    'default' => true,
+    'vname' => 'LBL_START_DATE',
+    'width' => '10%',
+  ),
+  'end_date_c' => 
+  array (
+    'type' => 'date',
+    'default' => true,
+    'vname' => 'LBL_END_DATE',
+    'width' => '10%',
+  ),
+  'supplier_margin_c' => 
+  array (
+    'type' => 'float',
+    'default' => true,
+    'vname' => 'LBL_SUPPLIER_MARGIN',
     'width' => '10%',
   ),
 );

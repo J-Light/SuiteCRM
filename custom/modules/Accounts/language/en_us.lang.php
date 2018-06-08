@@ -1,5 +1,5 @@
 <?php
-// created: 2017-09-04 12:40:02
+// created: 2018-05-11 14:02:47
 $mod_strings = array (
   'LBL_BILLING_ADDRESS_COUNTRY' => 'Country',
   'LBL_ACCOUNTS_CM1_DEPARTMENT_1_FROM_CM1_DEPARTMENT_TITLE' => 'Departments',
@@ -20,8 +20,8 @@ $mod_strings = array (
   'LBL_ORGANISATION_PO_COUNTRY' => 'Country',
   'LBL_EDITVIEW_PANEL4' => 'Organisation PO Box',
   'LBL_DETAILVIEW_PANEL2' => 'Organisation PO Box',
-  'LBL_LEADS' => 'Leads - Default',
-  'LBL_LEADS_SUBPANEL_TITLE' => 'Leads - Default',
+  'LBL_LEADS' => 'Leads',
+  'LBL_LEADS_SUBPANEL_TITLE' => 'Leads',
   'LBL_MYOB_CARD_NAME' => 'MYOB Card Name',
   'LBL_MYOB_CARD_NAME_DD' => 'MYOB Card Name',
   'AOS_Quotes' => 'Quotes',
@@ -35,4 +35,7 @@ $mod_strings = array (
   'LBL_PRODUCTS_SERVICES_FOR_TECS_SUBPANEL_TITLE' => 'Active Licenses',
   'LBL_PARENT_ORIGINAL_ID' => 'parent original id',
   'LBL_ACCOUNTS_CM7_ACCOUNTINDUSTRY_1_FROM_CM7_ACCOUNTINDUSTRY_TITLE' => 'Industry',
+  'LBL_DOCUMENTS_SUBPANEL_TITLE' => 'Documents',
+  'LBL_CONTACTS_SUBPANEL_TITLE' => 'Contacts',
+  'LBL_PHONE_OFFICE' => 'Office Main Phone',
 );

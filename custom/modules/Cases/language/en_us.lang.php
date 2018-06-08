@@ -1,5 +1,5 @@
 <?php
-// created: 2016-07-28 06:23:21
+// created: 2018-04-16 16:05:05
 $mod_strings = array (
   'LBL_LOG' => 'Log',
   'LBL_DATE_ERROR_REPORTED' => 'Date Error Reported',
@@ -7,4 +7,5 @@ $mod_strings = array (
   'LBL_DATE_REPONSE' => 'Date Reponse',
   'LBL_DATE_FIXED' => 'Date Fixed',
   'LBL_SUPPORT_HOURS' => 'Support Hours',
+  'LBL_INTERNAL' => 'Internal Update',
 );

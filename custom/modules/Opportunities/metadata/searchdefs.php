@@ -1,16 +1,6 @@
 <?php
-// created: 2018-03-12 13:15:50
-$searchdefs['Opportunities'] = array (
-  'templateMeta' => 
-  array (
-    'maxColumns' => '3',
-    'maxColumnsBasic' => '4',
-    'widths' => 
-    array (
-      'label' => '10',
-      'field' => '30',
-    ),
-  ),
+$searchdefs ['Opportunities'] = 
+array (
   'layout' => 
   array (
     'basic_search' => 
@@ -46,25 +36,25 @@ $searchdefs['Opportunities'] = array (
     ),
     'advanced_search' => 
     array (
-      0 => 
+      'name' => 
       array (
         'name' => 'name',
         'default' => true,
         'width' => '10%',
       ),
-      1 => 
+      'account_name' => 
       array (
         'name' => 'account_name',
         'default' => true,
         'width' => '10%',
       ),
-      2 => 
+      'amount' => 
       array (
         'name' => 'amount',
         'default' => true,
         'width' => '10%',
       ),
-      3 => 
+      'assigned_user_id' => 
       array (
         'name' => 'assigned_user_id',
         'type' => 'enum',
@@ -80,19 +70,19 @@ $searchdefs['Opportunities'] = array (
         'default' => true,
         'width' => '10%',
       ),
-      4 => 
+      'sales_stage' => 
       array (
         'name' => 'sales_stage',
         'default' => true,
         'width' => '10%',
       ),
-      5 => 
+      'lead_source' => 
       array (
         'name' => 'lead_source',
         'default' => true,
         'width' => '10%',
       ),
-      6 => 
+      'opportunity_type' => 
       array (
         'type' => 'enum',
         'label' => 'LBL_TYPE',
@@ -100,13 +90,21 @@ $searchdefs['Opportunities'] = array (
         'default' => true,
         'name' => 'opportunity_type',
       ),
-      7 => 
+      'date_closed' => 
       array (
         'name' => 'date_closed',
         'default' => true,
         'width' => '10%',
       ),
-      8 => 
+      'jjwg_maps_address_c' => 
+      array (
+        'type' => 'varchar',
+        'default' => true,
+        'label' => 'LBL_JJWG_MAPS_ADDRESS',
+        'width' => '10%',
+        'name' => 'jjwg_maps_address_c',
+      ),
+      'next_step' => 
       array (
         'type' => 'varchar',
         'label' => 'LBL_NEXT_STEP',
@@ -116,4 +114,16 @@ $searchdefs['Opportunities'] = array (
       ),
     ),
   ),
+  'templateMeta' => 
+  array (
+    'maxColumns' => '3',
+    'maxColumnsBasic' => '4',
+    'widths' => 
+    array (
+      'label' => '10',
+      'field' => '30',
+    ),
+  ),
 );
+;
+?>

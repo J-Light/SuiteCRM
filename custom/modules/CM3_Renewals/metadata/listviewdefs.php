@@ -29,6 +29,16 @@ array (
     'link' => true,
     'width' => '10%',
   ),
+  'PRODUCT_GROUP_C' => 
+  array (
+    'type' => 'relate',
+    'default' => true,
+    'studio' => 'visible',
+    'label' => 'LBL_PRODUCT_GROUP',
+    'id' => 'AOS_PRODUCT_CATEGORIES_ID1_C',
+    'link' => true,
+    'width' => '10%',
+  ),
   'RENEWAL_DATE' => 
   array (
     'type' => 'date',
@@ -43,5 +53,14 @@ array (
     'width' => '10%',
     'default' => true,
   ),
+  'ASSIGNED_USER_NAME' => 
+  array (
+    'width' => '9%',
+    'label' => 'LBL_ASSIGNED_TO_NAME',
+    'module' => 'Employees',
+    'id' => 'ASSIGNED_USER_ID',
+    'default' => true,
+  ),
 );
+;
 ?>

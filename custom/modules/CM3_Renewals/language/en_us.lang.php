@@ -1,5 +1,5 @@
 <?php
-// created: 2017-02-09 13:52:02
+// created: 2018-04-19 19:01:31
 $mod_strings = array (
   'LBL_CM3_RENEWALS_AOS_PRODUCTS_QUOTES_1_FROM_AOS_PRODUCTS_QUOTES_TITLE' => 'Line Items',
   'LBL_ACCOUNT_ACCOUNT_ID' => 'Account (related Account ID)',
@@ -21,4 +21,5 @@ $mod_strings = array (
   'LBL_PRODUCT_GROUP' => 'Product Group',
   'LBL_STATUS' => 'Status',
   'LBL_HISTORICAL_PRODUCTS_SERVICES_PURCHASED_SUBPANEL_TITLE' => 'Historical Services Purchased',
+  'LBL_QUOTES_SUBPANEL_TITLE' => 'Quotes',
 );

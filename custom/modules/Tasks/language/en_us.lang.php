@@ -1,5 +1,5 @@
 <?php
-// created: 2017-07-28 09:46:33
+// created: 2018-04-16 09:07:18
 $mod_strings = array (
-  'LBL_LEADS' => 'Leads - Default',
+  'LBL_LEADS' => 'Leads',
 );

@@ -105,10 +105,17 @@ array (
         ),
         5 => 
         array (
-          0 => 'assigned_user_name',
+          0 => 
+          array (
+            'name' => 'supplier',
+            'studio' => 'visible',
+            'label' => 'LBL_SUPPLIER',
+          ),
+          1 => 'assigned_user_name',
         ),
       ),
     ),
   ),
 );
+;
 ?>

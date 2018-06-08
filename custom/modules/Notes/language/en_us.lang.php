@@ -1,5 +1,5 @@
 <?php
-// created: 2017-07-28 09:46:33
+// created: 2018-04-16 09:07:18
 $mod_strings = array (
   'LBL_DUE_DATE' => 'Due Date',
   'LBL_NOTES_NAME' => 'Name',
@@ -13,5 +13,5 @@ $mod_strings = array (
   'LBL_NOTES_FLAG_DUE_DATE' => 'Flag Due Date',
   'LBL_NOTES_ACTION_COMPLETED' => 'Action Completed',
   'LBL_PRIORITY' => 'Priority',
-  'LBL_LEADS' => 'Leads - Default',
+  'LBL_LEADS' => 'Leads',
 );

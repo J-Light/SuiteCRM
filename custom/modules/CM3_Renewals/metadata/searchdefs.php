@@ -45,8 +45,43 @@ array (
     ),
     'advanced_search' => 
     array (
-      0 => 'name',
-      1 => 
+      'account_c' => 
+      array (
+        'type' => 'relate',
+        'default' => true,
+        'studio' => 'visible',
+        'label' => 'LBL_ACCOUNT',
+        'link' => true,
+        'width' => '10%',
+        'id' => 'ACCOUNT_ID_C',
+        'name' => 'account_c',
+      ),
+      'name' => 
+      array (
+        'name' => 'name',
+        'default' => true,
+        'width' => '10%',
+      ),
+      'supplier_c' => 
+      array (
+        'type' => 'relate',
+        'default' => true,
+        'studio' => 'visible',
+        'label' => 'LBL_SUPPLIER',
+        'link' => true,
+        'width' => '10%',
+        'id' => 'AOS_PRODUCT_CATEGORIES_ID_C',
+        'name' => 'supplier_c',
+      ),
+      'renewal_date' => 
+      array (
+        'type' => 'date',
+        'label' => 'LBL_RENEWAL_DATE',
+        'width' => '10%',
+        'default' => true,
+        'name' => 'renewal_date',
+      ),
+      'assigned_user_id' => 
       array (
         'name' => 'assigned_user_id',
         'label' => 'LBL_ASSIGNED_TO',
@@ -59,6 +94,8 @@ array (
             0 => false,
           ),
         ),
+        'default' => true,
+        'width' => '10%',
       ),
     ),
   ),
@@ -73,4 +110,5 @@ array (
     ),
   ),
 );
+;
 ?>

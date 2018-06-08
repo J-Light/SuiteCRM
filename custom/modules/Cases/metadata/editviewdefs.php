@@ -1,171 +1,144 @@
 <?php
-// created: 2018-03-12 13:15:50
-$viewdefs['Cases']['EditView'] = array (
-  'templateMeta' => 
+$viewdefs ['Cases'] = 
+array (
+  'EditView' => 
   array (
-    'maxColumns' => '2',
-    'widths' => 
+    'templateMeta' => 
     array (
-      0 => 
-      array (
-        'label' => '10',
-        'field' => '30',
-      ),
-      1 => 
-      array (
-        'label' => '10',
-        'field' => '30',
-      ),
-    ),
-    'includes' => 
-    array (
-      0 => 
-      array (
-        'file' => 'include/javascript/bindWithDelay.js',
-      ),
-      1 => 
-      array (
-        'file' => 'modules/AOK_KnowledgeBase/AOK_KnowledgeBase_SuggestionBox.js',
-      ),
-      2 => 
-      array (
-        'file' => 'include/javascript/qtip/jquery.qtip.min.js',
-      ),
-    ),
-    'useTabs' => false,
-    'tabDefs' => 
-    array (
-      'LBL_CASE_INFORMATION' => 
-      array (
-        'newTab' => false,
-        'panelDefault' => 'expanded',
-      ),
-    ),
-    'form' => 
-    array (
-      'enctype' => 'multipart/form-data',
-    ),
-  ),
-  'panels' => 
-  array (
-    'lbl_case_information' => 
-    array (
-      0 => 
+      'maxColumns' => '2',
+      'widths' => 
       array (
         0 => 
         array (
-          'name' => 'case_number',
-          'type' => 'readonly',
-        ),
-        1 => 'priority',
-      ),
-      1 => 
-      array (
-        0 => 
-        array (
-          'name' => 'state',
-          'comment' => 'The state of the case (i.e. open/closed)',
-          'label' => 'LBL_STATE',
-        ),
-        1 => 'status',
-      ),
-      2 => 
-      array (
-        0 => 
-        array (
-          'name' => 'resolution',
-          'nl2br' => true,
+          'label' => '10',
+          'field' => '30',
         ),
         1 => 
         array (
-          'name' => 'suggestion_box',
-          'label' => 'LBL_SUGGESTION_BOX',
+          'label' => '10',
+          'field' => '30',
         ),
       ),
-      3 => 
-      array (
-        0 => 'account_name',
-        1 => 
-        array (
-          'name' => 'aos_product_categories_cases_1_name',
-        ),
-      ),
-      4 => 
+      'includes' => 
       array (
         0 => 
         array (
-          'name' => 'name',
-          'displayParams' => 
+          'file' => 'include/javascript/bindWithDelay.js',
+        ),
+        1 => 
+        array (
+          'file' => 'modules/AOK_KnowledgeBase/AOK_KnowledgeBase_SuggestionBox.js',
+        ),
+        2 => 
+        array (
+          'file' => 'include/javascript/qtip/jquery.qtip.min.js',
+        ),
+      ),
+      'useTabs' => false,
+      'tabDefs' => 
+      array (
+        'LBL_CASE_INFORMATION' => 
+        array (
+          'newTab' => false,
+          'panelDefault' => 'expanded',
+        ),
+      ),
+      'form' => 
+      array (
+        'enctype' => 'multipart/form-data',
+      ),
+    ),
+    'panels' => 
+    array (
+      'lbl_case_information' => 
+      array (
+        0 => 
+        array (
+          0 => 
           array (
+            'name' => 'case_number',
+            'type' => 'readonly',
+          ),
+          1 => 'priority',
+        ),
+        1 => 
+        array (
+          0 => 
+          array (
+            'name' => 'state',
+            'comment' => 'The state of the case (i.e. open/closed)',
+            'label' => 'LBL_STATE',
+          ),
+          1 => 'status',
+        ),
+        2 => 
+        array (
+          0 => 
+          array (
+            'name' => 'resolution',
+            'nl2br' => true,
+          ),
+          1 => 
+          array (
+            'name' => 'suggestion_box',
+            'label' => 'LBL_SUGGESTION_BOX',
           ),
         ),
-        1 => 
+        3 => 
         array (
-          'name' => 'description',
+          0 => 'account_name',
+          1 => 
+          array (
+            'name' => 'aos_product_categories_cases_1_name',
+          ),
         ),
-      ),
-      5 => 
-      array (
-        0 => 
+        4 => 
         array (
-          'name' => 'update_text',
-          'studio' => 'visible',
-          'label' => 'LBL_UPDATE_TEXT',
+          0 => 
+          array (
+            'name' => 'name',
+            'displayParams' => 
+            array (
+            ),
+          ),
         ),
-        1 => 
+        5 => 
         array (
-          'name' => 'internal',
-          'studio' => 'visible',
-          'label' => 'LBL_INTERNAL',
+          0 => 
+          array (
+            'name' => 'description',
+          ),
         ),
-      ),
-      6 => 
-      array (
-        0 => 
+        6 => 
         array (
-          'name' => 'case_update_form',
-          'studio' => 'visible',
+          0 => 
+          array (
+            'name' => 'update_text',
+            'studio' => 'visible',
+            'label' => 'LBL_UPDATE_TEXT',
+          ),
+          1 => 
+          array (
+            'name' => 'internal',
+            'studio' => 'visible',
+            'label' => 'LBL_INTERNAL',
+          ),
         ),
-      ),
-      7 => 
-      array (
-        0 => 'assigned_user_name',
-      ),
-      8 => 
-      array (
-        0 => 
+        7 => 
         array (
-          'name' => 'date_fixed_c',
-          'label' => 'LBL_DATE_FIXED',
+          0 => 
+          array (
+            'name' => 'case_update_form',
+            'studio' => 'visible',
+          ),
         ),
-        1 => 
+        8 => 
         array (
-          'name' => 'date_reponse_c',
-          'label' => 'LBL_DATE_REPONSE',
+          0 => 'assigned_user_name',
         ),
-      ),
-      9 => 
-      array (
-        0 => 
-        array (
-          'name' => 'date_error_reported_c',
-          'label' => 'LBL_DATE_ERROR_REPORTED',
-        ),
-        1 => 
-        array (
-          'name' => 'support_hours_c',
-          'label' => 'LBL_SUPPORT_HOURS',
-        ),
-      ),
-      10 => 
-      array (
-        0 => 
-        array (
-          'name' => 'support_number_c',
-          'label' => 'LBL_SUPPORT_NUMBER',
-        ),
-        1 => '',
       ),
     ),
   ),
 );
+;
+?>

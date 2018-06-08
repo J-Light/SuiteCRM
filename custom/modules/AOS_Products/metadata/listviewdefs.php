@@ -1,6 +1,6 @@
 <?php
-// created: 2018-03-12 13:15:50
-$listViewDefs['AOS_Products'] = array (
+$listViewDefs ['AOS_Products'] = 
+array (
   'NAME' => 
   array (
     'width' => '15%',
@@ -42,4 +42,13 @@ $listViewDefs['AOS_Products'] = array (
       0 => 'aos_product_category_id',
     ),
   ),
+  'OBSOLETE_C' => 
+  array (
+    'type' => 'bool',
+    'default' => true,
+    'label' => 'LBL_OBSOLETE',
+    'width' => '10%',
+  ),
 );
+;
+?>

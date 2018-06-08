@@ -1,9 +1,9 @@
 <?php
-// created: 2018-03-12 13:15:50
-$listViewDefs['Cases'] = array (
+$listViewDefs ['Cases'] = 
+array (
   'CASE_NUMBER' => 
   array (
-    'width' => '5%',
+    'width' => '10%',
     'label' => 'LBL_LIST_NUMBER',
     'default' => true,
   ),
@@ -28,37 +28,46 @@ $listViewDefs['Cases'] = array (
       0 => 'account_id',
     ),
   ),
-  'PRIORITY' => 
-  array (
-    'width' => '10%',
-    'label' => 'LBL_LIST_PRIORITY',
-    'default' => true,
-  ),
   'STATUS' => 
   array (
     'width' => '10%',
     'label' => 'LBL_LIST_STATUS',
     'default' => true,
   ),
-  'ASSIGNED_USER_NAME' => 
+  'PRIORITY' => 
   array (
     'width' => '10%',
+    'label' => 'LBL_LIST_PRIORITY',
+    'default' => true,
+  ),
+  'STATE' => 
+  array (
+    'type' => 'enum',
+    'default' => true,
+    'label' => 'LBL_STATE',
+    'width' => '10%',
+  ),
+  'ASSIGNED_USER_NAME' => 
+  array (
+    'width' => '15%',
     'label' => 'LBL_ASSIGNED_TO_NAME',
     'module' => 'Employees',
     'id' => 'ASSIGNED_USER_ID',
     'default' => true,
   ),
-  'DATE_ERROR_REPORTED_C' => 
-  array (
-    'type' => 'date',
-    'default' => true,
-    'label' => 'LBL_DATE_ERROR_REPORTED',
-    'width' => '10%',
-  ),
   'DATE_ENTERED' => 
   array (
     'width' => '10%',
     'label' => 'LBL_DATE_ENTERED',
+    'default' => true,
+  ),
+  'DATE_ERROR_REPORTED_C' => 
+  array (
+    'type' => 'date',
     'default' => false,
+    'label' => 'LBL_DATE_ERROR_REPORTED',
+    'width' => '10%',
   ),
 );
+;
+?>

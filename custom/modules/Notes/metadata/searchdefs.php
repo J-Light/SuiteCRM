@@ -1,6 +1,6 @@
 <?php
-// created: 2018-03-12 13:15:50
-$searchdefs['Notes'] = array (
+$searchdefs ['Notes'] = 
+array (
   'layout' => 
   array (
     'basic_search' => 
@@ -26,13 +26,13 @@ $searchdefs['Notes'] = array (
     ),
     'advanced_search' => 
     array (
-      0 => 
+      'name' => 
       array (
         'name' => 'name',
         'default' => true,
         'width' => '10%',
       ),
-      1 => 
+      'description' => 
       array (
         'type' => 'text',
         'label' => 'LBL_DESCRIPTION',
@@ -41,7 +41,7 @@ $searchdefs['Notes'] = array (
         'default' => true,
         'name' => 'description',
       ),
-      2 => 
+      'contact_name' => 
       array (
         'type' => 'name',
         'link' => 'contact',
@@ -50,7 +50,7 @@ $searchdefs['Notes'] = array (
         'default' => true,
         'name' => 'contact_name',
       ),
-      3 => 
+      'parent_name' => 
       array (
         'type' => 'parent',
         'label' => 'LBL_RELATED_TO',
@@ -58,14 +58,14 @@ $searchdefs['Notes'] = array (
         'default' => true,
         'name' => 'parent_name',
       ),
-      4 => 
+      'filename' => 
       array (
         'type' => 'name',
         'name' => 'filename',
         'default' => true,
         'width' => '10%',
       ),
-      5 => 
+      'date_entered' => 
       array (
         'type' => 'datetime',
         'label' => 'LBL_DATE_ENTERED',
@@ -86,3 +86,5 @@ $searchdefs['Notes'] = array (
     ),
   ),
 );
+;
+?>

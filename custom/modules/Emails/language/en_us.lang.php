@@ -1,6 +1,6 @@
 <?php
-// created: 2017-07-28 09:46:34
+// created: 2018-04-16 09:07:19
 $mod_strings = array (
-  'LBL_EMAILS_LEADS_REL' => 'Emails:Leads - Default',
-  'LBL_LEADS_SUBPANEL_TITLE' => 'Leads - Default',
+  'LBL_EMAILS_LEADS_REL' => 'Emails:Leads',
+  'LBL_LEADS_SUBPANEL_TITLE' => 'Leads',
 );

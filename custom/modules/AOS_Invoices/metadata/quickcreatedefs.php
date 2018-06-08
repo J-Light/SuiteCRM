@@ -143,7 +143,6 @@ array (
               'shippingKey' => 'shipping',
             ),
           ),
-          1 => '',
         ),
         1 => 
         array (
@@ -156,7 +155,6 @@ array (
               'initial_filter' => '&account_name="+this.form.{$fields.billing_account.name}.value+"',
             ),
           ),
-          1 => '',
         ),
         2 => 
         array (
@@ -209,10 +207,6 @@ array (
             'name' => 'line_items',
             'label' => 'LBL_LINE_ITEMS',
           ),
-        ),
-        2 => 
-        array (
-          0 => '',
         ),
         3 => 
         array (
@@ -281,4 +275,5 @@ array (
     ),
   ),
 );
+;
 ?>

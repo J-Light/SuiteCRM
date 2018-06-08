@@ -1,6 +1,50 @@
 <?php
-// created: 2018-01-25 15:20:08
+// created: 2018-05-16 11:58:18
 $unified_search_modules_display = array (
+  'Accounts' => 
+  array (
+    'visible' => true,
+  ),
+  'Calls' => 
+  array (
+    'visible' => true,
+  ),
+  'Cases' => 
+  array (
+    'visible' => true,
+  ),
+  'Contacts' => 
+  array (
+    'visible' => true,
+  ),
+  'Documents' => 
+  array (
+    'visible' => true,
+  ),
+  'Leads' => 
+  array (
+    'visible' => true,
+  ),
+  'Meetings' => 
+  array (
+    'visible' => true,
+  ),
+  'Notes' => 
+  array (
+    'visible' => true,
+  ),
+  'AOS_Quotes' => 
+  array (
+    'visible' => true,
+  ),
+  'AOS_Invoices' => 
+  array (
+    'visible' => true,
+  ),
+  'Opportunities' => 
+  array (
+    'visible' => true,
+  ),
   'AOD_Index' => 
   array (
     'visible' => false,
@@ -33,10 +77,6 @@ $unified_search_modules_display = array (
   array (
     'visible' => false,
   ),
-  'AOS_Invoices' => 
-  array (
-    'visible' => false,
-  ),
   'AOS_PDF_Templates' => 
   array (
     'visible' => false,
@@ -49,10 +89,6 @@ $unified_search_modules_display = array (
   array (
     'visible' => false,
   ),
-  'AOS_Quotes' => 
-  array (
-    'visible' => false,
-  ),
   'AOW_Processed' => 
   array (
     'visible' => false,
@@ -60,10 +96,6 @@ $unified_search_modules_display = array (
   'AOW_WorkFlow' => 
   array (
     'visible' => false,
-  ),
-  'Accounts' => 
-  array (
-    'visible' => true,
   ),
   'Bugs' => 
   array (
@@ -73,10 +105,6 @@ $unified_search_modules_display = array (
   array (
     'visible' => false,
   ),
-  'Calls' => 
-  array (
-    'visible' => true,
-  ),
   'Calls_Reschedule' => 
   array (
     'visible' => false,
@@ -85,18 +113,6 @@ $unified_search_modules_display = array (
   array (
     'visible' => false,
   ),
-  'Cases' => 
-  array (
-    'visible' => true,
-  ),
-  'Contacts' => 
-  array (
-    'visible' => true,
-  ),
-  'Documents' => 
-  array (
-    'visible' => true,
-  ),
   'FP_Event_Locations' => 
   array (
     'visible' => false,
@@ -104,22 +120,6 @@ $unified_search_modules_display = array (
   'FP_events' => 
   array (
     'visible' => false,
-  ),
-  'Leads' => 
-  array (
-    'visible' => true,
-  ),
-  'Meetings' => 
-  array (
-    'visible' => true,
-  ),
-  'Notes' => 
-  array (
-    'visible' => true,
-  ),
-  'Opportunities' => 
-  array (
-    'visible' => true,
   ),
   'Project' => 
   array (

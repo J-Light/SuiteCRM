@@ -1,7 +1,8 @@
 <?php
-// created: 2017-07-28 09:46:34
+// created: 2018-04-19 18:54:34
 $mod_strings = array (
-  'LBL_LEADS' => 'Leads - Default',
-  'LBL_LEADS_SUBPANEL_TITLE' => 'Leads - Default',
-  'LBL_LEAD_SOURCE' => 'Lead - Default Source:',
+  'LBL_LEADS' => 'Leads',
+  'LBL_LEADS_SUBPANEL_TITLE' => 'Leads',
+  'LBL_LEAD_SOURCE' => 'Lead Source:',
+  'AOS_Quotes' => 'Quotes',
 );

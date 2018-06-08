@@ -1,0 +1,148 @@
+<?php
+
+include('scripts/config.php');
+include('scripts/functions.php');
+require_once('scripts/database.php');
+	
+class after_save {
+    function after_save(&$bean, $event, $arguments){
+
+		global $current_user;
+		$db = new Database();
+		
+		$product_id = $bean->product_id;
+		$product_quote_id = $bean->id;
+
+		$parent_type = $bean->parent_type;
+		
+		$product_quote = new AOS_Products_Quotes($product_quote_id);
+
+		if($product_id) {
+			$product = new AOS_Products();
+			$product->retrieve($product_id);
+			$currencies = $db->get_currencies_by_symbol();
+			$currencies_symbol = $db->get_currencies_symbol_by_id();
+			$currencies_rate = $db->get_currencies_rate();
+			
+			$cost_price = self::number_unformat($product->cost_2_c);
+			$cost_currency_symbol = $product->cost_currency_c;
+			$cost_currency_id = $currencies[$cost_currency_symbol];
+			$cost_rate = $currencies_rate[$cost_currency_id];
+			
+			$price = self::number_unformat($bean->product_unit_price);
+			$price_currency_symbol = $currencies_symbol[$bean->currency_id];
+			$price_currency_id = $bean->currency_id;
+			$price_rate = $currencies_rate[$price_currency_id];
+			
+			// Converting currencies
+			$converted_cost = ($cost_rate * $cost_price) / $price_rate;
+			
+			// Compute for Margin
+			// $margin = (($price - $converted_cost) / $price) * 100;
+			
+			$data = array(
+				array(
+					'id_c' => $product_quote_id,
+					'price_c' => $price, 
+					'price_currency_symbol_c' => $price_currency_symbol, 
+					'price_currency_c' => $price_currency_id, 
+					'price_rate_c' => $price_rate, 
+					//'cost_c' => $cost_price,
+					'cost_currency_symbol_c' => $cost_currency_symbol, 
+					'cost_currency_c' => $cost_currency_id, 
+					'cost_rate_c' => $cost_rate,
+					'cost_discount_c' => $bean->cost_discount_c == NULL ? 0 : $bean->cost_discount_c,
+					// 'margin_c' => $margin
+				),
+			);
+			
+			$sql = generate_insert_script('aos_products_quotes_cstm', $data);
+			$GLOBALS['db']->query($sql);
+		}
+
+		if($parent_type == "AOS_Invoices") {
+			$invoiceid = $bean->parent_id;
+
+			$query = "
+				SELECT *
+				FROM cm3_renewals_aos_invoices_1_c
+				WHERE cm3_renewals_aos_invoices_1aos_invoices_idb = '{$invoiceid}'
+			";
+
+			$result = $GLOBALS['db']->query($query);
+
+			// get all renewal ids and update their line items and renewal date
+			while ($item = $GLOBALS["db"]->fetchByAssoc($result) ) {
+				$renewalid = $item['cm3_renewals_aos_invoices_1cm3_renewals_ida'];
+
+				// update line items to inactive
+				$GLOBALS['db']->query("UPDATE aos_products_quotes_cstm
+                SET status_c = '-2'
+                WHERE id_c IN (SELECT id_c FROM (SELECT
+                            aos_products_quotes_cstm.id_c
+                        FROM
+                            aos_products_quotes
+                        JOIN aos_products_quotes_cstm
+                            ON aos_products_quotes_cstm.id_c = aos_products_quotes.id
+                        JOIN aos_products
+                            ON aos_products.id = aos_products_quotes.product_id
+                            AND aos_products.deleted = 0
+                        JOIN aos_invoices 
+                            ON aos_invoices.id = aos_products_quotes.parent_id 
+                            AND aos_invoices.deleted = 0 
+                            AND aos_products_quotes.deleted = 0
+                        JOIN aos_quotes_aos_invoices_c 
+                            ON aos_quotes_aos_invoices_c.aos_quotes6b83nvoices_idb = aos_invoices.id
+                        JOIN aos_quotes
+                            ON aos_quotes.id = aos_quotes_aos_invoices_c.aos_quotes77d9_quotes_ida
+                        JOIN cm3_renewals_aos_invoices_1_c
+                            ON cm3_renewals_aos_invoices_1_c.cm3_renewals_aos_invoices_1aos_invoices_idb = aos_invoices.id
+                        WHERE cm3_renewals_aos_invoices_1_c.cm3_renewals_aos_invoices_1cm3_renewals_ida = '{$renewalid}'
+                        AND (aos_products.name LIKE '%- Lease' OR aos_products.name LIKE '%- Maintenance' OR aos_products.name LIKE '%- Subscription')
+                        AND aos_products_quotes.parent_type = 'AOS_Invoices'
+                        AND aos_products_quotes.parent_id != '".$invoiceid."'
+                        AND aos_products_quotes_cstm.status_c = '1') AS T1)");
+
+
+				// update renewal date
+				$GLOBALS['db']->query("UPDATE cm3_renewals
+                SET renewal_date = (
+                SELECT
+                    MIN(aos_products_quotes_cstm.end_date_c)
+                FROM
+                    aos_products_quotes
+                JOIN aos_products_quotes_cstm
+                    ON aos_products_quotes_cstm.id_c = aos_products_quotes.id
+                JOIN aos_products
+                    ON aos_products.id = aos_products_quotes.product_id
+                    AND aos_products.deleted = 0
+                JOIN aos_invoices
+                    ON aos_invoices.id = aos_products_quotes.parent_id
+                    AND aos_invoices.deleted = 0
+                    AND aos_products_quotes.deleted = 0
+                JOIN cm3_renewals_aos_invoices_1_c
+                ON cm3_renewals_aos_invoices_1_c.cm3_renewals_aos_invoices_1aos_invoices_idb = aos_invoices.id
+                WHERE (aos_products.name LIKE '%- Lease' OR aos_products.name LIKE '%- Maintenance' OR aos_products.name LIKE '%- Subscription')
+                AND aos_products_quotes_cstm.end_date_c != '0000-00-00'
+                AND aos_products_quotes_cstm.status_c = 1
+                AND cm3_renewals_aos_invoices_1_c.deleted = 0
+                AND cm3_renewals.id = cm3_renewals_aos_invoices_1_c.cm3_renewals_aos_invoices_1cm3_renewals_ida
+                AND cm3_renewals.id = '{$renewalid}')
+                WHERE cm3_renewals.id = '{$renewalid}'");
+			}
+		}
+	}
+	
+	function number_unformat($number, $force_number = true, $dec_point = '.', $thousands_sep = ',') {
+		if ($force_number) {
+			$number = preg_replace('/^[^\d]+/', '', $number);
+		} else if (preg_match('/^[^\d]+/', $number)) {
+			return false;
+		}
+		$type = (strpos($number, $dec_point) === false) ? 'int' : 'float';
+		$number = str_replace(array($dec_point, $thousands_sep), array('.', ''), $number);
+		settype($number, $type);
+		return $number;
+	}
+}
+?>
