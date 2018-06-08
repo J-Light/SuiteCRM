@@ -398,12 +398,19 @@ class Account extends Company implements EmailInterface {
 				aos_invoices.id as `invoice_id`,
 				aos_invoices.name as `invoice_name`,
 				aos_invoices.number as `invoice_number`,
-				aos_invoices.invoice_date as `invoice_date`
+				aos_invoices.invoice_date as `invoice_date`,
+				cm3_renewals.id as `renewal_id`,
+				cm3_renewals.name as `agreement_name2`
 			FROM
 				aos_products_quotes
 			JOIN aos_products_quotes_cstm ON aos_products_quotes.id = aos_products_quotes_cstm.id_c
 			JOIN aos_invoices ON aos_invoices.id = aos_products_quotes.parent_id AND aos_invoices.deleted = 0 AND aos_products_quotes.deleted = 0
 			JOIN accounts ON accounts.id = aos_invoices.billing_account_id AND accounts.id = '{$this->id}'
+			JOIN cm3_renewals_aos_invoices_1_c
+				ON cm3_renewals_aos_invoices_1_c.cm3_renewals_aos_invoices_1aos_invoices_idb = aos_invoices.id
+				AND cm3_renewals_aos_invoices_1_c.deleted = 0
+			JOIN cm3_renewals
+				ON cm3_renewals.id = cm3_renewals_aos_invoices_1_c.cm3_renewals_aos_invoices_1cm3_renewals_ida
 
 			";
 		return $query;
