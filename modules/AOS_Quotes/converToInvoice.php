@@ -30,6 +30,13 @@ if(!(ACLController::checkAccess('AOS_Invoices', 'edit', true))){
 	die;
 }
 
+// Check if user can edit the quote
+if(!(ACLController::checkAccess('AOS_Quotes', 'edit', true))){
+    ACLController::displayNoAccess();
+    die;
+}
+
+
 if (!function_exists('create_guid')) {
 	function create_guid()
 	{
