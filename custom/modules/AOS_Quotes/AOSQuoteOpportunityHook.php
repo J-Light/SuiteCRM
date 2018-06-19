@@ -9,6 +9,7 @@ class AOSQuoteOpportunityHook {
         $opportunity_id = $bean->opportunity_id;
         $total_amount = 0;
         $currency_id = $bean->currency_id;
+        $assigned_user_id = $bean->assigned_user_id;
 
         if($event == 'after_delete') {
             $query = "SELECT * FROM aos_quotes WHERE id = '" . $quote_id . "'";
@@ -22,13 +23,11 @@ class AOSQuoteOpportunityHook {
         $query = "SELECT * FROM aos_quotes WHERE opportunity_id = '" . $opportunity_id . "' and stage = 'Confirmed' and deleted = '0'";
         $result = $db->query($query);
 
-        $assigned_user_id = '';
         while($row = $db->fetchByAssoc($result)) {
             $total_amount += is_numeric($row['total_amt']) ? $row['total_amt'] : 0;
-            $assigned_user_id = $row['assigned_user_id'];
         }
 
-        if($opportunity_id) {
+        if($opportunity_id and $total_amount > 0) {
             $query = "UPDATE opportunities SET 
                 amount={$total_amount}, 
                 amount_usdollar={$total_amount}, 
