@@ -22,16 +22,18 @@ class AOSQuoteOpportunityHook {
         $query = "SELECT * FROM aos_quotes WHERE opportunity_id = '" . $opportunity_id . "' and stage = 'Confirmed' and deleted = '0'";
         $result = $db->query($query);
 
-
+        $assigned_user_id = '';
         while($row = $db->fetchByAssoc($result)) {
-            $total_amount += is_numeric($row['total_amount']) ? $row['total_amount'] : 0;
+            $total_amount += is_numeric($row['total_amt']) ? $row['total_amt'] : 0;
+            $assigned_user_id = $row['assigned_user_id'];
         }
 
         if($opportunity_id) {
             $query = "UPDATE opportunities SET 
                 amount={$total_amount}, 
                 amount_usdollar={$total_amount}, 
-                currency_id='{$currency_id}'
+                currency_id='{$currency_id}',
+                assigned_user_id='{$assigned_user_id}'
                 WHERE id='{$opportunity_id}'";
 
             $db->query($query);
