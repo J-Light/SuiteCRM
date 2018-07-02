@@ -1,5 +1,5 @@
 <?php
-// created: 2018-05-24 15:23:28
+// created: 2018-06-15 12:02:46
 $subpanel_layout['list_fields'] = array (
   'aos_product_categories_cm2_leap_leads_1_name' => 
   array (

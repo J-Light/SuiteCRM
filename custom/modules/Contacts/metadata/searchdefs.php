@@ -35,6 +35,34 @@ array (
         'default' => true,
         'width' => '10%',
       ),
+      'last_name' => 
+      array (
+        'name' => 'last_name',
+        'default' => true,
+        'width' => '10%',
+      ),
+      'account_name' => 
+      array (
+        'name' => 'account_name',
+        'default' => true,
+        'width' => '10%',
+      ),
+      'assigned_user_id' => 
+      array (
+        'name' => 'assigned_user_id',
+        'type' => 'enum',
+        'label' => 'LBL_ASSIGNED_TO',
+        'function' => 
+        array (
+          'name' => 'get_user_array',
+          'params' => 
+          array (
+            0 => false,
+          ),
+        ),
+        'default' => true,
+        'width' => '10%',
+      ),
       'email' => 
       array (
         'name' => 'email',
@@ -48,12 +76,6 @@ array (
         'name' => 'phone',
         'label' => 'LBL_ANY_PHONE',
         'type' => 'name',
-        'default' => true,
-        'width' => '10%',
-      ),
-      'last_name' => 
-      array (
-        'name' => 'last_name',
         'default' => true,
         'width' => '10%',
       ),
@@ -73,12 +95,6 @@ array (
         'default' => true,
         'width' => '10%',
       ),
-      'account_name' => 
-      array (
-        'name' => 'account_name',
-        'default' => true,
-        'width' => '10%',
-      ),
       'address_state' => 
       array (
         'name' => 'address_state',
@@ -92,22 +108,6 @@ array (
         'name' => 'address_postalcode',
         'label' => 'LBL_POSTAL_CODE',
         'type' => 'name',
-        'default' => true,
-        'width' => '10%',
-      ),
-      'assigned_user_id' => 
-      array (
-        'name' => 'assigned_user_id',
-        'type' => 'enum',
-        'label' => 'LBL_ASSIGNED_TO',
-        'function' => 
-        array (
-          'name' => 'get_user_array',
-          'params' => 
-          array (
-            0 => false,
-          ),
-        ),
         'default' => true,
         'width' => '10%',
       ),

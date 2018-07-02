@@ -1,5 +1,5 @@
 <?php
-// created: 2018-06-05 14:34:59
+// created: 2018-06-04 12:04:57
 $subpanel_layout['list_fields'] = array (
   'name' => 
   array (
@@ -11,16 +11,6 @@ $subpanel_layout['list_fields'] = array (
     'default' => true,
   ),
   'invoice_number' => 
-  array (
-    'link' => true,
-    'vname' => 'LBL_ACCOUNTS_PRODUCTS_SERVICES_INVOICE',
-    'widget_class' => 'SubPanelDetailViewLink',
-    'target_record_key' => NULL,
-    'target_module' => NULL,
-    'width' => '10%',
-    'default' => true,
-  ),
-  'invoice_date' => 
   array (
     'link' => true,
     'vname' => 'LBL_ACCOUNTS_PRODUCTS_SERVICES_INVOICE',
@@ -73,17 +63,5 @@ $subpanel_layout['list_fields'] = array (
     'vname' => 'LBL_PRODUCT_TOTAL_PRICE',
     'width' => '10%',
     'default' => true,
-  ),
-  'agreement_name2' => 
-  array (
-    'type' => 'text',
-    'link' => true,
-    'vname' => 'Agreement Number',
-    'sortable' => false,
-    'width' => '10%',
-    'default' => true,
-    'widget_class' => 'SubPanelDetailViewLink',
-    'target_module' => 'CM3_Renewals',
-    'target_record_key' => 'renewal_id',
   ),
 );
