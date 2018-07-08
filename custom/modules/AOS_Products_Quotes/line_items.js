@@ -503,29 +503,39 @@ function computeLeaseNotAnsys(ln, annual_price, days) {
 	console.log('computeLeaseNotAnsys');
 	annual_price = isNaN(annual_price) ? 0 : annual_price;
 
-	var new_price = 0;
-	var multiplier = 0;
 	var daysInYear = days_of_a_year(get_year());
-	
 	var selectedLicType = get_value('product_license_type_c' + ln);
 
-	if(days <= 30) {
-		multiplier = 0.175;
-	} else if(days >= 31 && days <= 90) {
-		multiplier = 0.35;
-	} else if (days >= 91 && days <= 180) {
-		multiplier = 0.7;
-	} else if(days >= 181 && days <= daysInYear) {
+	var new_price = 0;
+	var daily_rate = annual_price / daysInYear;
+	var pro_rated_lease_price = days * daily_rate;
+	var multiplier = 0;
+	var exceed_days = 0;
+	var pro_rated_lease_price_exceed = 0;
+
+	if(days <= 62) {
+		multiplier = 2;
+	} else if(days >= 63 && days <= 279) {
+		multiplier = 1.35;
+	} else if (days >= 280 && days <= 365) {
 		multiplier = 1;
+	} else if(days >= 366) {
+		multiplier = -1;
 	}
-	
+
 	if(selectedLicType == 12 || selectedLicType == 12 || selectedLicType == 112) {
 		multiplier = 1;
 	}
 
-	//new_price = parseFloat(annual_price) * parseFloat(multiplier);
-	new_price = (days / daysInYear) * annual_price;
-	
+	if(multiplier > -1) {
+		new_price = parseFloat(pro_rated_lease_price) * parseFloat(multiplier);
+	} else {
+		exceed_days = days - daysInYear;
+		pro_rated_lease_price_exceed = exceed_days * daily_rate;
+
+		new_price = parseFloat(annual_price) + parseFloat(pro_rated_lease_price_exceed);
+	}
+
 	console.log('============================NOT ANSYS===================================');
 	console.log('Price: ' + annual_price);
 	console.log('Days: ' + days);
