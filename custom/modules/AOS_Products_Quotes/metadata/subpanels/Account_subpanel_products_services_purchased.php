@@ -64,4 +64,14 @@ $subpanel_layout['list_fields'] = array (
     'width' => '10%',
     'default' => true,
   ),
+  'agreement_name2' =>
+  array (
+    'link' => true,
+    'vname' => 'LBL_TECS_AGREEMENT_NAME',
+    'widget_class' => 'SubPanelDetailViewLink',
+    'target_record_key' => 'renewal_id',
+    'target_module' => 'CM3_Renewals',
+    'width' => '10%',
+    'default' => true,
+  ),
 );
