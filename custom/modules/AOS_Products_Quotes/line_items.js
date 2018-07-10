@@ -1452,20 +1452,18 @@ function insertGroup()
     }
     var tableBody = document.createElement("tr");
     tableBody.id = "group_body"+groupn;
+    tableBody.className = "group_body";
     document.getElementById('lineItems').appendChild(tableBody);
 
     var a=tableBody.insertCell(0);
     a.colSpan="100";
     var table = document.createElement("table");
     table.id = "group"+groupn;
-    if(enable_groups){
-	table.style.border = '1px grey solid';
-	table.style.borderRadius = '4px';
-	table.border="1";
-    }
+    table.className = "group";
+
     table.style.whiteSpace = 'nowrap';
 
-    table.width = '950';
+    //table.width = '950';
     a.appendChild(table);
 
 
@@ -1479,7 +1477,7 @@ function insertGroup()
 	var header_cell = header_row.insertCell(0);
 	header_cell.scope="row";
 	header_cell.colSpan="8";
-	header_cell.innerHTML=SUGAR.language.get(module_sugar_grp1, 'LBL_GROUP_NAME')+":&nbsp;&nbsp;<input name='group_name[]' id='"+ table.id +"name' size='30' maxlength='255'  title='' tabindex='120' type='text'><input type='hidden' name='group_id[]' id='"+ table.id +"id' value=''><input type='hidden' name='group_group_number[]' id='"+ table.id +"group_number' value='"+groupn+"'><button type='button' id='btnRefresh' class='btn-refresh' onclick='refreshListPrice()' style='display:none;'>Refresh</button>";
+        header_cell.innerHTML=SUGAR.language.get(module_sugar_grp1, 'LBL_GROUP_NAME')+":&nbsp;&nbsp;<input name='group_name[]' id='"+ table.id +"name'  size='30' maxlength='255'  title='' tabindex='120' type='text' class='group_name'><input type='hidden' name='group_id[]' id='"+ table.id +"id' value=''><input type='hidden' name='group_group_number[]' id='"+ table.id +"group_number' value='"+groupn+"'>";
 
         var module = document.getElementById('_module').value;
         var disable_freez = '';
@@ -1489,15 +1487,22 @@ function insertGroup()
                 disable_freez = 'disabled readonly';
         }
 
-        var header_cell_freez = header_row.insertCell(1);
-	header_cell_freez.scope="row";
+        var tableFreez = document.createElement("tr");
+        var header_cell_freez = tableFreez.insertCell(0);
+        header_cell_freez.scope="row";
+        header_cell_freez.colSpan="1";
 	header_cell_freez.innerHTML="Freeze Prices:&nbsp;&nbsp;<input id='"+ table.id +"freezprice' type='checkbox' " + disable_freez + ">";
 
-	var header_cell_del = header_row.insertCell(2);
-	header_cell_del.scope="row";
-	header_cell_del.innerHTML="<span title='" + SUGAR.language.get(module_sugar_grp1, 'LBL_DELETE_GROUP') + "' style='float: right;'><a style='cursor: pointer;' id='deleteGroup' tabindex='116' onclick='markGroupDeleted("+groupn+")'><img src='themes/default/images/id-ff-clear.png' alt='X'></a></span><input type='hidden' name='group_deleted[]' id='"+ table.id +"deleted' value='0'>";
-    }
+        var header_cell_space = tableFreez.insertCell(1);
+        header_cell_space.innerHTML="&nbsp;&nbsp;&nbsp;&nbsp;";
+	var header_cell_del = tableFreez.insertCell(2);
+        header_cell_del.scope="row";
+        header_cell_del.colSpan="1";
+        header_cell_del.innerHTML="<span title='" + SUGAR.language.get(module_sugar_grp1, 'LBL_DELETE_GROUP') + "' style='float: right;'><a style='cursor: pointer;' id='deleteGroup' tabindex='116' onclick='markGroupDeleted("+groupn+")' class='delete_group'><span class=\"suitepicon suitepicon-action-clear\"></span></a></span><input type='hidden' name='group_deleted[]' id='"+ table.id +"deleted' value='0'>";
 
+        var header_cell_row = header_row.insertCell(1);
+        header_cell_row.appendChild(tableFreez);
+    }
 
 
     var productTableHeader = document.createElement("thead");
@@ -1507,6 +1512,7 @@ function insertGroup()
     productHeader_cell.colSpan="100";
     var productTable = document.createElement("table");
     productTable.id = "product_group"+groupn;
+    productTable.className = "product_group";
     productHeader_cell.appendChild(productTable);
 
     insertProductHeader(productTable.id);
@@ -1518,16 +1524,11 @@ function insertGroup()
     serviceHeader_cell.colSpan="100";
     var serviceTable = document.createElement("table");
     serviceTable.id = "service_group"+groupn;
+    serviceTable.className = "service_group";
     serviceHeader_cell.appendChild(serviceTable);
 
     insertServiceHeader(serviceTable.id);
 
-
-    /*tablebody = document.createElement("tbody");
-      table.appendChild(tablebody);
-      var body_row=tablebody.insertRow(-1);
-      var body_cell = body_row.insertCell(0);
-      body_cell.innerHTML+="&nbsp;";*/
 
     tablefooter = document.createElement("tfoot");
     table.appendChild(tablefooter);
@@ -1535,36 +1536,36 @@ function insertGroup()
     var footer_cell = footer_row.insertCell(0);
     footer_cell.scope="row";
     footer_cell.colSpan="20";
-    footer_cell.innerHTML="<input type='button' tabindex='116' class='button' value='"+SUGAR.language.get(module_sugar_grp1, 'LBL_ADD_PRODUCT_LINE')+"' id='"+productTable.id+"addProductLine' onclick='insertProductLine(\""+productTable.id+"\",\""+groupn+"\")' />";
+    footer_cell.innerHTML="<input type='button' tabindex='116' class='button add_product_line' value='"+SUGAR.language.get(module_sugar_grp1, 'LBL_ADD_PRODUCT_LINE')+"' id='"+productTable.id+"addProductLine' onclick='insertProductLine(\""+productTable.id+"\",\""+groupn+"\")' />";
     //footer_cell.innerHTML+=" <input type='button' tabindex='116' class='button' value='"+SUGAR.language.get(module_sugar_grp1, 'LBL_ADD_SERVICE_LINE')+"' id='"+serviceTable.id+"addServiceLine' onclick='insertServiceLine(\""+serviceTable.id+"\",\""+groupn+"\")' />";
     if(enable_groups){
-	footer_cell.innerHTML+="<span style='float: right;'>"+SUGAR.language.get(module_sugar_grp1, 'LBL_TOTAL_AMT')+":&nbsp;&nbsp;<input name='group_total_amt[]' id='"+ table.id +"total_amt' size='21' maxlength='26' value='' title='' tabindex='120' type='text' readonly></span>";
+        footer_cell.innerHTML+="<span class='totals' style='width:512px'><label>"+SUGAR.language.get(module_sugar_grp1, 'LBL_TOTAL_AMT')+":</label><input name='group_total_amt[]' id='"+ table.id +"total_amt' class='group_total_amt' maxlength='26' value='' title='' tabindex='120' type='text' readonly></span>";
 
 	var footer_row2=tablefooter.insertRow(-1);
 	var footer_cell2 = footer_row2.insertCell(0);
 	footer_cell2.scope="row";
 	footer_cell2.colSpan="20";
 	footer_cell2.style="display: none";
-	footer_cell2.innerHTML="<span style='float: right;'>"+SUGAR.language.get(module_sugar_grp1, 'LBL_DISCOUNT_AMOUNT')+":&nbsp;&nbsp;<input name='group_discount_amount[]' id='"+ table.id +"discount_amount' size='21' maxlength='26' value='' title='' tabindex='120' type='text' readonly></span>";
+        footer_cell2.innerHTML="<span class='totals' style='width:512px'><label>"+SUGAR.language.get(module_sugar_grp1, 'LBL_DISCOUNT_AMOUNT')+":</label><input name='group_discount_amount[]' id='"+ table.id +"discount_amount' class='group_discount_amount' maxlength='26' value='' title='' tabindex='120' type='text' readonly></label>";
 
 	var footer_row3=tablefooter.insertRow(-1);
 	var footer_cell3 = footer_row3.insertCell(0);
 	footer_cell3.scope="row";
 	footer_cell3.colSpan="20";
-	footer_cell3.innerHTML="<span style='float: right;'>"+SUGAR.language.get(module_sugar_grp1, 'LBL_SUBTOTAL_AMOUNT')+":&nbsp;&nbsp;<input name='group_subtotal_amount[]' id='"+ table.id +"subtotal_amount' size='21' maxlength='26' value='' title='' tabindex='120' type='text' readonly></span>";
+        footer_cell3.innerHTML="<span class='totals' style='width:512px'><label>"+SUGAR.language.get(module_sugar_grp1, 'LBL_SUBTOTAL_AMOUNT')+":</label><input name='group_subtotal_amount[]' id='"+ table.id +"subtotal_amount' class='group_subtotal_amount'  maxlength='26' value='' title='' tabindex='120' type='text' readonly></span>";
 
 	var footer_row4=tablefooter.insertRow(-1);
 	var footer_cell4 = footer_row4.insertCell(0);
 	footer_cell4.scope="row";
 	footer_cell4.colSpan="20";
-	footer_cell4.innerHTML="<span style='float: right;'>"+SUGAR.language.get(module_sugar_grp1, 'LBL_TAX_AMOUNT')+":&nbsp;&nbsp;<input name='group_tax_amount[]' id='"+ table.id +"tax_amount' size='21' maxlength='26' value='' title='' tabindex='120' type='text' readonly></span>";
+        footer_cell4.innerHTML="<span class='totals' style='width:512px'><label>"+SUGAR.language.get(module_sugar_grp1, 'LBL_TAX_AMOUNT')+":</label><input name='group_tax_amount[]' id='"+ table.id +"tax_amount' class='group_tax_amount' maxlength='26' value='' title='' tabindex='120' type='text' readonly></span>";
 
 	if(document.getElementById('subtotal_tax_amount') !== null){
 	    var footer_row5=tablefooter.insertRow(-1);
 	    var footer_cell5 = footer_row5.insertCell(0);
 	    footer_cell5.scope="row";
 	    footer_cell5.colSpan="20";
-	    footer_cell5.innerHTML="<span style='float: right;'>"+SUGAR.language.get(module_sugar_grp1, 'LBL_SUBTOTAL_TAX_AMOUNT')+":&nbsp;&nbsp;<input name='group_subtotal_tax_amount[]' id='"+ table.id +"subtotal_tax_amount' size='21' maxlength='26' value='' title='' tabindex='120' type='text' readonly></span>";
+            footer_cell5.innerHTML="<span class='totals' style='width:512px'><label>"+SUGAR.language.get(module_sugar_grp1, 'LBL_SUBTOTAL_TAX_AMOUNT')+":</label><input name='group_subtotal_tax_amount[]' id='"+ table.id +"subtotal_tax_amount' class='group_subtotal_tax_amount' maxlength='26' value='' title='' tabindex='120' type='text' readonly></span>";
 
 	    if (typeof currencyFields !== 'undefined'){
 		currencyFields.push("" + table.id+ 'subtotal_tax_amount');
@@ -1575,7 +1576,7 @@ function insertGroup()
 	var footer_cell6 = footer_row6.insertCell(0);
 	footer_cell6.scope="row";
 	footer_cell6.colSpan="20";
-	footer_cell6.innerHTML="<span style='float: right;'>"+SUGAR.language.get(module_sugar_grp1, 'LBL_GROUP_TOTAL')+":&nbsp;&nbsp;<input name='group_total_amount[]' id='"+ table.id +"total_amount' size='21' maxlength='26' value='' title='' tabindex='120' type='text' readonly></span>";
+        footer_cell6.innerHTML="<span class='totals' style='width:512px'><label>"+SUGAR.language.get(module_sugar_grp1, 'LBL_GROUP_TOTAL')+":</label><input name='group_total_amount[]' id='"+ table.id +"total_amount' class='group_total_amount'  maxlength='26' value='' title='' tabindex='120' type='text' readonly></span>";
 
 	if (typeof currencyFields !== 'undefined'){
 	    currencyFields.push("" + table.id+ 'total_amt');
