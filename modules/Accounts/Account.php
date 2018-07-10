@@ -452,7 +452,7 @@ class Account extends Company implements EmailInterface {
 				ON cm3_renewals.id = cm3_renewals_aos_invoices_1_c.cm3_renewals_aos_invoices_1cm3_renewals_ida
 			WHERE aos_invoices.billing_account_id = '{$this->id}'
 			AND (aos_products.name LIKE '%- Maintenance' OR aos_products.name LIKE '%- Lease' OR aos_products.name LIKE '%- Subscription')
-			AND aos_products_quotes_cstm.status_c = '1'
+			AND (aos_products_quotes_cstm.status_c = '1' OR aos_products_quotes_cstm.status_c = '15')
 			AND aos_products_quotes.parent_type = 'AOS_Invoices'
 		";
 
