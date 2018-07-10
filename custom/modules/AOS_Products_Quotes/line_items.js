@@ -416,6 +416,27 @@ function changeFixPrice(ln, key){
     calculateLine(ln, key, true, false, true, true, false)
 }
 
+function changeDiscountType(ln, key) {
+    var discount = get_value(key + 'product_discount' + ln);
+    var dis = document.getElementById(key + 'discount' + ln).value;
+
+    if(document.getElementById(key + 'product_list_price' + ln) !== null && document.getElementById(key + 'product_discount' + ln) !== null && document.getElementById(key + 'discount' + ln) !== null){
+	var origPrice = get_value('product_hidden_orig_price' + ln);
+    }
+
+    if(dis == 'Amount') {
+        // Change Percentage to Amount
+	var newDiscount = origPrice * discount / 100.0;
+        document.getElementById(key + 'product_discount' + ln).value = format2Number(newDiscount);
+    }
+    else if(dis == 'Percentage') {
+        // change Amount to Percentage
+	var newDiscount = discount / origPrice*100.0;
+        document.getElementById(key + 'product_discount' + ln).value = format2Number(newDiscount, 3);
+    }
+    calculateLine(ln, key, true,true,true,true,false);
+}
+
 function changeSalePrice(ln, key) {
     var unit_price = get_value(key + 'product_unit_price' + ln);
     var dis = document.getElementById(key + 'discount' + ln).value;
@@ -831,7 +852,7 @@ function insertProductLine(tableid, groupid) {
 
     var d = x.insertCell(cellno_row1);
     d.innerHTML = "<input type='text' style='text-align: right; width:90px;' name='product_product_discount[" + prodln + "]' id='product_product_discount" + prodln + "' size='12' maxlength='50' value='' title='' tabindex='116' onchange='calculateLine(" + prodln + ",\"product_\", true, true, true, true, false);' onchange='calculateLine(" + prodln + ",\"product_\", true, true, true, true, false);'><input type='hidden' name='product_product_discount_amount[" + prodln + "]' id='product_product_discount_amount" + prodln + "' value=''  />";
-    d.innerHTML += "<select tabindex='116' name='product_discount[" + prodln + "]' id='product_discount" + prodln + "' onchange='calculateLine(" + prodln + ",\"product_\", true,true,true,true,false);'>" + discount_hidden + "</select>";
+    d.innerHTML += "<select tabindex='116' name='product_discount[" + prodln + "]' id='product_discount" + prodln + "' onchange='changeDiscountType(" + prodln + ",\"product_\")'>" + discount_hidden + "</select>";
     cellno_row1++;
 
     var e = x.insertCell(cellno_row1);
