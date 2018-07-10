@@ -418,10 +418,21 @@ function changeFixPrice(ln, key){
 
 function changeSalePrice(ln, key) {
     var unit_price = get_value(key + 'product_unit_price' + ln);
-    var discount = get_value(key + 'product_discount' + ln);
     var dis = document.getElementById(key + 'discount' + ln).value;
 
-    document.getElementById(key + 'product_discount' + ln).value = '0.00';
+    if(document.getElementById(key + 'product_list_price' + ln) !== null && document.getElementById(key + 'product_discount' + ln) !== null && document.getElementById(key + 'discount' + ln) !== null){
+	var origPrice = get_value('product_hidden_orig_price' + ln);
+    }
+
+    var discount = 0.0;
+    if(dis == 'Amount') {
+	discount = origPrice - unit_price;
+    }
+    else if(dis == 'Percentage') {
+	discount = (origPrice - unit_price)/origPrice*100.0;
+    }
+
+    document.getElementById(key + 'product_discount' + ln).value = format2Number(discount, 3);
     document.getElementById(key + 'product_unit_price' + ln).value = format2Number(unit_price);
     calculateLine(ln, key, false, true, true, true, true)
 }
