@@ -1242,7 +1242,8 @@ function formatListPrice(ln){
     }
 
     calculateLine(ln,"product_", false, false,true,true,true);
-    currency_id_select.onchange();
+    //Commented this to not recalculate each line
+    //currency_id_select.onchange();
 }
 
 
