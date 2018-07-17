@@ -796,16 +796,16 @@ function insertProductLine(tableid, groupid) {
     x.id = 'product_line' + prodln;
 
     var a = x.insertCell(cellno_row1);
-    a.innerHTML = "<input type='text' style='width:73px;' name='product_product_qty[" + prodln + "]' id='product_product_qty" + prodln + "' size='5' value='' title='' tabindex='116' onblur='Quantity_format2Number(" + prodln + ");calculateLine(" + prodln + ",\"product_\", true, true, true, true, true);'>" +
+    a.innerHTML = "<input type='text' name='product_product_qty[" + prodln + "]' id='product_product_qty" + prodln + "' size='5' value='' title='' tabindex='116' onblur='Quantity_format2Number(" + prodln + ");calculateLine(" + prodln + ",\"product_\", true, true, true, true, true);'>" +
 	"<input type='hidden' name='product_is_ansys[" + prodln + "]' id='product_is_ansys" + prodln + "' value='' />";
     cellno_row1++;
 
     var b = x.insertCell(cellno_row1);
-    b.innerHTML = "<input style='width:178px;' class='sqsEnabled' autocomplete='off' type='text' name='product_name[" + prodln + "]' id='product_name" + prodln + "' maxlength='50' value='' title='' tabindex='116' value=''><input type='hidden' name='product_product_id[" + prodln + "]' id='product_product_id" + prodln + "' size='20' maxlength='50' value=''>";
+    b.innerHTML = "<input class='sqsEnabled product_name yui-ac-input' autocomplete='off' type='text' name='product_name[" + prodln + "]' id='product_name" + prodln + "' maxlength='50' value='' title='' tabindex='116' value=''><input type='hidden' name='product_product_id[" + prodln + "]' id='product_product_id" + prodln + "' size='20' maxlength='50' value=''>";
     cellno_row1++;
 
     var b1 = x.insertCell(cellno_row1);
-    b1.innerHTML = "<input style='width:178px;' class='sqsEnabled' autocomplete='off' type='text' name='product_part_number[" + prodln + "]' id='product_part_number" + prodln + "' maxlength='50' value='' title='' tabindex='116' value=''>";
+    b1.innerHTML = "<input class='sqsEnabled product_part_number yui-ac-input' autocomplete='off' type='text' name='product_part_number[" + prodln + "]' id='product_part_number" + prodln + "' maxlength='50' value='' title='' tabindex='116' value=''>";
     cellno_row1++;
 
     var b2 = x.insertCell(cellno_row1);
@@ -815,26 +815,26 @@ function insertProductLine(tableid, groupid) {
 
     if(module == 'AOS_Invoices') {
 	var b3_1 = x.insertCell(cellno_row1);
-	b3_1.innerHTML += "<select style='width:100%' name='product_status_c[" + prodln + "]' id='product_status_c" + prodln + "'>" + status_hidden + "</select>";
+	b3_1.innerHTML += "<select style='width:80px' name='product_status_c[" + prodln + "]' id='product_status_c" + prodln + "'>" + status_hidden + "</select>";
 	cellno_row1++;
     }
 
     var b3 = x.insertCell(cellno_row1);
-    b3.innerHTML += "<select style='width:100%' name='product_license_type_c[" + prodln + "]' id='product_license_type_c" + prodln + "'>" + lictype_hidden + "</select>";
+    b3.innerHTML += "<select style='width:100px;margin-left: 5px;margin-right: 5px;' name='product_license_type_c[" + prodln + "]' id='product_license_type_c" + prodln + "'>" + lictype_hidden + "</select>";
     cellno_row1++;
 
     var b4 = x.insertCell(cellno_row1);
-    b4.innerHTML = "<span class='dateTime'><input style='width:115px;' class='date_input' autocomplete='off' type='text' name='product_start_date_c[" + prodln + "]' id='product_start_date_c" + prodln + "' maxlength='50' value='' title='' value='' readonly='readonly'>" +
+    b4.innerHTML = "<span class='dateTime'><input class='date_input' autocomplete='off' type='text' name='product_start_date_c[" + prodln + "]' id='product_start_date_c" + prodln + "' maxlength='50' value='' title='' value='' readonly='readonly'>" +
 	"<img src='themes/SuiteR/images/jscalendar.gif?v=D98fIvFyFVIrUmxUxLoQSg' alt='Enter Date' style='position:relative; top:6px; display:none;' border='0' id='product_start_date_c" + prodln + "_trigger'></span>";
     cellno_row1++;
 
     var b5 = x.insertCell(cellno_row1);
-    b5.innerHTML = "<span class='dateTime'><input style='width:115px;' class='date_input' autocomplete='off' type='text' name='product_end_date_c[" + prodln + "]' id='product_end_date_c" + prodln + "' maxlength='50' value='' title='' value='' onchange='changeEndDate(" + prodln + ",\"product_\");' >" +
+    b5.innerHTML = "<span class='dateTime'><input class='date_input' autocomplete='off' type='text' name='product_end_date_c[" + prodln + "]' id='product_end_date_c" + prodln + "' maxlength='50' value='' title='' value='' onchange='changeEndDate(" + prodln + ",\"product_\");' >" +
 	"<img src='themes/SuiteR/images/jscalendar.gif?v=D98fIvFyFVIrUmxUxLoQSg' alt='Enter Date' style='position:relative; top:6px; display:none;' border='0' id='product_end_date_c" + prodln + "_trigger'></span>";
     cellno_row1++;
 
     var c = x.insertCell(cellno_row1);
-    c.innerHTML = "<input style='text-align: right; width:115px;' type='text' class='global-list-price' name='product_product_list_price[" + prodln + "]' class='product_global_list_price' data-id='" + prodln + "' id='product_product_list_price" + prodln + "' size='11' maxlength='50' value='' title='' tabindex='116' onchange='changeFixPrice(" + prodln + ",\"product_\");' readonly='readonly' >" +
+    c.innerHTML = "<input style='text-align: right;' type='text' class='global-list-price' name='product_product_list_price[" + prodln + "]' class='product_global_list_price' data-id='" + prodln + "' id='product_product_list_price" + prodln + "' size='11' maxlength='50' value='' title='' tabindex='116' onchange='changeFixPrice(" + prodln + ",\"product_\");' readonly='readonly' >" +
 	"<input type='hidden' name='product_current_active_lineitem_c[" + prodln + "]' id='product_current_active_lineitem_c" + prodln + "' value=''  />" +
 	"<input type='hidden' name='product_hidden_orig_prod_price[" + prodln + "]' id='product_hidden_orig_prod_price" + prodln + "' value=''  />" +
 	"<input type='hidden' name='product_hidden_orig_price[" + prodln + "]' id='product_hidden_orig_price" + prodln + "' value=''  />" +
@@ -851,12 +851,12 @@ function insertProductLine(tableid, groupid) {
     }
 
     var d = x.insertCell(cellno_row1);
-    d.innerHTML = "<input type='text' style='text-align: right; width:90px;' name='product_product_discount[" + prodln + "]' id='product_product_discount" + prodln + "' size='12' maxlength='50' value='' title='' tabindex='116' onchange='calculateLine(" + prodln + ",\"product_\", true, true, true, true, false);' onchange='calculateLine(" + prodln + ",\"product_\", true, true, true, true, false);'><input type='hidden' name='product_product_discount_amount[" + prodln + "]' id='product_product_discount_amount" + prodln + "' value=''  />";
-    d.innerHTML += "<select tabindex='116' name='product_discount[" + prodln + "]' id='product_discount" + prodln + "' onchange='changeDiscountType(" + prodln + ",\"product_\")'>" + discount_hidden + "</select>";
+    d.innerHTML = "<input type='text' style='text-align: right; width:45%;' name='product_product_discount[" + prodln + "]' id='product_product_discount" + prodln + "' size='12' maxlength='50' value='' title='' tabindex='116' onchange='calculateLine(" + prodln + ",\"product_\", true, true, true, true, false);' onchange='calculateLine(" + prodln + ",\"product_\", true, true, true, true, false);'><input type='hidden' name='product_product_discount_amount[" + prodln + "]' id='product_product_discount_amount" + prodln + "' value=''  />";
+    d.innerHTML += "<select tabindex='116' style='width:45%;margin-left: 5px;'  name='product_discount[" + prodln + "]' id='product_discount" + prodln + "' onchange='changeDiscountType(" + prodln + ",\"product_\")'>" + discount_hidden + "</select>";
     cellno_row1++;
 
     var e = x.insertCell(cellno_row1);
-    e.innerHTML = "<input type='text' style='text-align: right; width:115px;' onchange='changeSalePrice(" + prodln + ",\"product_\")' name='product_product_unit_price[" + prodln + "]' id='product_product_unit_price" + prodln + "' size='11' maxlength='50' value='' title='' tabindex='116'>" +
+    e.innerHTML = "<input type='text' style='text-align: right;' onchange='changeSalePrice(" + prodln + ",\"product_\")' name='product_product_unit_price[" + prodln + "]' id='product_product_unit_price" + prodln + "' size='11' maxlength='50' value='' title='' tabindex='116'>" +
 	"<input type='hidden' name='product_hidden_unit_price[" + prodln + "]' id='product_hidden_unit_price" + prodln + "' value=''  />";
     cellno_row1++;
 
@@ -865,15 +865,15 @@ function insertProductLine(tableid, groupid) {
     }
 
     var f = x.insertCell(cellno_row1);
-    f.innerHTML = "<input type='text' style='text-align: right; width:90px;' name='product_vat_amt[" + prodln + "]' id='product_vat_amt" + prodln + "' size='11' maxlength='250' value='' title='' tabindex='116' readonly='readonly'>";
-    f.innerHTML += "<select tabindex='116' name='product_vat[" + prodln + "]' id='product_vat" + prodln + "' onchange='calculateLine(" + prodln + ",\"product_\", true, true,true,true,false);'>" + vat_hidden + "</select>";
+    f.innerHTML = "<input type='text' style='text-align: right; width:45%;' name='product_vat_amt[" + prodln + "]' id='product_vat_amt" + prodln + "' size='11' maxlength='250' value='' title='' tabindex='116' readonly='readonly'>";
+    f.innerHTML += "<select tabindex='116' style='width:50%; margin-left: 5px;' name='product_vat[" + prodln + "]' id='product_vat" + prodln + "' onchange='calculateLine(" + prodln + ",\"product_\", true, true,true,true,false);'>" + vat_hidden + "</select>";
     cellno_row1++;
 
     if (typeof currencyFields !== 'undefined'){
 	currencyFields.push("product_vat_amt" + prodln);
     }
     var g = x.insertCell(cellno_row1);
-    g.innerHTML = "<input type='text' style='text-align: right; width:115px;' name='product_product_total_price[" + prodln + "]' id='product_product_total_price" + prodln + "' size='11' maxlength='50' value='' title='' tabindex='116' readonly='readonly'><input type='hidden' name='product_group_number[" + prodln + "]' id='product_group_number" + prodln + "' value='"+groupid+"'>";
+    g.innerHTML = "<input type='text' style='text-align: right;' name='product_product_total_price[" + prodln + "]' id='product_product_total_price" + prodln + "' size='11' maxlength='50' value='' title='' tabindex='116' readonly='readonly'><input type='hidden' name='product_group_number[" + prodln + "]' id='product_group_number" + prodln + "' value='"+groupid+"'>";
     cellno_row1++;
 
     if (typeof currencyFields !== 'undefined'){
@@ -895,22 +895,22 @@ function insertProductLine(tableid, groupid) {
     var h1 = y.insertCell(cellno_row1);
     h1.colSpan = "2";
     //h1.style.color = "rgb(68,68,68)";
-    h1.innerHTML = "<span style='vertical-align: top;'>" + SUGAR.language.get(module_sugar_grp1, 'LBL_PRODUCT_DESCRIPTION') + " :&nbsp;&nbsp;</span>";
-    h1.innerHTML += "<textarea tabindex='116' name='product_item_description[" + prodln + "]' id='product_item_description" + prodln + "' rows='2' cols='23'></textarea>&nbsp;&nbsp;";
+    h1.innerHTML = "<span class='product_description_label' style='vertical-align: top;'>" + SUGAR.language.get(module_sugar_grp1, 'LBL_PRODUCT_DESCRIPTION') + " :&nbsp;&nbsp;</span>";
+    h1.innerHTML += "<textarea class='product_description' tabindex='116' name='product_item_description[" + prodln + "]' id='product_item_description" + prodln + "' rows='2' cols='23'></textarea>&nbsp;&nbsp;";
     cellno_row1++;
 
     var i = y.insertCell(cellno_row1);
     i.colSpan = "3";
     //i.style.color = "rgb(68,68,68)";
-    i.innerHTML = "<span style='vertical-align: top;'>"  + SUGAR.language.get(module_sugar_grp1, 'LBL_PRODUCT_NOTE') + " :&nbsp;</span>";
-    i.innerHTML += "<textarea tabindex='116' name='product_description[" + prodln + "]' id='product_description" + prodln + "' rows='2' cols='35'></textarea>&nbsp;&nbsp;";
+    i.innerHTML = "<span class='product_description_label' style='vertical-align: top;'>"  + SUGAR.language.get(module_sugar_grp1, 'LBL_PRODUCT_NOTE') + " :&nbsp;</span>";
+    i.innerHTML += "<textarea class='product_description' tabindex='116' name='product_description[" + prodln + "]' id='product_description" + prodln + "' rows='2' cols='35'></textarea>&nbsp;&nbsp;";
     cellno_row1++;
 
     var j = y.insertCell(cellno_row1);
     j.colSpan = "1";
     //j.style.color = "rgb(68,68,68)";
-    j.innerHTML = "<span style='vertical-align: top;'>Cost :&nbsp;</span><br/>";
-    j.innerHTML += "<input type='text' name='product_cost_2_c[" + prodln + "]' id='product_cost_2_c" + prodln + "' readonly='readonly' style='text-align: right; width:115px;'></input>";
+    j.innerHTML = "<span style='vertical-align: top;font-size: 11px;'>Cost</span><br/>";
+    j.innerHTML += "<input type='text' name='product_cost_2_c[" + prodln + "]' id='product_cost_2_c" + prodln + "' readonly='readonly' style='text-align: right;'></input>";
     j.innerHTML += "<input type='hidden' name='product_cost_2_c_original[" + prodln + "]' id='product_cost_2_c_original" + prodln + "' readonly='readonly'></input>";
     j.innerHTML += "<input type='hidden' name='product_cost_2_c_hidden[" + prodln + "]' id='product_cost_2_c_hidden" + prodln + "' readonly='readonly'></input>";
     cellno_row1++;
@@ -918,29 +918,29 @@ function insertProductLine(tableid, groupid) {
     var k = y.insertCell(cellno_row1);
     k.colSpan = "1";
     //k.style.color = "rgb(68,68,68)";
-    k.innerHTML = "<span style='vertical-align: top;'>Cost Currency :&nbsp;</span><br/>";
+    k.innerHTML = "<span style='vertical-align: top;font-size: 11px;'>Cost Currency</span><br/>";
     k.innerHTML += "<input type='text' name='product_cost_currency_c[" + prodln + "]' id='product_cost_currency_c" + prodln + "' readonly='readonly'></input>";
     cellno_row1++;
 
     var k = y.insertCell(cellno_row1);
     k.colSpan = "1";
     //k.style.color = "rgb(68,68,68)";
-    k.innerHTML = "<span style='vertical-align: top;'>Supplier Margin :&nbsp;</span><br/>";
+    k.innerHTML = "<span style='vertical-align: top;font-size: 11px;'>Supplier Margin</span><br/>";
     k.innerHTML += "<input type='text' name='product_supplier_margin_c[" + prodln + "]' id='product_supplier_margin_c" + prodln + "' onchange='calculateLine(" + prodln + ",\"product_\",false,false,false,false,true);'></input>";
     cellno_row1++;
 
     var k = y.insertCell(cellno_row1);
     k.colSpan = "1";
     //k.style.color = "rgb(68,68,68)";
-    k.innerHTML = "<span style='vertical-align: top;'>Cost Discount (%):&nbsp;</span><br/>";
+    k.innerHTML = "<span style='vertical-align: top;font-size: 11px;'>Cost Discount (%)</span><br/>";
     k.innerHTML += "<input type='text' name='product_cost_discount_c[" + prodln + "]' id='product_cost_discount_c" + prodln + "' onchange='calculateLine(" + prodln + ",\"product_\",false,false,false,false,true);' style='text-align:right;'></input>";
     cellno_row1++;
 
     var k = y.insertCell(cellno_row1);
     k.colSpan = "1";
     //k.style.color = "rgb(68,68,68)";
-    k.innerHTML = "<span style='vertical-align: top;'>Quoted Cost :&nbsp;</span><br/>";
-    k.innerHTML += "<input style='text-align: right; width:115px;' type='text' name='product_supplier_amount_c[" + prodln + "]' id='product_supplier_amount_c" + prodln + "' onchange='calculateLine(" + prodln + ",\"product_\", false, false, false, false, false);'>" +
+    k.innerHTML = "<span style='vertical-align: top;font-size: 11px;'>Quoted Cost</span><br/>";
+    k.innerHTML += "<input style='text-align: right;' type='text' name='product_supplier_amount_c[" + prodln + "]' id='product_supplier_amount_c" + prodln + "' onchange='calculateLine(" + prodln + ",\"product_\", false, false, false, false, false);'>" +
 	"</input>";
     cellno_row1++;
 
@@ -948,7 +948,7 @@ function insertProductLine(tableid, groupid) {
 	var k = y.insertCell(cellno_row1);
 	k.colSpan = "1";
 	//k.style.color = "rgb(68,68,68)";
-	k.innerHTML = "<span style='vertical-align: top;'>Margin :&nbsp;</span><br/>";
+	k.innerHTML = "<span style='vertical-align: top;font-size: 11px;'>Margin</span><br/>";
 	k.innerHTML += "<input type='text' name='product_margin[" + prodln + "]' id='product_margin" + prodln + "' value='0%' readonly='readonly' style='text-align: right; width:115px;'></input>";
 	cellno_row1++;
     }
@@ -1330,12 +1330,14 @@ function insertProductHeader(tableid){
 
     var a=x.insertCell(cellno_row1);
     //a.style.color="rgb(68,68,68)";
-    a.innerHTML=SUGAR.language.get(module_sugar_grp1, 'LBL_PRODUCT_QUANITY');
+    a.innerHTML="Qty";//SUGAR.language.get(module_sugar_grp1, 'LBL_PRODUCT_QUANITY');
+    a.style.width="40px";
     cellno_row1++;
 
     var b=x.insertCell(cellno_row1);
     //b.style.color="rgb(68,68,68)";
     b.innerHTML=SUGAR.language.get(module_sugar_grp1, 'LBL_PRODUCT_NAME');
+    b.style.width="240px";
     cellno_row1++;
 
     var b1=x.insertCell(cellno_row1);
@@ -1359,21 +1361,25 @@ function insertProductHeader(tableid){
     var b3=x.insertCell(cellno_row1);
     //b3.style.color="rgb(68,68,68)";
     b3.innerHTML='Start Date';
+    b3.style.width="100px";
     cellno_row1++;
 
     var b4=x.insertCell(cellno_row1);
     //b4.style.color="rgb(68,68,68)";
     b4.innerHTML='End Date';
+    b4.style.width="100px";
     cellno_row1++;
 
     var c=x.insertCell(cellno_row1);
     //c.style.color="rgb(68,68,68)";
     c.innerHTML=SUGAR.language.get(module_sugar_grp1, 'LBL_LIST_PRICE');
+    c.style.width="100px";
     cellno_row1++;
 
     var d=x.insertCell(cellno_row1);
     //d.style.color="rgb(68,68,68)";
     d.innerHTML=SUGAR.language.get(module_sugar_grp1, 'LBL_DISCOUNT_AMT');
+    d.style.width="190px";
     cellno_row1++;
 
     var e=x.insertCell(cellno_row1);
@@ -1384,11 +1390,13 @@ function insertProductHeader(tableid){
     var f=x.insertCell(cellno_row1);
     //f.style.color="rgb(68,68,68)";
     f.innerHTML=SUGAR.language.get(module_sugar_grp1, 'LBL_VAT_AMT');
+    f.style.width="190px";
     cellno_row1++;
 
     var g=x.insertCell(cellno_row1);
     //g.style.color="rgb(68,68,68)";
     g.innerHTML=SUGAR.language.get(module_sugar_grp1, 'LBL_TOTAL_PRICE');
+    g.style.width="120px";
     cellno_row1++;
 
     var h=x.insertCell(cellno_row1);
