@@ -98,10 +98,15 @@ currency_id_select.onchange = function() {
 	document.getElementById('product_hidden_list_price' + ln).value = price;
 	document.getElementById('product_hidden_unit_price' + ln).value = price;
 	document.getElementById('product_hidden_fix_price' + ln).value = fix_new_price;
-	document.getElementById('product_hidden_orig_price' + ln).value = orig_new_price;
-	
-	calculateLine(ln, "product_")
-    });
+        document.getElementById('product_hidden_orig_price' + ln).value = orig_new_price;
+        calculateLine(ln, "product_");
+        var dis = document.getElementById('product_discount' + ln).value;
+        if(dis == 'Amount') {
+            var discount = get_value('product_product_discount' + ln);
+            discount = discount * (item_rate / group_rate);
+            document.getElementById('product_product_discount' + ln).value = format2Number(discount, 2);
+            calculateLine(ln, "product_");
+        }});
     
     //var curr = currency_id_select.options[currency_id_select.selectedIndex].value;
     //$('.product_global_currency').val(curr)
@@ -421,7 +426,7 @@ function changeDiscountType(ln, key) {
     var dis = document.getElementById(key + 'discount' + ln).value;
 
     if(document.getElementById(key + 'product_list_price' + ln) !== null && document.getElementById(key + 'product_discount' + ln) !== null && document.getElementById(key + 'discount' + ln) !== null){
-	var origPrice = get_value('product_hidden_orig_price' + ln);
+	var origPrice = get_value(key + 'product_list_price' + ln);
     }
 
     if(dis == 'Amount') {
@@ -442,7 +447,7 @@ function changeSalePrice(ln, key) {
     var dis = document.getElementById(key + 'discount' + ln).value;
 
     if(document.getElementById(key + 'product_list_price' + ln) !== null && document.getElementById(key + 'product_discount' + ln) !== null && document.getElementById(key + 'discount' + ln) !== null){
-	var origPrice = get_value('product_hidden_orig_price' + ln);
+	var origPrice = get_value(key + 'product_list_price' + ln);
     }
 
     var discount = 0.0;
