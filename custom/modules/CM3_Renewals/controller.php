@@ -410,7 +410,7 @@ class CM3_RenewalsController extends SugarController {
                     $date_entered = date('Y-m-d H:i:s', $time);
                     $name = 'Renewal - '.$renewal->name.' - '.$time_name;
 
-                    $minus_one_day = "";
+                    $plus_one_day = "";
 
                     if($renewal->renewal_date) {
                         $date = explode('/', $renewal->renewal_date);
@@ -418,7 +418,7 @@ class CM3_RenewalsController extends SugarController {
                         if(count($date) == 3) {
                             $date = $date[2].'-'.$date[1].'-'.$date[0];
                             $timestamp = strtotime($date);
-                            $minus_one_day = date('Y-m-d', strtotime('-1 day', $timestamp));
+                            $plus_one_day = date('Y-m-d', strtotime('+1 day', $timestamp));
                         }
                     }
 
@@ -429,7 +429,7 @@ class CM3_RenewalsController extends SugarController {
                     $opportunity->opportunity_type = 'Existing Business';
                     $opportunity->amount = $quote->subtotal_amount;
                     $opportunity->amount_usdollar = $quote->subtotal_amount;
-                    $opportunity->date_closed = $minus_one_day;
+                    $opportunity->date_closed = $plus_one_day;
                     $opportunity->assigned_user_id = $current_user->id;
                     $opportunity->created_by = $current_user->id;
                     $opportunity->modified_user_id = $current_user->id;
