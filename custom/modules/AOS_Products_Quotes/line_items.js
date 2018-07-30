@@ -839,7 +839,7 @@ function insertProductLine(tableid, groupid) {
     cellno_row1++;
 
     var c = x.insertCell(cellno_row1);
-    c.innerHTML = "<input style='text-align: right;' type='text' class='global-list-price' name='product_product_list_price[" + prodln + "]' class='product_global_list_price' data-id='" + prodln + "' id='product_product_list_price" + prodln + "' size='11' maxlength='50' value='' title='' tabindex='116' onchange='changeFixPrice(" + prodln + ",\"product_\");' readonly='readonly' >" +
+    c.innerHTML = "<input style='text-align: right;' type='text' class='global-list-price' name='product_product_list_price[" + prodln + "]' class='product_global_list_price' data-id='" + prodln + "' id='product_product_list_price" + prodln + "' size='11' maxlength='50' value='' title='' tabindex='116' onchange='changeFixPrice(" + prodln + ",\"product_\");'>" +
 	"<input type='hidden' name='product_current_active_lineitem_c[" + prodln + "]' id='product_current_active_lineitem_c" + prodln + "' value=''  />" +
 	"<input type='hidden' name='product_hidden_orig_prod_price[" + prodln + "]' id='product_hidden_orig_prod_price" + prodln + "' value=''  />" +
 	"<input type='hidden' name='product_hidden_orig_price[" + prodln + "]' id='product_hidden_orig_price" + prodln + "' value=''  />" +
