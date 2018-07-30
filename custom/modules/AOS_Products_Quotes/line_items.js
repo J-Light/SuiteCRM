@@ -806,11 +806,11 @@ function insertProductLine(tableid, groupid) {
     cellno_row1++;
 
     var b = x.insertCell(cellno_row1);
-    b.innerHTML = "<input class='sqsEnabled product_name yui-ac-input' autocomplete='off' type='text' name='product_name[" + prodln + "]' id='product_name" + prodln + "' maxlength='50' value='' title='' tabindex='116' value=''><input type='hidden' name='product_product_id[" + prodln + "]' id='product_product_id" + prodln + "' size='20' maxlength='50' value=''>";
+    b.innerHTML = "<input class='sqsEnabled product_name yui-ac-input' autocomplete='off' type='text' name='product_name[" + prodln + "]' id='product_name" + prodln + "' maxlength='50' value='' title='' tabindex='116' value='' readonly='readonly'><input type='hidden' name='product_product_id[" + prodln + "]' id='product_product_id" + prodln + "' size='20' maxlength='50' value=''>";
     cellno_row1++;
 
     var b1 = x.insertCell(cellno_row1);
-    b1.innerHTML = "<input class='sqsEnabled product_part_number yui-ac-input' autocomplete='off' type='text' name='product_part_number[" + prodln + "]' id='product_part_number" + prodln + "' maxlength='50' value='' title='' tabindex='116' value=''>";
+    b1.innerHTML = "<input class='sqsEnabled product_part_number yui-ac-input' autocomplete='off' type='text' name='product_part_number[" + prodln + "]' id='product_part_number" + prodln + "' maxlength='50' value='' title='' tabindex='116' value='' readonly='readonly'>";
     cellno_row1++;
 
     var b2 = x.insertCell(cellno_row1);
