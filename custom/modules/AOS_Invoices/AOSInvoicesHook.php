@@ -68,13 +68,14 @@ class AOSInvoicesHook {
 				";
 				
 				$result = $GLOBALS["db"]->query($query);
-				
+
+                /*
 				while ($row = $GLOBALS["db"]->fetchByAssoc($result) ) {
 					$inner_invoice_id = $row['cm3_renewals_aos_invoices_1aos_invoices_idb'];
 					
 					$GLOBALS['log']->fatal('==== AOS_INVOICE HOOK :LOG: while loop entered ====');
 					$GLOBALS['log']->fatal('AOS_INVOICE HOOK : req_module: ' . $req_module);
-					$GLOBALS['log']->fatal('AOS_INVOICE HOOK : req_action: ' . $req_action);
+					$GLOBALS['log']->fatal('AOS_INVOICE HOOK : req_action: ' . $req_action); */
 					
 					/*if($req_module == 'AOS_Quotes' && $req_action == 'converToInvoice') {
 						$GLOBALS['log']->fatal('LOG: Renewal line item status updated');
