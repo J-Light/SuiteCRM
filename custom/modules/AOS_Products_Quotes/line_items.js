@@ -1592,6 +1592,12 @@ function insertGroup()
 	footer_cell6.colSpan="20";
         footer_cell6.innerHTML="<span class='totals' style='width:512px'><label>"+SUGAR.language.get(module_sugar_grp1, 'LBL_GROUP_TOTAL')+":</label><input name='group_total_amount[]' id='"+ table.id +"total_amount' class='group_total_amount'  maxlength='26' value='' title='' tabindex='120' type='text' readonly></span>";
 
+	var footer_row7 = tablefooter.insertRow(-1);
+	var footer_cell7 = footer_row7.insertCell(0);
+	footer_cell7.scope="row";
+	footer_cell7.colSpan="20";
+	footer_cell7.innerHTML="<span class='totals' style='width:512px'><label>"+"Supplier Total"+":</label><input name='group_total_supplier_amount[]' id='"+ table.id +"total_supplier_amount' class='group_total_amount'  maxlength='26' value='' title='' tabindex='120' type='text' readonly></span>";
+
 	if (typeof currencyFields !== 'undefined'){
 	    currencyFields.push("" + table.id+ 'total_amt');
 	    currencyFields.push("" + table.id+ 'discount_amount');
@@ -1980,6 +1986,7 @@ function calculateTotal(key)
     var subtotal = 0;
     var dis_tot = 0;
     var tax = 0;
+    var supplier_tot_amt = 0;
 
     for (i=0; i < length; i++) {
 	var qty = 1;
@@ -1988,6 +1995,7 @@ function calculateTotal(key)
 	var deleted = 0;
 	var dis_amt = 0;
 	var product_vat_amt = 0;
+        var supplier_amt = 0;
 
 	var input = row[i].getElementsByTagName('input');
 	for (j=0; j < input.length; j++) {
@@ -2009,6 +2017,10 @@ function calculateTotal(key)
 	    if (input[j].id.indexOf('vat_amt') != -1)
 	    {
 		product_vat_amt = unformat2Number(input[j].value);
+	    }
+            if (input[j].id.indexOf('product_supplier_amount_c') != -1)
+	    {
+		supplier_amt = unformat2Number(input[j].value);
 	    }
 	    if (input[j].id.indexOf('deleted') != -1) {
 		deleted = input[j].value;
@@ -2040,6 +2052,10 @@ function calculateTotal(key)
 	if (product_vat_amt !== 0 && deleted != 1) {
 	    tax += product_vat_amt;
 	}
+
+        if (supplier_amt != 0 && deleted != 1) {
+            supplier_tot_amt += supplier_amt;
+        }
     }
 
     for(var h in head){
@@ -2056,6 +2072,7 @@ function calculateTotal(key)
     set_value(key+'total_amt',tot_amt);
     set_value(key+'subtotal_amount',subtotal);
     set_value(key+'discount_amount',dis_tot);
+    set_value(key+'total_supplier_amount', supplier_tot_amt);
 
     var shipping = get_value(key+'shipping_amount');
 
