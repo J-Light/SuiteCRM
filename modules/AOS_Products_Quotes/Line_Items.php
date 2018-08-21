@@ -27,7 +27,7 @@ function display_lines($focus, $field, $value, $view){
     global $sugar_config, $locale, $app_list_strings, $mod_strings;
 
     $enable_groups = (int)$sugar_config['aos']['lineItems']['enableGroups'];
-    $total_tax = (int)$sugar_config['aos']['lineItems']['totalTax'];
+   $total_tax = (int)$sugar_config['aos']['lineItems']['totalTax'];
 
     $html = '';
 
@@ -238,18 +238,28 @@ function display_lines($focus, $field, $value, $view){
         $product = '';
         $service = '';
 
+        $supplierTotal = 0.0;
+
         while ($row = $focus->db->fetchByAssoc($result)) {
+
             $line_item = new AOS_Products_Quotes();
             $line_item->retrieve($row['id'], false);
 
             if($enable_groups && ($group_id != $row['group_id'] || $i == 0)){
+                if($i != 0 ) {
+                    $groupEnd .= "<tr>";
+                    $groupEnd .= "<td class='tabDetailViewDL' colspan='9' style='text-align: right;padding:2px;' scope='row'>Supplier Total:&nbsp;&nbsp;</td>";
+                    $groupEnd .= "<td class='tabDetailViewDL' style='text-align: right;padding:2px;'>".currency_format_number($supplierTotal, $cost_params)."</td>";
+                    $groupEnd .= "</tr>";
+                    $supplierTotal = 0.0;
+                }
                 $html .= $groupStart.$product.$service.$groupEnd;
                 if($i != 0)$html .= "<tr><td colspan='9' nowrap='nowrap'><br></td></tr>";
                 $groupStart = '';
                 $groupEnd = '';
                 $product = '';
                 $service = '';
-                $i = 1;
+                $i = $i + 1;
                 $productCount = 0;
                 $serviceCount = 0;
                 $group_id = $row['group_id'];
@@ -350,6 +360,8 @@ function display_lines($focus, $field, $value, $view){
                 $product .= "<td class='tabDetailViewDF' style='text-align: right; padding:2px;'>".number_format($line_item->supplier_margin_c ? $line_item->supplier_margin_c : 0, 2)."</td>";
                 $product .= "<td class='tabDetailViewDF' style='text-align: right; padding:2px;'>".number_format($line_item->cost_discount_c ? $line_item->cost_discount_c : 0, 2)."%</td>";
                 $product .= "<td class='tabDetailViewDF' style='text-align: right; padding:2px;'>".currency_format_number($line_item->supplier_amount_c,$cost_params )."</td>";
+
+                $supplierTotal = $supplierTotal + $line_item->supplier_amount_c;
                 if($focus->module_dir == 'AOS_Quotes') {
                     $product .= "<td class='tabDetailViewDF' style='text-align: right; padding:2px;'>". ($line_item->margin_c != '' ? number_format($line_item->margin_c, 2) : '0') ."%</td>";
                 }
@@ -389,6 +401,14 @@ function display_lines($focus, $field, $value, $view){
                 $service .= "</tr>";
 
             }
+
+        }
+        if($enable_groups) {
+            $groupEnd .= "<tr>";
+            $groupEnd .= "<td class='tabDetailViewDL' colspan='9' style='text-align: right;padding:2px;' scope='row'>Supplier Total:&nbsp;&nbsp;</td>";
+            $groupEnd .= "<td class='tabDetailViewDL' style='text-align: right;padding:2px;'>".currency_format_number($supplierTotal, $cost_params)."</td>";
+            $groupEnd .= "</tr>";
+            $supplierTotal = 0.0;
         }
         $html .= $groupStart.$product.$service.$groupEnd;
         $html .= "</table>";
