@@ -118,7 +118,7 @@ class AOS_Products_Quotes extends AOS_Products_Quotes_sugar
                     }
                 }
                 if (trim($product_quote->product_id) != '' && trim($product_quote->name) != '' && trim($product_quote->product_unit_price) != '') {
-                    $product_quote->number = ++$j;
+                    $product_quote->number = $post_data['product_number'][$i];
                     $product_quote->assigned_user_id = $parent->assigned_user_id;
                     $product_quote->parent_id = $parent->id;
                     

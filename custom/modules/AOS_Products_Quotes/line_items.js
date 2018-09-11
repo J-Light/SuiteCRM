@@ -262,6 +262,9 @@ function insertLineItems(product,group){
       }*/
 
     // ln, key, boolsaleprice = true, boollistprice = true, boolenddate = true, boolcost = true, boolquotedcost = true
+    // Fix Quantity and item
+    Itm_format2Number(ln);
+    Quantity_format2Number(ln);
     if(newrenewal == 'true') {
 	calculateLine(ln,type, true, true, true, true, true);
     } else {
@@ -800,7 +803,12 @@ function insertProductLine(tableid, groupid) {
     var x = tablebody.insertRow(-1);
     x.id = 'product_line' + prodln;
 
-    var a = x.insertCell(cellno_row1);
+    var sr_cel = x.insertCell(cellno_row1);
+    sr_cel.innerHTML = "<input type='text' name='product_number[" + prodln + "]' id='product_number" + prodln + "' size='5' value='' title='' tabindex='116' onblur='Itm_format2Number(" + prodln + ")'>";
+    document.getElementById('product_number' + prodln).value = (parseInt(prodln) + 1).toString();
+    cellno_row1++;
+
+     var a = x.insertCell(cellno_row1);
     a.innerHTML = "<input type='text' name='product_product_qty[" + prodln + "]' id='product_product_qty" + prodln + "' size='5' value='' title='' tabindex='116' onblur='Quantity_format2Number(" + prodln + ");calculateLine(" + prodln + ",\"product_\", true, true, true, true, true);'>" +
 	"<input type='hidden' name='product_is_ansys[" + prodln + "]' id='product_is_ansys" + prodln + "' value='' />";
     cellno_row1++;
@@ -898,7 +906,7 @@ function insertProductLine(tableid, groupid) {
     y.id = 'product_note_line' + prodln;
 
     var h1 = y.insertCell(cellno_row1);
-    h1.colSpan = "2";
+    h1.colSpan = "3";
     //h1.style.color = "rgb(68,68,68)";
     h1.innerHTML = "<span class='product_description_label' style='vertical-align: top;'>" + SUGAR.language.get(module_sugar_grp1, 'LBL_PRODUCT_DESCRIPTION') + " :&nbsp;&nbsp;</span>";
     h1.innerHTML += "<textarea class='product_description' tabindex='116' name='product_item_description[" + prodln + "]' id='product_item_description" + prodln + "' rows='2' cols='23'></textarea>&nbsp;&nbsp;";
@@ -1333,6 +1341,11 @@ function insertProductHeader(tableid){
     var cellno_row1 = 0;
     var x=tablehead.insertRow(-1);
     x.id='product_head';
+
+    var itm=x.insertCell(cellno_row1);
+    itm.innerHTML="Itm";
+    itm.style.width="40px";
+    cellno_row1++;
 
     var a=x.insertCell(cellno_row1);
     //a.style.color="rgb(68,68,68)";
@@ -2147,6 +2160,28 @@ function formatCurrency(strValue)
 	dblValue = dblValue.substring(0,dblValue.length-(4*i+3))+','+
 	dblValue.substring(dblValue.length-(4*i+3));
     return (((blnSign)?'':'-') + dblValue + '.' + strCents);
+}
+
+function Itm_format2Number(ln)
+{
+    var str = '';
+    var qty=unformat2Number(document.getElementById('product_number' + ln).value);
+    if(qty === null){
+        qty = parseInt(ln) + 1;
+    }
+    if(qty === 0){
+	str = '0';
+    } else {
+	str = format2Number(qty);
+	if(sig_digits){
+	    str = str.replace(/0*$/,'');
+	    str = str.replace(dec_sep,'~');
+	    str = str.replace(/~$/,'');
+	    str = str.replace('~',dec_sep);
+	}
+    }
+
+    document.getElementById('product_number' + ln).value=str;
 }
 
 function Quantity_format2Number(ln)
