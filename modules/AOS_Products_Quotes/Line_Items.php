@@ -331,7 +331,7 @@ function display_lines($focus, $field, $value, $view){
 
                 $product .= "<tr>";
                 $product_note = wordwrap($line_item->description,40,"<br />\n");
-                $product .= "<td class='tabDetailViewDF' style='text-align: left; padding:2px;'>".++$productCount."</td>";
+                $product .= "<td class='tabDetailViewDF' style='text-align: left; padding:2px;'>".number_format($line_item->number, 0)."</td>";
                 $product .= "<td class='tabDetailViewDF' style='padding:2px;'>".number_format($line_item->product_qty, 0)."</td>";
 
                 $product .= "<td class='tabDetailViewDF' style='padding:2px;'><a href='index.php?module=AOS_Products&action=DetailView&record=".$line_item->product_id."' class='tabDetailViewDFLink'>".$line_item->name."</a><br />".$product_note."</td>";
