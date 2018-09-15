@@ -24,6 +24,7 @@
 
 global $timedate;
 global $current_user;
+global $sugar_config;
 
 if(!(ACLController::checkAccess('AOS_Invoices', 'edit', true))){
 	ACLController::displayNoAccess();
@@ -696,12 +697,12 @@ if($maintleaseitems->num_rows > 0) {
 }
 
 $purchases = new CM4_Purchases();
-$user_m = new User();
+//$user_m = new User();
 
 // create purchase number per vendor
 $query_purchase = "
 		SELECT DISTINCT
-			apc2.id
+			apc2.id, apc2.name
 		FROM aos_products_quotes apq
 		INNER JOIN aos_products ap
 			ON ap.id = apq.product_id
@@ -720,55 +721,59 @@ $employee_id = $quote->assigned_user_id;
 
 while($row = $db->fetchByAssoc($result_purchases)) {
 	$supplier_id = $row['id'];
+    $supplier_name = $row['name'];
 
-	// Get date (formatted to 0000)
-	$CurrentDateTime = $timedate->getInstance()->nowDb();
-	$date_entered_timestamp = strtotime($CurrentDateTime);
-	$date_entered = date('Y-m-d H:i:s', $date_entered_timestamp);
-	$purchase_date = date('Y-m-d', $date_entered_timestamp);
+    if(empty($sugar_config['purchaseBannedCompanies']) || !in_array($supplier_name, $sugar_config['purchaseBannedCompanies']))
+    {
+        // Get date (formatted to 0000)
+        $CurrentDateTime = $timedate->getInstance()->nowDb();
+        $date_entered_timestamp = strtotime($CurrentDateTime);
+        $date_entered = date('Y-m-d H:i:s', $date_entered_timestamp);
+        $purchase_date = date('Y-m-d', $date_entered_timestamp);
 
-	/*$subtracted_date = "2000-01-01";
-	$days = dateDifference($purchase_date, $subtracted_date);
-	$formatted_days = str_pad($days, 4, "0", STR_PAD_LEFT);
+        /*$subtracted_date = "2000-01-01";
+          $days = dateDifference($purchase_date, $subtracted_date);
+          $formatted_days = str_pad($days, 4, "0", STR_PAD_LEFT);
 
-	// Get User Abbreviation
-	$user_abbr = "";
-	$user = $user_m->retrieve($employee_id);
-	if($user) {
-		$first_name = $user->first_name;
-		$last_name = $user->last_name;
-		$user_abbr = ucwords(substr($first_name, 0, 1).substr($last_name, 0, 1));
-	}
+          // Get User Abbreviation
+          $user_abbr = "";
+          $user = $user_m->retrieve($employee_id);
+          if($user) {
+          $first_name = $user->first_name;
+          $last_name = $user->last_name;
+          $user_abbr = ucwords(substr($first_name, 0, 1).substr($last_name, 0, 1));
+          }
 
-	// Get Purchase Number
-	$query_po_number = "
-			SELECT *
-			FROM cm4_purchases cp
-			INNER JOIN aos_invoices ai
-				ON ai.id = cp.aos_invoices_id_c
-			WHERE cp.assigned_user_id = '{$employee_id}'
-			AND cp.deleted = '0'
-		";
+          // Get Purchase Number
+          $query_po_number = "
+          SELECT *
+          FROM cm4_purchases cp
+          INNER JOIN aos_invoices ai
+          ON ai.id = cp.aos_invoices_id_c
+          WHERE cp.assigned_user_id = '{$employee_id}'
+          AND cp.deleted = '0'
+          ";
 
-	$result_po_number = $db->query($query_po_number);
-	$count = $result_po_number->num_rows + 1;
-	$count = str_pad($count, 2, "0", STR_PAD_LEFT);
+          $result_po_number = $db->query($query_po_number);
+          $count = $result_po_number->num_rows + 1;
+          $count = str_pad($count, 2, "0", STR_PAD_LEFT);
 
-	$purchase_order_name = $formatted_days.$user_abbr.$count;*/
+          $purchase_order_name = $formatted_days.$user_abbr.$count;*/
 
-	$purchases->id = '';
-	$purchases->name = '';
-	$purchases->purchase_date = $purchase_date;
-	$purchases->date_entered = $date_entered;
-	$purchases->date_modified = $date_entered;
-	$purchases->assigned_user_id = $employee_id;
-	$purchases->created_by = $employee_id;
-	$purchases->modified_user_id = $employee_id;
-	$purchases->aos_invoices_id_c = $invoice->id;
-	$purchases->aos_product_categories_id_c = $supplier_id;
-	$purchases->tax_code_c = $tax_code_purchase;
-	$purchases->deleted = '0';
-	$purchases->save();
+        $purchases->id = '';
+        $purchases->name = '';
+        $purchases->purchase_date = $purchase_date;
+        $purchases->date_entered = $date_entered;
+        $purchases->date_modified = $date_entered;
+        $purchases->assigned_user_id = $employee_id;
+        $purchases->created_by = $employee_id;
+        $purchases->modified_user_id = $employee_id;
+        $purchases->aos_invoices_id_c = $invoice->id;
+        $purchases->aos_product_categories_id_c = $supplier_id;
+        $purchases->tax_code_c = $tax_code_purchase;
+        $purchases->deleted = '0';
+        $purchases->save();
+    }
 }
 
 // RUN THIS TO UPDATE THE hdn_purchase_id IN aos_products_quotes_cstm table
