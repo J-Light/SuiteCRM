@@ -77,8 +77,8 @@ class CM4_Purchases extends CM4_Purchases_sugar {
 				AND apc2.is_parent = 1
 				AND apc2.id = cp.aos_product_categories_id_c
 			WHERE cp.id = '{$this->id}'
+                AND aos_products_quotes.deleted = '0'
 				-- AND apc2.id = '{$this->aos_product_categories_id_c}'
-
 		";
 
 		return $query;
