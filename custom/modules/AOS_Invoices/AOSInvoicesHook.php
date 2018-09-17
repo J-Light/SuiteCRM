@@ -119,7 +119,7 @@ class AOSInvoicesHook {
 							$inactive_product_ids_result = $GLOBALS["db"]->query($inactive_product_ids_query);
 						}
 					}*/
-				}
+				//}
 				
 				$GLOBALS['db']->query("UPDATE cm3_renewals
 					SET renewal_date = (
