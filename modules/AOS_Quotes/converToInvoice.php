@@ -250,6 +250,8 @@ if($rawRow['shipping_amount'] != null)
 $rawRow['total_amount'] = format_number($rawRow['total_amount']);
 $rawRow['myob_card_name_c'] = $myob_card_name;
 $rawRow['tax_code_c'] = $tax_code_sales;
+$weekAfterNext = time() + (14 * 24 * 60 * 60);
+$rawRow['due_date'] = date('Y-m-d', $weekAfterNext);
 $rawRow['status'] = 'Unpaid';
 $invoice->populateFromRow($rawRow);
 $invoice->process_save_dates =false;
