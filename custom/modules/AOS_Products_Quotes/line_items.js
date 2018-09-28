@@ -421,7 +421,7 @@ function changeFixPrice(ln, key){
     document.getElementById(key + 'hidden_unit_price' + ln).value = listPrice;
     document.getElementById(key + 'hidden_fix_price' + ln).value = listPrice;
 
-    calculateLine(ln, key, true, false, true, true, false)
+    calculateLine(ln, key, true, false, true, false, false)
 }
 
 function changeDiscountType(ln, key) {
