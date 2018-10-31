@@ -421,7 +421,18 @@ function changeFixPrice(ln, key){
     document.getElementById(key + 'hidden_unit_price' + ln).value = listPrice;
     document.getElementById(key + 'hidden_fix_price' + ln).value = listPrice;
 
-    calculateLine(ln, key, true, false, true, true, false)
+    var cost_price = document.getElementById(key + 'cost_2_c' + ln).value;
+
+    if (confirm("Update Cost Price?")) {
+        var new_cost = prompt("New Cost Price: ", cost_price);
+        if (new_cost == null || new_cost == "" || isNaN(parseFloat(new_cost))) {
+            alert("Error in value!");
+        } else {
+            cost_price = new_cost;
+        }
+        document.getElementById(key + 'cost_2_c' + ln).value = cost_price;
+    }
+    calculateLine(ln, key, true, false, true, false, true)
 }
 
 function changeDiscountType(ln, key) {
