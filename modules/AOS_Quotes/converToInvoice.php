@@ -24,6 +24,7 @@
 
 global $timedate;
 global $current_user;
+global $sugar_config;
 
 if(!(ACLController::checkAccess('AOS_Invoices', 'edit', true))){
 	ACLController::displayNoAccess();
@@ -36,6 +37,13 @@ if(!(ACLController::checkAccess('AOS_Quotes', 'edit', true))){
     die;
 }
 
+$defaultInvoiceUser = '';
+if(isset($sugar_config['defaultInvoiceUser'])) {
+    $defaultInvoiceUser = $sugar_config['defaultInvoiceUser'];
+}
+else {
+    $defaultInvoiceUser = '1';
+}
 
 if (!function_exists('create_guid')) {
 	function create_guid()
@@ -107,7 +115,7 @@ require_once('modules/AOS_Quotes/AOS_Quotes.php');
 require_once('modules/AOS_Invoices/AOS_Invoices.php');
 require_once('modules/AOS_Products_Quotes/AOS_Products_Quotes.php');
 
-global $timedate;
+//global $timedate;
 global $db;
 
 // Check if quote has invoice
@@ -141,6 +149,23 @@ if($invoice_count > 0) {
 //Setting values in Quotes
 $quote = new AOS_Quotes();
 $quote->retrieve($_REQUEST['record']);
+
+$customer_po = $quote->customer_purchase_order_c;
+$customer_po = trim($customer_po);
+
+if(strlen($customer_po) < 3) {
+	SugarApplication::appendErrorMessage('Customer Purchase Order field is empty. Failed to convert to invoice.');
+
+	$params = array(
+		'module'=> 'AOS_Quotes',
+		'action'=>'DetailView',
+		'record' => $_REQUEST['record'],
+	);
+
+	SugarApplication::redirect('index.php?' . http_build_query($params));
+	die();
+}
+
 $quote->stage = 'Closed Accepted';
 $quote->invoice_status = 'Invoiced';
 $quote->total_amt = format_number($quote->total_amt);
@@ -240,6 +265,7 @@ $rawRow['total_amt'] = format_number($rawRow['total_amt']);
 $rawRow['discount_amount'] = format_number($rawRow['discount_amount']);
 $rawRow['subtotal_amount'] = format_number($rawRow['subtotal_amount']);
 $rawRow['tax_amount'] = format_number($rawRow['tax_amount']);
+$rawRow['due_date'] = date('Y-m-d', strtotime('+14 day'));
 $rawRow['date_entered'] = '';
 $rawRow['date_modified'] = '';
 if($rawRow['shipping_amount'] != null)
@@ -250,6 +276,7 @@ $rawRow['total_amount'] = format_number($rawRow['total_amount']);
 $rawRow['myob_card_name_c'] = $myob_card_name;
 $rawRow['tax_code_c'] = $tax_code_sales;
 $rawRow['status'] = 'Unpaid';
+$rawRow['assigned_user_id'] = $defaultInvoiceUser;
 $invoice->populateFromRow($rawRow);
 $invoice->process_save_dates =false;
 $invoice->save();
@@ -877,6 +904,6 @@ if(!$quote->opportunity_id) {
 }
 
 ob_clean();
-header('Location: index.php?module=AOS_Invoices&action=EditView&record='.$invoice->id);
+header('Location: index.php?module=AOS_Invoices&action=DetailView&record='.$invoice->id);
 
 ?>
