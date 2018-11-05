@@ -1855,22 +1855,21 @@ function calculateLine(ln, key, boolsaleprice = true, boollistprice = true, bool
 	groupid = 'group' + groupid;
 
 	var quoted_cost = 0;
-	if(module == 'AOS_Quotes') {
-	    var cost_discount = document.getElementById(key + 'cost_discount_c' + ln).value;
-	    cost_discount = cost_discount / 100;
 
-	    var supplier_margin = document.getElementById(key + 'supplier_margin_c' + ln).value;
-	    supplier_margin = (supplier_margin == "") ? 0 : supplier_margin;
+	var cost_discount = document.getElementById(key + 'cost_discount_c' + ln).value;
+	cost_discount = cost_discount / 100;
 
-	    //var quoted_cost = unformat2Number(cost_2_c) - (unformat2Number(cost_2_c) * cost_discount);
-	    if(boolquotedcost) {
-		quoted_cost = (((unformat2Number(cost_2_c) * productQty) * supplier_margin)) - ((((unformat2Number(cost_2_c) * productQty) * supplier_margin)) * cost_discount);
-	    } else {
-		quoted_cost = unformatNumber(get_value(key + 'supplier_amount_c' + ln));
-	    }
+	var supplier_margin = document.getElementById(key + 'supplier_margin_c' + ln).value;
+	supplier_margin = (supplier_margin == "") ? 0 : supplier_margin;
 
-	    document.getElementById(key + 'supplier_amount_c' + ln).value = formatNumber(quoted_cost,",",".",2,2);
+	//var quoted_cost = unformat2Number(cost_2_c) - (unformat2Number(cost_2_c) * cost_discount);
+	if(boolquotedcost) {
+	    quoted_cost = (((unformat2Number(cost_2_c) * productQty) * supplier_margin)) - ((((unformat2Number(cost_2_c) * productQty) * supplier_margin)) * cost_discount);
+	} else {
+	    quoted_cost = unformatNumber(get_value(key + 'supplier_amount_c' + ln));
 	}
+
+	document.getElementById(key + 'supplier_amount_c' + ln).value = formatNumber(quoted_cost,",",".",2,2);
 
 	var converted_cost = quoted_cost * (cost_rate / group_rate);;
 
