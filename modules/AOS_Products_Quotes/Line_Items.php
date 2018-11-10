@@ -22,8 +22,8 @@
  * @author SalesAgility <info@salesagility.com>
  */
 
-function display_lines($focus, $field, $value, $view){
-
+function display_lines($focus, $field, $value, $view)
+{
     global $sugar_config, $locale, $app_list_strings, $mod_strings;
 
     $enable_groups = (int)$sugar_config['aos']['lineItems']['enableGroups'];
@@ -102,7 +102,7 @@ function display_lines($focus, $field, $value, $view){
 
         $html .= "<table border='0' cellspacing='4' id='lineItems'></table>";
 
-        if($enable_groups){
+        if ($enable_groups) {
             $html .= "<div style='padding-top: 10px; padding-bottom:10px;'>";
             $html .= "<input type=\"button\" tabindex=\"116\" class=\"button\" value=\"".$mod_strings['LBL_ADD_GROUP']."\" id=\"addGroup\" onclick=\"insertGroup(0)\" />";
             $html .= "</div>";
@@ -211,15 +211,12 @@ function display_lines($focus, $field, $value, $view){
                 $html .= "<script>
                         insertLineItems(" . $line_item . "," . $group_item . ");
                     </script>";
-
             }
         }
-        if(!$enable_groups){
+        if (!$enable_groups) {
             $html .= '<script>insertGroup();</script>';
         }
-
-    }
-    else if($view == 'DetailView'){
+    } elseif ($view == 'DetailView') {
         $params = array('currency_id' => $focus->currency_id);
 
         $sql = "SELECT pg.id, pg.group_id FROM aos_products_quotes pg LEFT JOIN aos_line_item_groups lig ON pg.group_id = lig.id WHERE pg.parent_type = '".$focus->object_name."' AND pg.parent_id = '".$focus->id."' AND pg.deleted = 0 ORDER BY lig.number ASC, pg.number ASC";
@@ -245,7 +242,7 @@ function display_lines($focus, $field, $value, $view){
             $line_item = new AOS_Products_Quotes();
             $line_item->retrieve($row['id'], false);
 
-            if($enable_groups && ($group_id != $row['group_id'] || $i == 0)){
+            if ($enable_groups && ($group_id != $row['group_id'] || $i == 0)) {
                 if($i != 0 ) {
                     $groupEnd .= "<tr>";
                     $groupEnd .= "<td class='tabDetailViewDL' colspan='9' style='text-align: right;padding:2px;' scope='row'>Supplier Total:&nbsp;&nbsp;</td>";
@@ -254,7 +251,9 @@ function display_lines($focus, $field, $value, $view){
                     $supplierTotal = 0.0;
                 }
                 $html .= $groupStart.$product.$service.$groupEnd;
-                if($i != 0)$html .= "<tr><td colspan='9' nowrap='nowrap'><br></td></tr>";
+                if ($i != 0) {
+                    $html .= "<tr><td colspan='9' nowrap='nowrap'><br></td></tr>";
+                }
                 $groupStart = '';
                 $groupEnd = '';
                 $product = '';
@@ -295,9 +294,8 @@ function display_lines($focus, $field, $value, $view){
                 $groupEnd .= "<td class='tabDetailViewDL' style='text-align: right;padding:2px;'>".currency_format_number($group_item->total_amount, $params)."</td>";
                 $groupEnd .= "</tr>";
             }
-            if($line_item->product_id != '0' && $line_item->product_id != null){
-                if($productCount == 0)
-                {
+            if ($line_item->product_id != '0' && $line_item->product_id != null) {
+                if ($productCount == 0) {
                     $product .= "<tr>";
                     $product .= "<td width='5%' class='tabDetailViewDL' style='text-align: left;padding:2px;' scope='row'>&nbsp;</td>";
                     $product .= "<td width='10%' class='tabDetailViewDL' style='text-align: left;padding:2px;' scope='row'>".$mod_strings['LBL_PRODUCT_QUANITY']."</td>";
@@ -340,14 +338,14 @@ function display_lines($focus, $field, $value, $view){
 
                 $product .= "<td class='tabDetailViewDF' style='text-align: right; padding:2px;'>".get_discount_string($line_item->discount, $line_item->product_discount, $params, $locale, $sep)."</td>";
 
-                $product .= "<td class='tabDetailViewDF' style='text-align: right; padding:2px;'>".currency_format_number($line_item->product_unit_price,$params )."</td>";
-                if($locale->getPrecision()){
-                    $product .= "<td class='tabDetailViewDF' style='text-align: right; padding:2px;'>".rtrim(rtrim(format_number($line_item->vat), '0'),$sep[1])."%</td>";
+                $product .= "<td class='tabDetailViewDF' style='text-align: right; padding:2px;'>".currency_format_number($line_item->product_unit_price, $params)."</td>";
+                if ($locale->getPrecision()) {
+                    $product .= "<td class='tabDetailViewDF' style='text-align: right; padding:2px;'>".rtrim(rtrim(format_number($line_item->vat), '0'), $sep[1])."%</td>";
                 } else {
                     $product .= "<td class='tabDetailViewDF' style='text-align: right; padding:2px;'>".format_number($line_item->vat)."%</td>";
                 }
-                $product .= "<td class='tabDetailViewDF' style='text-align: right; padding:2px;'>".currency_format_number($line_item->vat_amt,$params )."</td>";
-                $product .= "<td class='tabDetailViewDF' style='text-align: right; padding:2px;'>".currency_format_number($line_item->product_total_price,$params )."</td>";
+                $product .= "<td class='tabDetailViewDF' style='text-align: right; padding:2px;'>".currency_format_number($line_item->vat_amt, $params)."</td>";
+                $product .= "<td class='tabDetailViewDF' style='text-align: right; padding:2px;'>".currency_format_number($line_item->product_total_price, $params)."</td>";
                 $product .= "</tr>";
 
                 $cost_params = array('currency_id' => $line_item->cost_currency_c);
@@ -372,8 +370,7 @@ function display_lines($focus, $field, $value, $view){
                 }
                 $product .= "</tr>";
             } else {
-                if($serviceCount == 0)
-                {
+                if ($serviceCount == 0) {
                     $service .= "<tr>";
                     $service .= "<td width='5%' class='tabDetailViewDL' style='text-align: left;padding:2px;' scope='row'>&nbsp;</td>";
                     $service .= "<td width='46%' class='dataLabel' style='text-align: left;padding:2px;' colspan='2' scope='row'>".$mod_strings['LBL_SERVICE_NAME']."</td>";
@@ -389,17 +386,16 @@ function display_lines($focus, $field, $value, $view){
                 $service .= "<tr>";
                 $service .= "<td class='tabDetailViewDF' style='text-align: left; padding:2px;'>".++$serviceCount."</td>";
                 $service .= "<td class='tabDetailViewDF' style='padding:2px;' colspan='2'>".$line_item->name."</td>";
-                $service .= "<td class='tabDetailViewDF' style='text-align: right; padding:2px;'>".currency_format_number($line_item->product_list_price,$params)."</td>";
+                $service .= "<td class='tabDetailViewDF' style='text-align: right; padding:2px;'>".currency_format_number($line_item->product_list_price, $params)."</td>";
 
                 $service .= "<td class='tabDetailViewDF' style='text-align: right; padding:2px;'>".get_discount_string($line_item->discount, $line_item->product_discount, $params, $locale, $sep)."</td>";
 
 
-                $service .= "<td class='tabDetailViewDF' style='text-align: right; padding:2px;'>".currency_format_number($line_item->product_unit_price,$params)."</td>";
+                $service .= "<td class='tabDetailViewDF' style='text-align: right; padding:2px;'>".currency_format_number($line_item->product_unit_price, $params)."</td>";
                 $service .= "<td class='tabDetailViewDF' style='text-align: right; padding:2px;'>".rtrim(rtrim(format_number($line_item->vat), '0'), $sep[1])."%</td>";
-                $service .= "<td class='tabDetailViewDF' style='text-align: right; padding:2px;'>".currency_format_number($line_item->vat_amt,$params )."</td>";
-                $service .= "<td class='tabDetailViewDF' style='text-align: right; padding:2px;'>".currency_format_number($line_item->product_total_price,$params )."</td>";
+                $service .= "<td class='tabDetailViewDF' style='text-align: right; padding:2px;'>".currency_format_number($line_item->vat_amt, $params)."</td>";
+                $service .= "<td class='tabDetailViewDF' style='text-align: right; padding:2px;'>".currency_format_number($line_item->product_total_price, $params)."</td>";
                 $service .= "</tr>";
-
             }
 
         }
@@ -422,44 +418,37 @@ function display_lines($focus, $field, $value, $view){
 //field was 0.
 //The approach below will strip off the fractional part if it is only zeroes (and in this case the decimal separator
 //will also be stripped off) The custom decimal separator is passed in to the function from the locale settings
-function stripDecimalPointsAndTrailingZeroes($inputString,$decimalSeparator)
+function stripDecimalPointsAndTrailingZeroes($inputString, $decimalSeparator)
 {
-    return preg_replace('/'.preg_quote($decimalSeparator).'[0]+$/','',$inputString);
+    return preg_replace('/'.preg_quote($decimalSeparator).'[0]+$/', '', $inputString);
 }
 
-function get_discount_string($type, $amount, $params, $locale, $sep){
-    if($amount != '' && $amount != '0.00')
-    {
-        if($type == 'Amount')
-        {
-            return currency_format_number($amount,$params )."</td>";
+function get_discount_string($type, $amount, $params, $locale, $sep)
+{
+    if ($amount != '' && $amount != '0.00') {
+        if ($type == 'Amount') {
+            return currency_format_number($amount, $params)."</td>";
+        } elseif ($locale->getPrecision()) {
+            return rtrim(rtrim(format_number($amount), '0'), $sep[1])."%";
         }
-        else if($locale->getPrecision())
-        {
-            return rtrim(rtrim(format_number($amount), '0'),$sep[1])."%";
-        } else{
-            return format_number($amount)."%";
-        }
+        return format_number($amount)."%";
     }
-    else
-    {
-        return "-";
-    }
+    return "-";
 }
 
-function display_shipping_vat($focus, $field, $value, $view){
-
-    if($view == 'EditView'){
+function display_shipping_vat($focus, $field, $value, $view)
+{
+    if ($view == 'EditView') {
         global $app_list_strings;
 
-        if($value != '') $value = format_number($value);
+        if ($value != '') {
+            $value = format_number($value);
+        }
 
         $html = "<input id='shipping_tax_amt' type='text' tabindex='0' title='' value='".$value."' maxlength='26,6' size='22' name='shipping_tax_amt' onblur='calculateTotal(\"lineItems\");'>";
         $html .= "<select name='shipping_tax' id='shipping_tax' onchange='calculateTotal(\"lineItems\");' >".get_select_options_with_id($app_list_strings['vat_list'], (isset($focus->shipping_tax) ? $focus->shipping_tax : ''))."</select>";
 
         return $html;
-
     }
     return format_number($value);
-
 }

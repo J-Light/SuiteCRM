@@ -121,40 +121,40 @@ $unified_search_modules_display = array (
   array (
     'visible' => false,
   ),
-  'Project' => 
-  array (
+  'Project' =>
+  array(
     'visible' => false,
   ),
-  'ProjectTask' => 
-  array (
+  'ProjectTask' =>
+  array(
     'visible' => false,
   ),
-  'ProspectLists' => 
-  array (
+  'ProspectLists' =>
+  array(
     'visible' => false,
   ),
-  'Prospects' => 
-  array (
+  'Prospects' =>
+  array(
     'visible' => false,
   ),
-  'Tasks' => 
-  array (
+  'Tasks' =>
+  array(
     'visible' => false,
   ),
-  'jjwg_Address_Cache' => 
-  array (
+  'jjwg_Address_Cache' =>
+  array(
     'visible' => false,
   ),
-  'jjwg_Areas' => 
-  array (
+  'jjwg_Areas' =>
+  array(
     'visible' => false,
   ),
-  'jjwg_Maps' => 
-  array (
+  'jjwg_Maps' =>
+  array(
     'visible' => false,
   ),
-  'jjwg_Markers' => 
-  array (
+  'jjwg_Markers' =>
+  array(
     'visible' => false,
   ),
 );
