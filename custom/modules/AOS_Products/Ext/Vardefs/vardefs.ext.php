@@ -50,6 +50,12 @@ $dictionary['AOS_Products']['fields']['is_service_c']['labelValue']='Is Service?
 
  
 
+ // created: 2018-10-15 15:08:15
+$dictionary['AOS_Products']['fields']['cost']['inline_edit']=true;
+$dictionary['AOS_Products']['fields']['cost']['merge_filter']='disabled';
+
+ 
+
  // created: 2016-10-18 09:29:17
 $dictionary['AOS_Products']['fields']['aos_products_id_c']['inline_edit']=1;
 

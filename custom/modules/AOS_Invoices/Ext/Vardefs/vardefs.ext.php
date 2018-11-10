@@ -88,6 +88,19 @@ $dictionary['AOS_Invoices']['fields']['myob_sale_total_c']['labelValue']='MYOB S
 
  
 
+// created: 2018-08-07 15:41:32
+$dictionary["AOS_Invoices"]["fields"]["aos_invoices_documents_1"] = array (
+  'name' => 'aos_invoices_documents_1',
+  'type' => 'link',
+  'relationship' => 'aos_invoices_documents_1',
+  'source' => 'non-db',
+  'module' => 'Documents',
+  'bean_name' => 'Document',
+  'side' => 'right',
+  'vname' => 'LBL_AOS_INVOICES_DOCUMENTS_1_FROM_DOCUMENTS_TITLE',
+);
+
+
  // created: 2016-04-06 08:12:26
 $dictionary['AOS_Invoices']['fields']['myob_sale_id_c']['inline_edit']='1';
 $dictionary['AOS_Invoices']['fields']['myob_sale_id_c']['labelValue']='MYOB Sale ID';

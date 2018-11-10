@@ -204,6 +204,11 @@ array (
             'studio' => 'visible',
             'label' => 'LBL_HDN_AGREEMENT_NUMBER_C',
           ),
+          1 => 
+          array (
+            'name' => 'customer_purchase_order_c',
+            'label' => 'LBL_CUSTOMER_PURCHASE_ORDER',
+          ),
         ),
       ),
       'LBL_QUOTE_TO' => 

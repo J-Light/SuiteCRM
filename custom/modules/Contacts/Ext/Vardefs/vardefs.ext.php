@@ -75,6 +75,12 @@ $dictionary['Contact']['fields']['contact_home_street_c']['labelValue']='Contact
 
  
 
+ // created: 2018-09-25 14:59:15
+$dictionary['Contact']['fields']['mautic_contact_timeline_c']['inline_edit']='';
+$dictionary['Contact']['fields']['mautic_contact_timeline_c']['labelValue']='Mautic Contact Timeline';
+
+ 
+
  // created: 2016-07-13 09:05:58
 $dictionary['Contact']['fields']['contact_address_state_c']['inline_edit']='1';
 $dictionary['Contact']['fields']['contact_address_state_c']['labelValue']='Contact Address State';

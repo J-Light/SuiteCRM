@@ -35,6 +35,12 @@ $dictionary['AOS_Quotes']['fields']['quote_type_c']['labelValue']='Quote Type';
 
  
 
+ // created: 2018-11-05 15:48:37
+$dictionary['AOS_Quotes']['fields']['customer_purchase_order_c']['inline_edit']='1';
+$dictionary['AOS_Quotes']['fields']['customer_purchase_order_c']['labelValue']='Customer Purchase Order';
+
+ 
+
  // created: 2017-10-18 16:58:01
 $dictionary['AOS_Quotes']['fields']['hdn_agreement_number_c']['inline_edit']='1';
 $dictionary['AOS_Quotes']['fields']['hdn_agreement_number_c']['labelValue']='Agreement Number';
@@ -44,6 +50,13 @@ $dictionary['AOS_Quotes']['fields']['hdn_agreement_number_c']['labelValue']='Agr
  // created: 2017-06-14 14:32:45
 $dictionary['AOS_Quotes']['fields']['company_c']['inline_edit']='1';
 $dictionary['AOS_Quotes']['fields']['company_c']['labelValue']='Company';
+
+ 
+
+ // created: 2018-08-08 16:39:00
+$dictionary['AOS_Quotes']['fields']['billing_contact']['required']=true;
+$dictionary['AOS_Quotes']['fields']['billing_contact']['inline_edit']=true;
+$dictionary['AOS_Quotes']['fields']['billing_contact']['merge_filter']='disabled';
 
  
 

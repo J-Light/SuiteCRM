@@ -1,5 +1,5 @@
 <?php
-// created: 2017-08-31 12:03:29
+// created: 2018-10-15 15:08:15
 $mod_strings = array (
   'LBL_COST_CURRENCY' => 'Cost Currency',
   'LBL_TYPE' => 'Commercial',
@@ -14,4 +14,5 @@ $mod_strings = array (
   'LBL_MYOB_ACCNUM_PURCHASE' => 'MYOB Account Number Purchases',
   'LBL_MYOB_JOB_GROUPID' => 'MYOB Job Group ID',
   'LBL_COST_2' => 'Cost',
+  'LBL_COST' => 'Cost Unused',
 );

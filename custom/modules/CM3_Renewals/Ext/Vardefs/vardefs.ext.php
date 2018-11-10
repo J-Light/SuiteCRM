@@ -51,6 +51,12 @@ $dictionary['CM3_Renewals']['fields']['contact_id2_c']['inline_edit']=1;
 
  
 
+ // created: 2018-10-09 15:34:35
+$dictionary['CM3_Renewals']['fields']['agreementstatus_c']['inline_edit']='1';
+$dictionary['CM3_Renewals']['fields']['agreementstatus_c']['labelValue']='Agreement Status';
+
+ 
+
  // created: 2016-08-19 02:37:38
 $dictionary['CM3_Renewals']['fields']['supplier_c']['inline_edit']='1';
 $dictionary['CM3_Renewals']['fields']['supplier_c']['labelValue']='Supplier';

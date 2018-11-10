@@ -1,5 +1,5 @@
 <?php
-// created: 2018-04-16 09:07:19
+// created: 2018-10-09 13:20:27
 $mod_strings = array (
   'LBL_LEAD_TYPE_AOS_PRODUCT_CATEGORIES_ID' => 'Lead Type (related  ID)',
   'LBL_LEAD_TYPE' => 'Lead Type',
@@ -16,4 +16,6 @@ $mod_strings = array (
   'LBL_LEAD_SOURCE' => 'Lead Source:',
   'LBL_LEAD_SOURCE_DESCRIPTION' => 'Lead Source Description:',
   'LBL_MODULE_NAME' => 'Leads',
+  'LBL_LEAD_MAUTIC_TIMELINE' => 'Mautic Lead Timeline',
+  'LBL_CHASELIST' => 'ChaseList',
 );

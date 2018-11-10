@@ -171,13 +171,21 @@ array (
         ),
         5 => 
         array (
-          0 => 'email1',
+          0 => 
+          array (
+            'name' => 'lead_mautic_timeline_c',
+            'label' => 'LBL_LEAD_MAUTIC_TIMELINE',
+          ),
         ),
         6 => 
         array (
-          0 => 'description',
+          0 => 'email1',
         ),
         7 => 
+        array (
+          0 => 'description',
+        ),
+        8 => 
         array (
           0 => 
           array (

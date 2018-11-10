@@ -9,6 +9,14 @@ array (
     'default' => true,
     'link' => true,
   ),
+  'AGREEMENTSTATUS_C' => 
+  array (
+    'type' => 'enum',
+    'default' => true,
+    'studio' => 'visible',
+    'label' => 'LBL_AGREEMENTSTATUS',
+    'width' => '10%',
+  ),
   'ACCOUNT_C' => 
   array (
     'type' => 'relate',

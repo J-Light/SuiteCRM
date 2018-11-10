@@ -158,6 +158,11 @@ array (
         3 => 
         array (
           0 => 'campaign_name',
+          1 => 
+          array (
+            'name' => 'chaselist_c',
+            'label' => 'LBL_CHASELIST',
+          ),
         ),
       ),
       'LBL_PANEL_ASSIGNMENT' => 

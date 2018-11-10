@@ -29,4 +29,5 @@ $mod_strings = array (
   'LBL_HOME_PHONE' => 'Home:',
   'LBL_FP_EVENTS_CONTACTS_FROM_FP_EVENTS_TITLE' => 'Events',
   'LBL_OFFICE_PHONE' => 'Direct Phone',
+  'LBL_MAUTIC_CONTACT_TIMELINE' => 'Mautic Contact Timeline',
 );

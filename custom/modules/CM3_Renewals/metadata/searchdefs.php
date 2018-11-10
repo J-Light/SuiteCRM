@@ -42,6 +42,15 @@ array (
         'default' => true,
         'name' => 'renewal_date',
       ),
+      'agreementstatus_c' => 
+      array (
+        'type' => 'enum',
+        'default' => true,
+        'studio' => 'visible',
+        'label' => 'LBL_AGREEMENTSTATUS',
+        'width' => '10%',
+        'name' => 'agreementstatus_c',
+      ),
     ),
     'advanced_search' => 
     array (
@@ -96,6 +105,15 @@ array (
         ),
         'default' => true,
         'width' => '10%',
+      ),
+      'agreementstatus_c' => 
+      array (
+        'type' => 'enum',
+        'default' => true,
+        'studio' => 'visible',
+        'label' => 'LBL_AGREEMENTSTATUS',
+        'width' => '10%',
+        'name' => 'agreementstatus_c',
       ),
     ),
   ),

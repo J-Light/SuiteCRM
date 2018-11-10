@@ -1,5 +1,5 @@
 <?php
-// created: 2018-05-09 11:25:05
+// created: 2018-11-05 15:48:37
 $mod_strings = array (
   'LBL_QUOTE_TYPE' => 'Quote Type',
   'AOS_Contracts' => 'Contracts',
@@ -15,4 +15,7 @@ $mod_strings = array (
   'LBL_RENEWAL_QUOTE_GRAND_TOTAL' => 'Grand Total (inc GST)',
   'LBL_SUBTOTAL_AMOUNT' => 'Subtotal (including discount - ex GST)',
   'LBL_TOTAL_AMT' => 'Total (List Prices ex GST)',
+  'LBL_BILLING_CONTACT_CONTACT_ID' => 'Contact (related Contact ID)',
+  'LBL_BILLING_CONTACT' => 'Contact',
+  'LBL_CUSTOMER_PURCHASE_ORDER' => 'Customer Purchase Order',
 );

@@ -218,6 +218,14 @@ array (
         array (
           0 => 
           array (
+            'name' => 'mautic_contact_timeline_c',
+            'label' => 'LBL_MAUTIC_CONTACT_TIMELINE',
+          ),
+        ),
+        6 => 
+        array (
+          0 => 
+          array (
             'name' => 'primary_address_street',
             'label' => 'LBL_PRIMARY_ADDRESS',
             'type' => 'address',
@@ -237,7 +245,7 @@ array (
             ),
           ),
         ),
-        6 => 
+        7 => 
         array (
           0 => 
           array (
@@ -251,7 +259,7 @@ array (
             'label' => 'LBL_ASSIGNED_TO_NAME',
           ),
         ),
-        7 => 
+        8 => 
         array (
           0 => 
           array (

@@ -23,6 +23,11 @@ array (
       'useTabs' => false,
       'tabDefs' => 
       array (
+        'LBL_EDITVIEW_PANEL1' => 
+        array (
+          'newTab' => false,
+          'panelDefault' => 'expanded',
+        ),
         'DEFAULT' => 
         array (
           'newTab' => false,
@@ -33,6 +38,14 @@ array (
     ),
     'panels' => 
     array (
+      'lbl_editview_panel1' => 
+      array (
+        0 => 
+        array (
+          0 => '',
+          1 => '',
+        ),
+      ),
       'default' => 
       array (
         0 => 
@@ -100,6 +113,15 @@ array (
           ),
         ),
         5 => 
+        array (
+          0 => 
+          array (
+            'name' => 'agreementstatus_c',
+            'studio' => 'visible',
+            'label' => 'LBL_AGREEMENTSTATUS',
+          ),
+        ),
+        6 => 
         array (
           0 => 'description',
         ),
