@@ -1,71 +1,77 @@
 <?php
 // created: 2017-08-21 11:58:39
 $subpanel_layout['list_fields'] = array (
-  'name' => 
+  'name' =>
   array (
     'vname' => 'LBL_PRODUCTS_SERVICES',
     'widget_class' => 'SubPanelDetailViewLink',
     'target_record_key' => 'product_id',
     'target_module' => 'AOS_Products',
-    'width' => '25%',
+    'width' => '20%',
     'default' => true,
   ),
-  'invoice_number' => 
+  'invoice_number' =>
   array (
     'link' => true,
     'vname' => 'LBL_INVOICE_LINK',
     'widget_class' => 'SubPanelDetailViewLink',
       'target_record_key' => 'invoice_id',
       'target_module' => 'AOS_Invoices',
-    'width' => '10%',
+    'width' => '5%',
     'default' => true,
   ),
-  'product_qty' => 
+  'part_number' =>
+  array (
+      'vname' => 'LBL_PART_NUMBER',
+      'width' => '10%',
+      'default' => true,
+  ),
+  'product_qty' =>
   array (
     'vname' => 'LBL_PRODUCT_QTY',
-    'width' => '10%',
+    'width' => '5%',
     'default' => true,
   ),
-  'product_list_price' => 
+  'product_list_price' =>
   array (
     'vname' => 'LBL_PRODUCT_LIST_PRICE',
     'width' => '10%',
     'default' => true,
   ),
-  'product_discount' => 
+  'product_discount' =>
   array (
     'vname' => 'LBL_PRODUCT_DISCOUNT',
-    'width' => '10%',
+    'width' => '5%',
     'default' => true,
   ),
-  'product_unit_price' => 
+  'product_unit_price' =>
   array (
     'vname' => 'LBL_ACCOUNT_PRODUCT_SALE_PRICE',
     'width' => '10%',
     'default' => true,
   ),
-  'product_total_price' => 
+  'product_total_price' =>
   array (
     'vname' => 'LBL_PRODUCT_TOTAL_PRICE',
     'width' => '10%',
     'default' => true,
   ),
-  'end_date_c' => 
+  'end_date_c' =>
   array (
     'vname' => 'LBL_TECS_END_DATE',
     'width' => '10%',
     'default' => true,
   ),
-  'status_c' => 
+  'status_c' =>
   array (
     'link' => false,
     'type' => 'enum',
     'default' => true,
     'studio' => 'visible',
     'vname' => 'LBL_STATUS',
-    'width' => '10%',
+    'width' => '5%',
   ),
-  'agreement_name2' => 
+  'agreement_name2' =>
   array (
     'link' => true,
     'vname' => 'LBL_TECS_AGREEMENT_NAME',
